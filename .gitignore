@@ -1,0 +1,20 @@
+# IDE
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+
+# Build
+/dist/
+/docs/
+
+# ENV file
+.env
+nginx.env
+
+.DS_store
+
+# Tests
+coverage/
+
