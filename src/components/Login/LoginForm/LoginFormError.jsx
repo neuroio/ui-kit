@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
+import { colors } from "../../../style";
+
 const LoginFormError = styled.p`
   position: absolute;
   bottom: 46px;
   margin: 0;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 18px;
-  font-weight: 600;
-  text-align: center;
   width: 100%;
+  font-size: 12px;
+  line-height: 11px;
+  text-align: center;
+  color: ${colors.darkBlack};
 `;
 
 export { LoginFormError };

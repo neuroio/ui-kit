@@ -93,13 +93,13 @@ function LoginFormComponent({
         <FormField
           name="username"
           showError={false}
-          placeholder="USERNAME"
+          placeholder="username"
           render={(props) => <FormInput {...props} ref={usernameInputRef} />}
         />
         <FormField
           name="password"
           showError={false}
-          placeholder="PASSWORD"
+          placeholder="password"
           component={FormInput.Password}
         />
         <LoginFormError data-testid="login-form-error">

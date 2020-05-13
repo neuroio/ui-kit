@@ -27,11 +27,11 @@ describe("LoginForm tests", () => {
   test("LoginForm submits with correct data", async () => {
     const { getByPlaceholderText, getByTestId } = renderLoginForm();
 
-    fireEvent.change(getByPlaceholderText("USERNAME"), {
+    fireEvent.change(getByPlaceholderText("username"), {
       target: { value: "Jane Doe" },
     });
 
-    fireEvent.change(getByPlaceholderText("PASSWORD"), {
+    fireEvent.change(getByPlaceholderText("password"), {
       target: { value: "strong_password_here" },
     });
 
