@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const LoginFormFields = styled.div`
-  position: relative;
-  margin-bottom: 35px;
+  margin-bottom: 32px;
 `;
 
-export default LoginFormFields;
+export { LoginFormFields };

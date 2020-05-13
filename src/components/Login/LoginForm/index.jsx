@@ -7,16 +7,10 @@ import { usePrevious } from "react-use";
 import { object, string } from "yup";
 
 import { StyledLoginForm } from "./StyledLoginForm";
-import LoginFormForm from "./LoginFormForm";
-
-import LoginFormLogo from "./LoginFormLogo";
-import LoginFormTilte from "./LoginFormTitle";
-import LoginFormFields from "./LoginFormFields";
-import LoginFormButton from "./LoginFormButton";
-import LoginFormError from "./LoginFormError";
-import LoginFormInput from "./LoginFormInput";
-
-import { FormField } from "../../form/components";
+import { LoginFormFields } from "./LoginFormFields";
+import { LoginFormError } from "./LoginFormError";
+import { Button } from "../../Button";
+import { FormField, FormInput } from "../../form/components";
 
 import { withFormik } from "formik";
 import { isEmpty } from "lodash-es";
@@ -24,8 +18,6 @@ import { isEmpty } from "lodash-es";
 const ERROR_EMPTY_FIELDS = "Required fields are empty";
 
 function LoginFormComponent({
-  title,
-  logoSrc,
   isLogging,
   authError,
   values,
@@ -92,39 +84,31 @@ function LoginFormComponent({
   }
 
   return (
-    <StyledLoginForm className={className}>
-      {logoSrc && <LoginFormLogo src={logoSrc} />}
-      {title && <LoginFormTilte>{title}</LoginFormTilte>}
-      <LoginFormForm onSubmit={handleFormSubmit} data-testid={testId}>
-        <LoginFormFields>
-          <FormField
-            name="username"
-            showError={false}
-            render={(props) => (
-              <LoginFormInput
-                {...props}
-                placeholder="USERNAME"
-                ref={usernameInputRef}
-              />
-            )}
-          />
-          <FormField
-            name="password"
-            showError={false}
-            render={(props) => (
-              <LoginFormInput
-                {...props}
-                placeholder="PASSWORD"
-                type="password"
-              />
-            )}
-          />
-          <LoginFormError data-testid="login-form-error">
-            {stateAuthError}
-          </LoginFormError>
-        </LoginFormFields>
-        <LoginFormButton type="submit">Login</LoginFormButton>
-      </LoginFormForm>
+    <StyledLoginForm
+      onSubmit={handleFormSubmit}
+      data-testid={testId}
+      className={className}
+    >
+      <LoginFormFields>
+        <FormField
+          name="username"
+          showError={false}
+          placeholder="USERNAME"
+          render={(props) => <FormInput {...props} ref={usernameInputRef} />}
+        />
+        <FormField
+          name="password"
+          showError={false}
+          placeholder="PASSWORD"
+          component={FormInput.Password}
+        />
+        <LoginFormError data-testid="login-form-error">
+          {stateAuthError}
+        </LoginFormError>
+      </LoginFormFields>
+      <Button type="submit" theme="dark" size="large">
+        Login
+      </Button>
     </StyledLoginForm>
   );
 }

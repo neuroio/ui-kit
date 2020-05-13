@@ -4,17 +4,13 @@ import { colors } from "../../../style";
 
 export const LoginMenuItem = styled.a`
   text-decoration: none;
-  color: ${colors.slate};
-  font-size: 15px;
+  font-size: 13px;
   line-height: 18px;
   font-weight: 700;
-  border-bottom: 1px solid transparent;
-
-  &:hover {
-    border-bottom: 1px solid ${colors.lightYellow};
-  }
+  font-weight: bold;
+  color: ${colors.darkBlack};
 
   &:not(:last-of-type) {
-    margin-right: 50px;
+    margin-right: 32px;
   }
 `;

@@ -1,17 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import StyledLoginPromo from "./StyledLoginPromo";
-import LoginPromoImg from "./LoginPromoImg";
+import { StyledLoginPromo } from "./StyledLoginPromo";
+import { LoginPromoLogo } from "./LoginPromoLogo";
+import { LoginPromoTitle } from "./LoginPromoTitle";
 
-export function LoginPromo({ promoImage }) {
+export function LoginPromo({ logoSrc, title }) {
   return (
     <StyledLoginPromo>
-      <LoginPromoImg src={promoImage} />
+      {logoSrc && <LoginPromoLogo src={logoSrc} />}
+      {title && <LoginPromoTitle>{title}</LoginPromoTitle>}
     </StyledLoginPromo>
   );
 }
 
 LoginPromo.propTypes = {
-  promoImage: PropTypes.string.isRequired,
+  logoSrc: PropTypes.string,
+  title: PropTypes.string,
 };
