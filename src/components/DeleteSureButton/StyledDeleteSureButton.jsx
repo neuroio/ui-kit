@@ -25,13 +25,10 @@ function getSureStyles({ isSure, deleteColor }) {
 }
 
 const StyledDeleteSureButton = styled(Button)`
-  background-color: ${(props) => props.color};
-  color: ${colors.slate};
-  ${getSureStyles}
-
   width: ${({ width }) => {
     return width && `${width}px`;
   }};
+  ${getSureStyles}
 
   &:hover {
     ${getHoverStyles}

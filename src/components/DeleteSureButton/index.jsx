@@ -19,9 +19,9 @@ function DeleteSureButton({
   isDisabled,
   deleteText,
   sureText,
-  color,
   className,
   "data-testid": testId,
+  theme,
 }) {
   const [isSure, setIsSure] = useState(false);
   const { Portal } = usePortal();
@@ -43,7 +43,7 @@ function DeleteSureButton({
   return (
     <>
       <StyledDeleteSureButton
-        color={color}
+        theme={theme}
         className={className}
         deleteColor={deleteColor}
         isSure={isSure}
@@ -80,13 +80,12 @@ function DeleteSureButton({
 
 DeleteSureButton.defaultProps = {
   deleteColor: colors.brownSimple,
-  color: colors.blueWhite,
   "data-testid": "delete-button",
+  theme: "light",
 };
 
 DeleteSureButton.propTypes = {
   onDelete: PropTypes.func.isRequired,
-  color: PropTypes.string,
   size: PropTypes.string,
   isDisabled: PropTypes.bool,
   deleteColor: PropTypes.string,
@@ -94,6 +93,7 @@ DeleteSureButton.propTypes = {
   sureText: PropTypes.string,
   className: PropTypes.string,
   "data-testid": PropTypes.string,
+  theme: PropTypes.string,
 };
 
 export { DeleteSureButton, StyledDeleteSureButton };
