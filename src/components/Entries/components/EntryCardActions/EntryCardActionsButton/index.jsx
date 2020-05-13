@@ -17,10 +17,6 @@ const EntryCardActionsButton = styled(Button).attrs(({ to, as }) => ({
   text-transform: lowercase;
   text-align: center;
 
-  &:first-child {
-    border-radius: 2px;
-  }
-
   &:not(:last-child) {
     margin-bottom: 6px;
   }
