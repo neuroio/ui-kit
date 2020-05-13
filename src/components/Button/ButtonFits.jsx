@@ -1,11 +1,22 @@
 import { css } from "styled-components";
 
-const rectFit = css`
-  border-radius: 4px;
+function getRectStyles({ size }) {
+  const bRadiuses = {
+    medium: 2,
+    large: 4,
+  };
 
-  &:after {
-    border-radius: 4px;
-  }
+  return css`
+    border-radius: ${bRadiuses[size]}px;
+
+    &:after {
+      border-radius: ${bRadiuses[size]}px;
+    }
+  `;
+}
+
+const rectFit = css`
+  ${getRectStyles}
 `;
 
 const squareFit = css`
