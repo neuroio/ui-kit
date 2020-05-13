@@ -51,7 +51,11 @@ function DatePickerDateTimePicker({ value, onChange }) {
       return;
     }
 
-    if (value[1] && initialDateTo && dayjs(value[1]).isAfter(initialDateTo)) {
+    if (
+      value[1] &&
+      initialDateTo &&
+      dayjs(value[1]).isAfter(initialDateTo, "day")
+    ) {
       onChange([value[0], dayjs(currentDate).toDate()]);
 
       setError(
