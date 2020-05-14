@@ -25,4 +25,4 @@ Footer.propTypes = {
   Credits: PropTypes.oneOfType([PropTypes.array, PropTypes.node]),
 };
 
-export { Footer };
+export { Footer, StyledFooter };
