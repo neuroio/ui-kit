@@ -1,5 +1,7 @@
 # Neuroio UI kit
 
+![Node.js CI](https://github.com/neuroio/ui-kit/workflows/Node.js%20CI/badge.svg)
+
 An Neuroio UI design language and React implementation.
 
 > **Note**: Neuroio UI kit is build on ES6 modules, so your app have to support it as well
