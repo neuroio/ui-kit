@@ -6,5 +6,4 @@ export const LoginContent = styled.div`
   justify-content: space-between;
   position: relative;
   top: -20px;
-  left: -20px;
 `;

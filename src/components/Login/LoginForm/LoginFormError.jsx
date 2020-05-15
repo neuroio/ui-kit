@@ -4,7 +4,7 @@ import { colors } from "../../../style";
 
 const LoginFormError = styled.p`
   position: absolute;
-  bottom: 46px;
+  bottom: 55px;
   margin: 0;
   width: 100%;
   font-size: 12px;

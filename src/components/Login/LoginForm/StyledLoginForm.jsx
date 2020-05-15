@@ -8,7 +8,7 @@ const StyledLoginForm = styled.form`
   top: 40px;
 
   ${StyledFormInput} {
-    width: 252px;
+    width: 292px;
     height: 40px;
     text-align: center;
   }

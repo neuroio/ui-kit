@@ -6,6 +6,7 @@ const FooterCredits = styled.div`
   font-size: 14px;
   line-height: 18px;
   text-align: right;
+  margin-left: auto;
   color: ${colors.slate};
 `;
 
