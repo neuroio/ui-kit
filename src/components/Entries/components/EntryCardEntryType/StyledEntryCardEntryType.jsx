@@ -25,12 +25,6 @@ const StyledEntryCardEntryType = styled(UIBadge).attrs(() => ({ color }))`
   height: 16px;
   line-height: 16px;
   text-transform: lowercase;
-  /**
-    Хак для того, чтобы не обрезать бейдж снизу
-    внутри контейнеров с oferflow: hidden
-   */
-  position: absolute;
-  top: 3px;
 `;
 
 export { StyledEntryCardEntryType };

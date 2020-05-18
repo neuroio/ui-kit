@@ -47,6 +47,12 @@ const StyledEntryCardContainer = styled.li`
 
   ${StyledEntryCardEntryType} {
     border-color: ${({ theme }) => themes[theme.theme].badgeBorderColor};
+    /**
+    Хак для того, чтобы не обрезать бейдж снизу
+    внутри контейнеров с oferflow: hidden
+   */
+    position: absolute;
+    top: 3px;
   }
 
   ${StyledEntryCardInfoItem} {
