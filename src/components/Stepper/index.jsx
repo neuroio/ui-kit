@@ -44,7 +44,7 @@ function Stepper({ onStepChanges, onReset, initialActiveStepIndex, children }) {
 
   return (
     <StepperContext.Provider value={sharedState}>
-      {children(sharedState)}
+      {typeof children === "function" ? children(sharedState) : children}
     </StepperContext.Provider>
   );
 }
@@ -56,7 +56,11 @@ Stepper.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  children: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
 };
 
 Stepper.defaultProps = {
