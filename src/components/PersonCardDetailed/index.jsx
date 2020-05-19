@@ -32,7 +32,7 @@ function PersonCardDetailed({
   i18n.addResourceBundle("ru", "PersonCardDetailed", resources.ru);
 
   useEffect(() => {
-    if (personIdxid) {
+    if (personIdxid && fetchPerson) {
       fetchPerson(personIdxid);
     }
   }, [personIdxid]);
@@ -64,7 +64,7 @@ PersonCardDetailed.DataItem = PersonCardDetailedDataItem;
 
 PersonCardDetailed.propTypes = {
   person: PropTypes.object,
-  fetchPerson: PropTypes.func.isRequired,
+  fetchPerson: PropTypes.func,
   personIdxid: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,

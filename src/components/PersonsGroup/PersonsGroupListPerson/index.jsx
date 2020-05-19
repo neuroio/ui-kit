@@ -28,7 +28,7 @@ export function PersonsGroupListPerson({
   isRemoveAvailable,
 }) {
   useEffect(() => {
-    if (personIdxid) {
+    if (personIdxid && fetchPerson) {
       fetchPerson(personIdxid);
     }
   }, [personIdxid]);
@@ -80,7 +80,7 @@ export function PersonsGroupListPerson({
 PersonsGroupListPerson.propTypes = {
   person: PropTypes.object.isRequired,
   personIdxid: PropTypes.string.isRequired,
-  fetchPerson: PropTypes.func.isRequired,
+  fetchPerson: PropTypes.func,
   isPersonFetching: PropTypes.bool.isRequired,
   error: PropTypes.object,
   searchType: PropTypes.object,

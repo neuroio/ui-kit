@@ -95,7 +95,7 @@ function PersonsGroupPersonDetail({
 
 PersonsGroupPersonDetail.propTypes = {
   person: PropTypes.object,
-  fetchPerson: PropTypes.func.isRequired,
+  fetchPerson: PropTypes.func,
   personIdxid: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,
