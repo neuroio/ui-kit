@@ -19,6 +19,7 @@ function SegmentedTabsTabbar({ options, "data-testid": testId, className }) {
 
     return (
       <Button
+        key={value}
         data-testid={`${testId}-${value}`}
         theme={getButtonTheme(value)}
         onClick={() => {
