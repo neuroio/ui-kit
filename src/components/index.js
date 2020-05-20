@@ -50,3 +50,4 @@ export * from "./PopupContainer";
 export * from "./GlobalStyles";
 export * from "./I18nProvider";
 export * from "./Uploader";
+export * from "./ResultBadge";
