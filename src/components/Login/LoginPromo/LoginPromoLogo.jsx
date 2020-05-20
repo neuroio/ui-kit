@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginPromoLogo = styled.img`
+const LoginPromoLogo = styled.div`
   margin-bottom: 4px;
 `;
 

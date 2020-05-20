@@ -5,16 +5,20 @@ import { StyledLoginPromo } from "./StyledLoginPromo";
 import { LoginPromoLogo } from "./LoginPromoLogo";
 import { LoginPromoTitle } from "./LoginPromoTitle";
 
-export function LoginPromo({ logoSrc, title }) {
+export function LoginPromo({ logo, title }) {
   return (
     <StyledLoginPromo>
-      {logoSrc && <LoginPromoLogo src={logoSrc} />}
+      {logo && <LoginPromoLogo>{logo}</LoginPromoLogo>}
       {title && <LoginPromoTitle>{title}</LoginPromoTitle>}
     </StyledLoginPromo>
   );
 }
 
 LoginPromo.propTypes = {
-  logoSrc: PropTypes.string,
-  title: PropTypes.string,
+  logo: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  title: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.string,
+  ]),
 };
