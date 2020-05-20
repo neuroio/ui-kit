@@ -235,3 +235,8 @@ export function setNativeValue(element, value) {
     valueSetter.call(element, value);
   }
 }
+
+export function roundToDecimals(number, decimals = 2) {
+  const delimeter = Math.pow(10, decimals);
+  return Math.round(number * delimeter) / delimeter;
+}
