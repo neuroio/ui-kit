@@ -4,6 +4,7 @@ export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./ButtonLink";
 export * from "./CardSmall";
+export * from "./CardContainer";
 export * from "./CopyItem";
 export * from "./DeleteSureButton";
 export * from "./Entries";
