@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { storiesOf } from "@storybook/react";
-import { number, boolean } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 import { useListFetch, useSelectableList } from "../../hooks";
@@ -116,14 +116,10 @@ function getOptions(count) {
 storiesOf("List Layout", module)
   .add("full view one column", () => {
     const options = getOptions(10);
-    const optionsCount = number("List items count", 20);
     const isLoading = boolean("is loading", false);
 
     function ListLayoutConsumer() {
       const {
-        pagination,
-        setPagination,
-
         searchQuery,
         setSearchQuery,
 
@@ -193,13 +189,6 @@ storiesOf("List Layout", module)
               <ListLayoutList
                 items={options}
                 noItemsText="No items found"
-                pagination={
-                  <ListLayoutList.Pagination
-                    pagination={pagination}
-                    setPagination={setPagination}
-                    totalCount={optionsCount}
-                  />
-                }
                 isLoading={isLoading}
                 actions={
                   <ListLayoutActions
@@ -241,13 +230,8 @@ storiesOf("List Layout", module)
   .add("full view two columns", () => {
     const options = getOptions(20);
 
-    const optionsCount = number("List items count", 20);
-
     function ListLayoutConsumer() {
       const {
-        pagination,
-        setPagination,
-
         searchQuery,
         setSearchQuery,
 
@@ -317,13 +301,6 @@ storiesOf("List Layout", module)
               <ListLayoutList
                 items={options}
                 noItemsText="No items found"
-                pagination={
-                  <ListLayoutList.Pagination
-                    pagination={pagination}
-                    setPagination={setPagination}
-                    totalCount={optionsCount}
-                  />
-                }
                 columns={2}
                 actions={
                   <ListLayoutActions
@@ -378,16 +355,8 @@ storiesOf("List Layout", module)
         initial_facesize: 4095 * id,
       })))(10);
 
-    const optionsCount = number("List items count", 20);
-
     function ListLayoutConsumer() {
-      const {
-        pagination,
-        setPagination,
-
-        searchQuery,
-        setSearchQuery,
-      } = useListFetch({
+      const { searchQuery, setSearchQuery } = useListFetch({
         fetchList: action("Fetch list"),
       });
       const {
@@ -437,13 +406,6 @@ storiesOf("List Layout", module)
               <ListLayoutList
                 items={persons}
                 noItemsText="No items found"
-                pagination={
-                  <ListLayoutList.Pagination
-                    pagination={pagination}
-                    setPagination={setPagination}
-                    totalCount={optionsCount}
-                  />
-                }
                 columns={2}
                 renderItem={(person) => (
                   <PersonsGroupPerson

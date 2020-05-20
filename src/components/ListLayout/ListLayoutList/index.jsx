@@ -5,7 +5,6 @@ import { ListLayoutListWrapper } from "./ListLayoutListWrapper";
 import { StyledListLayoutList } from "./StyledListLayoutList";
 import { ListLayoutNotice } from "../ListLayoutNotice";
 import { ListLayoutListItem } from "./ListLayoutListItem";
-import { ListLayoutListPagination } from "./ListLayoutListPagination";
 import { ListLayoutListSpinner } from "./ListLayoutListSpinner";
 import { Ban } from "../../icons";
 
@@ -15,14 +14,12 @@ function ListLayoutList({
   isLoading,
   renderItem,
   noItemsText,
-  pagination,
   columns,
   className,
   "data-testid": testId,
   hasNext,
 }) {
   const isListEmpty = hasNext === false && items.length === 0;
-  const hasPagePagination = Boolean(pagination);
 
   return (
     <ListLayoutListWrapper
@@ -30,29 +27,21 @@ function ListLayoutList({
       ref={listRef}
       className={className}
     >
-      {!isLoading || !hasPagePagination ? (
-        isListEmpty ? (
-          isLoading ? (
-            <ListLayoutListSpinner />
-          ) : (
-            <ListLayoutNotice
-              icon={<Ban size="48" />}
-              data-testid="empty-list-notice"
-            >
-              {noItemsText}
-            </ListLayoutNotice>
-          )
+      {isListEmpty ? (
+        isLoading ? (
+          <ListLayoutListSpinner />
         ) : (
-          <React.Fragment>
-            <StyledListLayoutList columns={columns}>
-              {items.map(renderItem)}
-            </StyledListLayoutList>
-
-            {pagination}
-          </React.Fragment>
+          <ListLayoutNotice
+            icon={<Ban size="48" />}
+            data-testid="empty-list-notice"
+          >
+            {noItemsText}
+          </ListLayoutNotice>
         )
       ) : (
-        <ListLayoutListSpinner />
+        <StyledListLayoutList columns={columns}>
+          {items.map(renderItem)}
+        </StyledListLayoutList>
       )}
     </ListLayoutListWrapper>
   );
@@ -64,7 +53,6 @@ ListLayoutList.propTypes = {
   renderItem: PropTypes.func.isRequired,
   noItemsText: PropTypes.string,
   hasNext: PropTypes.bool.isRequired,
-  pagination: PropTypes.object,
   columns: PropTypes.oneOf([1, 2]),
   className: PropTypes.string,
   isLoading: PropTypes.bool,
@@ -81,11 +69,5 @@ ListLayoutList.defaultProps = {
 };
 
 ListLayoutList.Item = ListLayoutListItem;
-ListLayoutList.Pagination = ListLayoutListPagination;
 
-export {
-  ListLayoutList,
-  StyledListLayoutList,
-  ListLayoutListItem,
-  ListLayoutListPagination,
-};
+export { ListLayoutList, StyledListLayoutList, ListLayoutListItem };
