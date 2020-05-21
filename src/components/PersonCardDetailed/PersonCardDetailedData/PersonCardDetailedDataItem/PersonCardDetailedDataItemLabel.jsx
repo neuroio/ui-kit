@@ -11,6 +11,7 @@ const PersonCardDetailedDataItemLabel = styled.span`
   font-size: 14px;
   line-height: 18px;
   color: ${colors.darkBlack};
+  flex-shrink: 0;
 `;
 
 export { PersonCardDetailedDataItemLabel };
