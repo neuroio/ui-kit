@@ -11,7 +11,8 @@ const LoginPageWrapper = styled(RouteSection)`
 
   ${StyledFooter} {
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 60px;
+    padding-bottom: 20px;
   }
 `;
 

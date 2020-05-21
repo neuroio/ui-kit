@@ -9,7 +9,7 @@ const LoginMenu = styled.nav`
   padding-top: 8px;
   position: absolute;
   top: 0px;
-  right: -85px;
+  right: 0px;
 `;
 
 LoginMenu.Item = LoginMenuItem;

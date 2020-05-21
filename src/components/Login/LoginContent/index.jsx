@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const LoginContent = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  position: relative;
-  top: -20px;
 `;

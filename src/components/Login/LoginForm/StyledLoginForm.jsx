@@ -5,7 +5,6 @@ import { StyledFormField, StyledFormInput } from "../../form/components";
 const StyledLoginForm = styled.form`
   text-align: center;
   position: relative;
-  top: 40px;
 
   ${StyledFormInput} {
     width: 292px;
