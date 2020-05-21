@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import { StyledButton } from "../../Button";
 
+import { colors } from "../../../style/color";
+
 const StyledSegmentedTabsTabbar = styled.div`
   display: flex;
 
@@ -10,6 +12,8 @@ const StyledSegmentedTabsTabbar = styled.div`
   }
 
   ${StyledButton} {
+    border-radius: 4px;
+
     &:first-child {
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
@@ -22,6 +26,10 @@ const StyledSegmentedTabsTabbar = styled.div`
 
     &:not(:first-child):not(:last-child) {
       border-radius: 0;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid ${colors.whiteSimple};
     }
   }
 `;
