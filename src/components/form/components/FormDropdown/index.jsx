@@ -251,6 +251,14 @@ function FormDropdown({
     }
   }
 
+  function getHasValue(selectedItem) {
+    if (multiple) {
+      return selectedItem.length > 0;
+    } else {
+      return withSearch ? Boolean(preselected) : Boolean(selectedItem);
+    }
+  }
+
   return (
     <Downshift
       initialSelectedItem={value}
@@ -292,6 +300,7 @@ function FormDropdown({
                 disabled,
                 isOpen,
                 "data-testid": testId + "-control",
+                hasValue: getHasValue(selectedItem),
               })}
             >
               {getRenderedSelected(selectedItem)}

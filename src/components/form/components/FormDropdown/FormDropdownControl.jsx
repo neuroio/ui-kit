@@ -11,7 +11,7 @@ const FormDropdownControl = styled(Button)`
   position: relative;
   height: 30px;
   background-color: ${colors.whiteGrayLight};
-  color: ${colors.darkBlack};
+  color: ${({ hasValue }) => (hasValue ? colors.darkBlack : "#9FA7AE")};
   padding: 0 40px 0 15px;
   border-radius: 5px;
   /**
