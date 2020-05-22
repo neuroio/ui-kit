@@ -9,7 +9,10 @@ const StyledLoginForm = styled.form`
   ${StyledFormInput} {
     width: 292px;
     height: 40px;
+    font-size: 16px;
+    line-height: 26px;
     text-align: center;
+    font-weight: bold;
   }
 
   ${StyledFormField} {
