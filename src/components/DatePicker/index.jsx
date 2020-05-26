@@ -96,7 +96,7 @@ function DatePicker({
     if (value[0] && !value[1]) return `From ${formatDateTime(value[0])}`;
     if (!value[0] && value[1]) return `To ${formatDateTime(value[1])}`;
 
-    if (isDatesEqual(value[0], initialDateFrom)) {
+    if (isDatesEqual(value[0], new Date(initialDateFrom))) {
       return `All to ${formatDateTime(value[1])}`;
     }
 
