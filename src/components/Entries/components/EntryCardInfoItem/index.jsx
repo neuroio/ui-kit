@@ -19,7 +19,7 @@ function EntryCardInfoItem({ children, label, value, isZeroEmpty, className }) {
         children
       ) : (
         <React.Fragment>
-          <EntryCardInfoItemLabel>{label}:</EntryCardInfoItemLabel>
+          <EntryCardInfoItemLabel>{label}</EntryCardInfoItemLabel>
           {value !== undefined ? (
             <EntryCardInfoItemValue isZeroEmpty={isZeroEmpty} value={value}>
               {children}
