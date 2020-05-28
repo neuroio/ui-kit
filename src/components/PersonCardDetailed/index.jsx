@@ -19,7 +19,7 @@ import { resources } from "./PersonCardDetailed.resources";
 function PersonCardDetailed({
   person,
   fetchPerson,
-  personIdxid,
+  pid,
   isLoading,
   isPersonNotExists,
   children,
@@ -32,10 +32,10 @@ function PersonCardDetailed({
   i18n.addResourceBundle("ru", "PersonCardDetailed", resources.ru);
 
   useEffect(() => {
-    if (personIdxid && fetchPerson) {
-      fetchPerson(personIdxid);
+    if (pid && fetchPerson) {
+      fetchPerson(pid);
     }
-  }, [personIdxid]);
+  }, [pid]);
 
   return (
     <StyledPersonCardDetailed
@@ -65,7 +65,7 @@ PersonCardDetailed.DataItem = PersonCardDetailedDataItem;
 PersonCardDetailed.propTypes = {
   person: PropTypes.object,
   fetchPerson: PropTypes.func,
-  personIdxid: PropTypes.string,
+  pid: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,

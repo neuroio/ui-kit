@@ -21,9 +21,7 @@ storiesOf("Entries|PersonEntriesCard", module).add("default", () => {
           <EntryCardActionsButton to="/some-url" theme="light">
             lists
           </EntryCardActionsButton>
-          <EntryCardButtonDelete
-            onDelete={() => action("Delete")(person.idxid)}
-          >
+          <EntryCardButtonDelete onDelete={() => action("Delete")(person.pid)}>
             delete
           </EntryCardButtonDelete>
         </React.Fragment>

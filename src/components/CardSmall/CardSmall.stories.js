@@ -36,7 +36,7 @@ storiesOf("Data display|CardSmall", module)
 
           {(isSelected || theme === "dark" || isMouseOver) && (
             <CardSmall.Checkbox
-              name={personMock.idxid}
+              name={personMock.pid}
               checked={isSelected}
               onChange={() => setIsSelected(!isSelected)}
             />
@@ -77,7 +77,7 @@ storiesOf("Data display|CardSmall", module)
 
           {(isSelected || theme === "dark" || isMouseOver) && (
             <CardSmall.Checkbox
-              name={personMock.idxid}
+              name={personMock.pid}
               value={isSelected}
               onChange={() => setIsSelected(!isSelected)}
             />

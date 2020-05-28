@@ -22,7 +22,7 @@ export const config = {
     },
     id: {
       view: {
-        idxid: null,
+        pid: null,
         new: true,
         exact: true,
         ha: false,

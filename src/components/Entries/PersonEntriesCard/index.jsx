@@ -34,17 +34,17 @@ function PersonEntriesCard({
       <EntryCardInfo>
         <EntryCardInfoColumn>
           <EntryCardInfoItem label="ID">
-            <IdCopy id={person.idxid} />
+            <IdCopy id={person.pid} />
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Age">{person.age}</EntryCardInfoItem>
           <EntryCardInfoItem label="Sex">
             {formatSex(person.sex)}
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Card created">
-            {timeFormat(person.idxid_created)}
+            {timeFormat(person.pid_created)}
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Place of first entry">
-            {get(person.idxid_source, "name")}
+            {get(person.pid_source, "name")}
           </EntryCardInfoItem>
         </EntryCardInfoColumn>
 

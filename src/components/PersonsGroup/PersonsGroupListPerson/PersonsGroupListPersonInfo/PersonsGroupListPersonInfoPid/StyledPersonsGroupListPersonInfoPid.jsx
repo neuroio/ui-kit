@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { colors } from "../../../../../style";
 
-export const StyledPersonsGroupListPersonInfoIdxid = styled.span`
+export const StyledPersonsGroupListPersonInfoPid = styled.span`
   font-size: 13px;
   line-height: 1.38;
   color: ${colors.grayWhite};
