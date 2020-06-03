@@ -33,7 +33,7 @@ function PersonEntriesCard({
 
       <EntryCardInfo>
         <EntryCardInfoColumn>
-          <EntryCardInfoItem label="ID">
+          <EntryCardInfoItem label="PID">
             <IdCopy id={person.pid} />
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Age">{person.age}</EntryCardInfoItem>

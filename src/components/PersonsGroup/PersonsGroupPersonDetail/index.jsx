@@ -46,7 +46,7 @@ function PersonsGroupPersonDetail({
               </PersonValue>
             </PersonCardDetailed.DataItem>
             <PersonCardDetailed.DataItem>
-              <PersonLabel>ID</PersonLabel>
+              <PersonLabel>PID</PersonLabel>
               <PersonIdValue>
                 <IdFormat>{person.pid}</IdFormat>
               </PersonIdValue>

@@ -60,7 +60,7 @@ function PersonsGroupPerson({
 
       <CardSmall.Data pid={person.pid}>
         <CardSmall.Title>
-          ID{" "}
+          PID{" "}
           <PersonsGroupPersonId isActive={isActive}>
             <IdFormat>{person.pid}</IdFormat>
           </PersonsGroupPersonId>

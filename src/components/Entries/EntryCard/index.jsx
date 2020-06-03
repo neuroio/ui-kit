@@ -79,7 +79,7 @@ function EntryCard({
               {result}
             </EntryCardEntryType>
           </EntryCardInfoItem>
-          <EntryCardInfoItem label="ID">
+          <EntryCardInfoItem label="PID">
             <IdCopy id={entry.pid} />
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Detected">

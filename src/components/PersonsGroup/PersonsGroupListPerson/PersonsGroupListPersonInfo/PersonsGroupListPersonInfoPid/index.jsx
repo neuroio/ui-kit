@@ -7,7 +7,7 @@ import { IdFormat } from "../../../../IdFormat";
 export function PersonsGroupListPersonInfoPid({ pid }) {
   return (
     <StyledPersonsGroupListPersonInfoPid>
-      ID{" "}
+      PID{" "}
       <span>
         <IdFormat>{pid}</IdFormat>
       </span>
