@@ -105,4 +105,4 @@ InfoCardSelect.defaultProps = {
   value: "",
 };
 
-export { InfoCardSelect };
+export { InfoCardSelect, InfoCardSelectTag };
