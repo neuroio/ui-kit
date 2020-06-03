@@ -16,7 +16,7 @@ import { PersonsGroupListPersonSpinner } from "./PersonsGroupListPersonSpinner";
 
 export function PersonsGroupListPerson({
   person,
-  personIdxid,
+  pid,
   fetchPerson,
   isPersonFetching,
   error,
@@ -28,10 +28,10 @@ export function PersonsGroupListPerson({
   isRemoveAvailable,
 }) {
   useEffect(() => {
-    if (personIdxid && fetchPerson) {
-      fetchPerson(personIdxid);
+    if (pid && fetchPerson) {
+      fetchPerson(pid);
     }
-  }, [personIdxid]);
+  }, [pid]);
 
   return (
     <StyledPersonsGroupListPerson offsetTop={200}>
@@ -43,7 +43,7 @@ export function PersonsGroupListPerson({
         <React.Fragment>
           <PersonsGroupListPersonInfo
             photo={person.initial_photo}
-            idxid={person.idxid}
+            pid={person.pid}
           />
           <PersonsGroupListPersonTypeSelect
             type={searchType}
@@ -79,7 +79,7 @@ export function PersonsGroupListPerson({
 
 PersonsGroupListPerson.propTypes = {
   person: PropTypes.object.isRequired,
-  personIdxid: PropTypes.string.isRequired,
+  pid: PropTypes.string.isRequired,
   fetchPerson: PropTypes.func,
   isPersonFetching: PropTypes.bool.isRequired,
   error: PropTypes.object,

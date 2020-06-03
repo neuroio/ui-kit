@@ -50,26 +50,26 @@ function PersonsGroupPerson({
     >
       {!isAddingMode && (
         <CardSmall.Checkbox
-          name={person.idxid}
+          name={person.pid}
           checked={isSelected}
           onChange={onChange}
           isHidden={!isMouseOver && !isSelected && !isActive}
-          data-testid={`persons-group-person-select-${person.idxid}`}
+          data-testid={`persons-group-person-select-${person.pid}`}
         />
       )}
 
-      <CardSmall.Data idxid={person.idxid}>
+      <CardSmall.Data pid={person.pid}>
         <CardSmall.Title>
           ID{" "}
           <PersonsGroupPersonId isActive={isActive}>
-            <IdFormat>{person.idxid}</IdFormat>
+            <IdFormat>{person.pid}</IdFormat>
           </PersonsGroupPersonId>
         </CardSmall.Title>
         <CardSmall.DataItem>
           Place of first entry:
           <br />{" "}
           <b>
-            <Value>{get(person, "idxid_source.name", "-")}</Value>
+            <Value>{get(person, "pid_source.name", "-")}</Value>
           </b>
         </CardSmall.DataItem>
       </CardSmall.Data>

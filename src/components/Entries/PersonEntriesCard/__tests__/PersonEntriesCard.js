@@ -40,6 +40,6 @@ describe("PersonEntriesCard tests", () => {
 
     expect(container).toHaveTextContent(personMock.age);
     expect(container).toHaveTextContent("female");
-    expect(container).toHaveTextContent(personMock.idxid_source.name);
+    expect(container).toHaveTextContent(personMock.pid_source.name);
   });
 });

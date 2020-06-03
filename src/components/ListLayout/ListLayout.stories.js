@@ -351,7 +351,7 @@ storiesOf("List Layout", module)
     const persons = ((count) =>
       [...new Array(count)].map((_, id) => ({
         ...personMock,
-        idxid: "732e7919-508d-4cc2-b5a5-3e1b863c7d33" + id,
+        pid: "732e7919-508d-4cc2-b5a5-3e1b863c7d33" + id,
         initial_facesize: 4095 * id,
       })))(10);
 
@@ -366,7 +366,7 @@ storiesOf("List Layout", module)
         deselectAll,
         isAllDeselected,
         isAllSelected,
-      } = useSelectableList({ options: persons.map(prop("idxid")) });
+      } = useSelectableList({ options: persons.map(prop("pid")) });
 
       const [detailed, setDetailed] = useState(null);
 
@@ -409,17 +409,17 @@ storiesOf("List Layout", module)
                 columns={2}
                 renderItem={(person) => (
                   <PersonsGroupPerson
-                    key={person.idxid}
+                    key={person.pid}
                     onChange={onCheckboxChange}
                     onClick={setDetailed}
-                    isSelected={selected.includes(person.idxid)}
+                    isSelected={selected.includes(person.pid)}
                     person={person}
                   />
                 )}
               />
 
               <PersonsGroupPersonDetail
-                person={persons.find((person) => person.idxid === detailed)}
+                person={persons.find((person) => person.pid === detailed)}
               />
             </React.Fragment>
           }

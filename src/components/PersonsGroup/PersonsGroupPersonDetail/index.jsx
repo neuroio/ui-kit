@@ -19,7 +19,7 @@ import { noimageid } from "../../../assets/images";
 function PersonsGroupPersonDetail({
   person,
   fetchPerson,
-  personIdxid,
+  pid,
   isLoading,
   isPersonNotExists,
   actions,
@@ -28,7 +28,7 @@ function PersonsGroupPersonDetail({
     <StyledPersonsGroupPersonDetail
       person={person}
       fetchPerson={fetchPerson}
-      personIdxid={personIdxid}
+      pid={pid}
       isLoading={isLoading}
       isPersonNotExists={isPersonNotExists}
       data-testid="persons-group-person-detail"
@@ -48,7 +48,7 @@ function PersonsGroupPersonDetail({
             <PersonCardDetailed.DataItem>
               <PersonLabel>ID</PersonLabel>
               <PersonIdValue>
-                <IdFormat>{person.idxid}</IdFormat>
+                <IdFormat>{person.pid}</IdFormat>
               </PersonIdValue>
             </PersonCardDetailed.DataItem>
             <PersonCardDetailed.DataItem>
@@ -61,11 +61,11 @@ function PersonsGroupPersonDetail({
             </PersonCardDetailed.DataItem>
             <PersonCardDetailed.DataItem>
               <PersonLabel>Card created</PersonLabel>
-              <PersonValue>{formatDate(person.idxid_created)}</PersonValue>
+              <PersonValue>{formatDate(person.pid_created)}</PersonValue>
             </PersonCardDetailed.DataItem>
             <PersonCardDetailed.DataItem>
               <PersonLabel>Place of first entry</PersonLabel>
-              <PersonValue>{person.idxid_source.name}</PersonValue>
+              <PersonValue>{person.pid_source.name}</PersonValue>
             </PersonCardDetailed.DataItem>
             <PersonCardDetailed.DataItem>
               <PersonLabel>Total entries</PersonLabel>
@@ -96,7 +96,7 @@ function PersonsGroupPersonDetail({
 PersonsGroupPersonDetail.propTypes = {
   person: PropTypes.object,
   fetchPerson: PropTypes.func,
-  personIdxid: PropTypes.string,
+  pid: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,
   actions: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),

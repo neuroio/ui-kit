@@ -48,7 +48,7 @@ storiesOf("Persons| PersonCardDetailed", module).add("default", () => {
         <PersonCardDetailed.DataItem>
           <PersonLabel>ID</PersonLabel>
           <PersonIdValue>
-            <IdFormat>{person.idxid}</IdFormat>
+            <IdFormat>{person.pid}</IdFormat>
           </PersonIdValue>
         </PersonCardDetailed.DataItem>
         <PersonCardDetailed.DataItem>
@@ -61,11 +61,11 @@ storiesOf("Persons| PersonCardDetailed", module).add("default", () => {
         </PersonCardDetailed.DataItem>
         <PersonCardDetailed.DataItem>
           <PersonLabel>Card created</PersonLabel>
-          <PersonValue>{formatDate(person.idxid_created)}</PersonValue>
+          <PersonValue>{formatDate(person.pid_created)}</PersonValue>
         </PersonCardDetailed.DataItem>
         <PersonCardDetailed.DataItem>
           <PersonLabel>Place of first entry</PersonLabel>
-          <PersonValue>{person.idxid_source.name}</PersonValue>
+          <PersonValue>{person.pid_source.name}</PersonValue>
         </PersonCardDetailed.DataItem>
         <PersonCardDetailed.DataItem>
           <PersonLabel>Total existing entries</PersonLabel>

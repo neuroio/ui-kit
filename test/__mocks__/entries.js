@@ -8,8 +8,8 @@ export const entryMock = {
   sex: 0,
   mood: "happiness",
   liveness: "passed",
-  idxid: "44d61bb2-7625-42a5-b3a2-58d937ddd30c",
+  pid: "44d61bb2-7625-42a5-b3a2-58d937ddd30c",
   conf: "exact",
-  idxid_created: "2019-05-21T12:28:26.243846Z",
+  pid_created: "2019-05-21T12:28:26.243846Z",
   initial_photo: "https://source.unsplash.com/420x420/?face",
 };

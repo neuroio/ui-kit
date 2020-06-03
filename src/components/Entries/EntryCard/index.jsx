@@ -43,7 +43,7 @@ function EntryCard({
 
   return (
     <StyledEntryCard
-      data-idxid={entry.idxid}
+      data-pid={entry.pid}
       data-id={entry.id}
       data-testid={testId}
       onClick={handleEntryCardClick}
@@ -80,13 +80,13 @@ function EntryCard({
             </EntryCardEntryType>
           </EntryCardInfoItem>
           <EntryCardInfoItem label="ID">
-            <IdCopy id={entry.idxid} />
+            <IdCopy id={entry.pid} />
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Detected">
             {timeFormat(entry.created)}
           </EntryCardInfoItem>
           <EntryCardInfoItem label="Card created">
-            {timeFormat(entry.idxid_created)}
+            {timeFormat(entry.pid_created)}
           </EntryCardInfoItem>
         </EntryCardInfoColumn>
 

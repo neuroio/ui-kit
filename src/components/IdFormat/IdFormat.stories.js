@@ -6,7 +6,7 @@ import { IdFormat } from "./index.jsx";
 import { personMock } from "../../../test/__mocks__";
 
 storiesOf("IdFormat", module).add("default", () => {
-  const idxid = text("IdFormat text", personMock.idxid);
+  const pid = text("IdFormat text", personMock.pid);
 
-  return <IdFormat>{idxid}</IdFormat>;
+  return <IdFormat>{pid}</IdFormat>;
 });

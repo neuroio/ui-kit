@@ -6,6 +6,8 @@ const StyledInfoCardSelect = styled.div`
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
+  overflow: hidden;
+  position: relative;
 `;
 
 export { StyledInfoCardSelect };
