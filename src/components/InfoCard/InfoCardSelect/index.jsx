@@ -71,7 +71,7 @@ function InfoCardSelect({
       {tagsToRender.length
         ? tagsToRender.map((tag) =>
             tag.separator ? (
-              <InfoCardSelectTag data-separator="true">...</InfoCardSelectTag>
+              <InfoCardSelectTag>...</InfoCardSelectTag>
             ) : (
               <InfoCardSelectTag key={tag.value || tag}>
                 {getItemAsAText(tag)}

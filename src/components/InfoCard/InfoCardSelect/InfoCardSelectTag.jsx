@@ -15,10 +15,6 @@ const InfoCardSelectTag = styled.li`
   height: 20px;
   max-width: 180px;
   ${textTrimStyles}
-
-  &:not(:last-child) {
-    margin-right: 6px;
-  }
 `;
 
 export { InfoCardSelectTag };
