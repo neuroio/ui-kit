@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from "react";
 
 import { StyledInfoCardSelect } from "./StyledInfoCardSelect";
 import { InfoCardSelectTag } from "./InfoCardSelectTag";
+import { InfoCardSelectNoItemsText } from "./InfoCardSelectNoItemsText";
 
 import { isArray } from "lodash-es";
 
@@ -21,6 +22,7 @@ function InfoCardSelect({
   className,
   "data-testid": testId,
   rowsCount,
+  noItemsText,
 }) {
   const list = useRef(null);
   const [tagsToRender, setTagsToRender] = useState(value);
@@ -68,22 +70,26 @@ function InfoCardSelect({
         }
       }
     >
-      {tagsToRender.length
-        ? tagsToRender.map((tag) =>
-            tag.separator ? (
-              <InfoCardSelectTag>...</InfoCardSelectTag>
-            ) : (
-              <InfoCardSelectTag key={tag.value || tag}>
-                {getItemAsAText(tag)}
-              </InfoCardSelectTag>
-            )
+      {tagsToRender.length ? (
+        tagsToRender.map((tag) =>
+          tag.separator ? (
+            <InfoCardSelectTag>...</InfoCardSelectTag>
+          ) : (
+            <InfoCardSelectTag key={tag.value || tag}>
+              {getItemAsAText(tag)}
+            </InfoCardSelectTag>
           )
-        : "-"}
+        )
+      ) : (
+        <InfoCardSelectNoItemsText>{noItemsText}</InfoCardSelectNoItemsText>
+      )}
     </StyledInfoCardSelect>
   ) : (
     <StyledInfoCardSelect className={className} data-testid={testId}>
-      {tagsToRender && (
+      {tagsToRender ? (
         <InfoCardSelectTag>{getItemAsAText(tagsToRender)}</InfoCardSelectTag>
+      ) : (
+        <InfoCardSelectNoItemsText>{noItemsText}</InfoCardSelectNoItemsText>
       )}
     </StyledInfoCardSelect>
   );
@@ -99,10 +105,12 @@ InfoCardSelect.propTypes = {
   rowsCount: PropTypes.number,
   className: PropTypes.string,
   "data-testid": PropTypes.string,
+  noItemsText: PropTypes.string,
 };
 
 InfoCardSelect.defaultProps = {
   value: "",
+  noItemsText: "-",
 };
 
 export { InfoCardSelect, InfoCardSelectTag };
