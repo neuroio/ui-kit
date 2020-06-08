@@ -27,6 +27,7 @@ export {
   RightArrow as BoxRightArrow,
   LeftArrow as BoxLeftArrow,
   Pencil as BoxPencil,
+  CameraOff as CameraSlash,
 } from "@styled-icons/boxicons-solid";
 
 export {
