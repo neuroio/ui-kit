@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useState, useEffect, useRef } from "react";
-import { usePrevious } from "react-use";
+import { usePrevious, useUpdateEffect } from "react-use";
 
 import { object, string } from "yup";
 
@@ -71,8 +71,16 @@ function LoginFormComponent({
     }
   }, [authError, errors, submitCount, stateAuthError]);
 
+  useUpdateEffect(() => {
+    if (!authError) {
+      clearAuthError();
+    }
+  }, [authError]);
+
   function clearAuthError() {
-    clearTimeout(authErrorResetTimerId);
+    if (authErrorResetTimerId) {
+      clearTimeout(authErrorResetTimerId);
+    }
 
     setStateAuthError(null);
     setAuthErrorResetTimerId(null);
