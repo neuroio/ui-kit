@@ -3,6 +3,7 @@ export * from "./UIBadge";
 export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./ButtonLink";
+export * from "./ButtonUpload";
 export * from "./CardSmall";
 export * from "./CardContainer";
 export * from "./CopyItem";
