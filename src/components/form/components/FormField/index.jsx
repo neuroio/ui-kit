@@ -28,6 +28,7 @@ function FormField(props) {
     className,
     placeholder,
     valuePlaceholder,
+    isFullWidth,
   } = props;
 
   const [field, { touched, error }] = useField({ name, type });
@@ -87,7 +88,7 @@ function FormField(props) {
   };
 
   return (
-    <StyledFormField className={className}>
+    <StyledFormField className={className} isFullWidth={isFullWidth}>
       {label ? (
         <React.Fragment>
           <FormLabel
@@ -145,6 +146,7 @@ FormField.propTypes = {
    * Тип поля для формика
    */
   type: PropTypes.string,
+  isFullWidth: PropTypes.bool,
 };
 
 FormField.defaultProps = {
