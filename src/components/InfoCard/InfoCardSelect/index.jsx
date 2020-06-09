@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useRef, useState, useEffect } from "react";
+import { useUpdateEffect } from "react-use";
 
 import { StyledInfoCardSelect } from "./StyledInfoCardSelect";
 import { InfoCardSelectTag } from "./InfoCardSelectTag";
@@ -28,9 +29,13 @@ function InfoCardSelect({
   const [tagsToRender, setTagsToRender] = useState(value);
   const [tagsReadyToRender, setTagsReadyToRender] = useState(false);
 
+  useUpdateEffect(() => {
+    setTagsToRender(value);
+  }, [value]);
+
   useEffect(() => {
     if (list.current) {
-      // логика по добавлению многоточия при овефлоу
+      // логика по добавлению многоточия при оверфлоу
       setTimeout(() => {
         const listHeight = list.current.offsetHeight;
 
@@ -65,7 +70,7 @@ function InfoCardSelect({
       data-testid={testId}
       style={
         rowsCount && {
-          height: (20 + 6) * rowsCount - 6,
+          maxHeight: (20 + 6) * rowsCount - 6,
           visibility: tagsReadyToRender ? "visible" : "hidden",
         }
       }
