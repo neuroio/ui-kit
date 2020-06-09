@@ -4,12 +4,16 @@ import { InfoCardTitle } from "./InfoCardTitle";
 import { InfoCardData } from "./InfoCardData";
 import { InfoCardAside } from "./InfoCardAside";
 import { InfoCardField } from "./InfoCardField";
-import { InfoCardPhoto } from "./InfoCardPhoto";
+import { InfoCardPhoto, StyledInfoCardPhoto } from "./InfoCardPhoto";
 
 const InfoCard = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${StyledInfoCardPhoto}:not(:last-child) {
+    margin-right: 24px;
+  }
 `;
 
 InfoCard.Title = InfoCardTitle;
