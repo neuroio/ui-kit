@@ -34,31 +34,29 @@ function InfoCardSelect({
   }, [value]);
 
   useEffect(() => {
+    // логика по добавлению многоточия при оверфлоу
     if (list.current) {
-      // логика по добавлению многоточия при оверфлоу
-      setTimeout(() => {
-        const listHeight = list.current.offsetHeight;
+      const listHeight = list.current.offsetHeight;
 
-        const firstOverflowItemIndex = Array.from(
-          list.current.querySelectorAll("li")
-        ).findIndex((el) => {
-          return el.offsetTop > listHeight;
-        });
-
-        if (firstOverflowItemIndex !== -1) {
-          const isSeparator = tagsToRender[firstOverflowItemIndex].separator;
-
-          const indexToSlice = isSeparator
-            ? firstOverflowItemIndex - 1
-            : firstOverflowItemIndex;
-
-          setTagsToRender((tagsToRender) =>
-            tagsToRender.slice(0, indexToSlice).concat(separatorTag)
-          );
-        } else {
-          setTagsReadyToRender(true);
-        }
+      const firstOverflowItemIndex = Array.from(
+        list.current.querySelectorAll("li")
+      ).findIndex((el) => {
+        return el.offsetTop > listHeight;
       });
+
+      if (firstOverflowItemIndex !== -1) {
+        const isSeparator = tagsToRender[firstOverflowItemIndex].separator;
+
+        const indexToSlice = isSeparator
+          ? firstOverflowItemIndex - 1
+          : firstOverflowItemIndex;
+
+        setTagsToRender((tagsToRender) =>
+          tagsToRender.slice(0, indexToSlice).concat(separatorTag)
+        );
+      } else {
+        setTagsReadyToRender(true);
+      }
     }
   }, [tagsToRender]);
 
