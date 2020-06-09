@@ -36,7 +36,10 @@ function InfoCardSelect({
   useEffect(() => {
     // логика по добавлению многоточия при оверфлоу
     if (list.current) {
+      setTagsReadyToRender(false);
+
       const listHeight = list.current.offsetHeight;
+      if (!listHeight) return;
 
       const firstOverflowItemIndex = Array.from(
         list.current.querySelectorAll("li")

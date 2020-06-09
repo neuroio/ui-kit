@@ -9,7 +9,7 @@ import { InfoCardPhoto, StyledInfoCardPhoto } from "./InfoCardPhoto";
 const InfoCard = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   ${StyledInfoCardPhoto}:not(:last-child) {
     margin-right: 24px;
