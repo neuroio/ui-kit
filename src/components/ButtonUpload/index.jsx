@@ -6,6 +6,8 @@ import { useRef } from "react";
 
 import { Button } from "../Button";
 
+const StyledButtonUpload = styled(Button)``;
+
 function ButtonUpload({
   onUpload,
   children,
@@ -21,10 +23,10 @@ function ButtonUpload({
         ref={inputRef}
         type="file"
         onChange={onUpload}
-        data-testid={testId}
         hidden
+        data-testid={testId}
       />
-      <Button
+      <StyledButtonUpload
         theme={theme}
         onClick={(ev) => {
           inputRef.current.click(ev);
@@ -32,12 +34,10 @@ function ButtonUpload({
         className={className}
       >
         {children}
-      </Button>
+      </StyledButtonUpload>
     </>
   );
 }
-
-const StyledButtonUpload = styled(ButtonUpload)``;
 
 ButtonUpload.propTypes = {
   theme: PropTypes.string,
