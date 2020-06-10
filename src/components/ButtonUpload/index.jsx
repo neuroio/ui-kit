@@ -14,6 +14,7 @@ function ButtonUpload({
   theme,
   className,
   "data-testid": testId,
+  isDisabled,
 }) {
   const inputRef = useRef(null);
 
@@ -32,6 +33,7 @@ function ButtonUpload({
           inputRef.current.click(ev);
         }}
         className={className}
+        isDisabled={isDisabled}
       >
         {children}
       </StyledButtonUpload>
@@ -45,6 +47,7 @@ ButtonUpload.propTypes = {
   onUpload: PropTypes.func.isRequired,
   className: PropTypes.string,
   "data-testid": PropTypes.string,
+  isDisabled: PropTypes.bool,
 };
 
 ButtonUpload.defaultProps = {

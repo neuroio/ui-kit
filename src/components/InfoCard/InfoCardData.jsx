@@ -4,7 +4,7 @@ import { StyledInfoCardField } from "./InfoCardField";
 
 const InfoCardData = styled.div`
   ${StyledInfoCardField}:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 `;
 
