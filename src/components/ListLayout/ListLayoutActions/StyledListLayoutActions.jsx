@@ -5,8 +5,11 @@ import { StyledFormCheckbox } from "../../form/components/FormCheckbox/index";
 const StyledListLayoutActions = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 18px;
   height: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 18px;
+  }
 
   ${StyledFormCheckbox}:not(:last-child) {
     margin-right: 24px;
