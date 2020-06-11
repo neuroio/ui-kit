@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import Sticky from "react-stickynode";
-
-const StyledListStickyHeader = styled(Sticky)``;
+const StyledListStickyHeader = styled.div``;
 
 export { StyledListStickyHeader };

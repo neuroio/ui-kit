@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { useClientRect } from "../../../hooks";
+
 import { StyledListLayoutDetailed } from "./StyledListLayoutDetailed";
 import { ListLayoutDetailedInner } from "./ListLayoutDetailedInner";
 
@@ -11,13 +13,20 @@ function ListLayoutDetailed({
   "data-testid": testId,
   className,
 }) {
+  const [rect, headerRef] = useClientRect();
+  /**
+   * 35 - высота верхней проскраливаемой области
+   * TODO: вместо этого можно использовать header.offsetTop
+   */
+  const top = offsetTop || (rect ? rect.y - 35 : 0);
+
   return (
-    <StyledListLayoutDetailed
-      innerZ={innerZ}
-      top={offsetTop}
-      className={className}
-    >
-      <ListLayoutDetailedInner data-testid={testId} className={className}>
+    <StyledListLayoutDetailed innerZ={innerZ} top={top} className={className}>
+      <ListLayoutDetailedInner
+        data-testid={testId}
+        className={className}
+        ref={headerRef}
+      >
         {children}
       </ListLayoutDetailedInner>
     </StyledListLayoutDetailed>
@@ -33,7 +42,6 @@ ListLayoutDetailed.propTypes = {
 };
 
 ListLayoutDetailed.defaultProps = {
-  offsetTop: 120,
   innerZ: 4,
 };
 

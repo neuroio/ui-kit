@@ -76,7 +76,6 @@ PersonCardDetailed.propTypes = {
 
 PersonCardDetailed.defaultProps = {
   "data-testid": "person-card-detailed",
-  offsetTop: 120,
 };
 
 export * from "./PersonCardDetailedData";
