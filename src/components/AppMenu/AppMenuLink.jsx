@@ -1,16 +1,15 @@
 import styled from "styled-components";
+
 import { NavLink } from "react-router-dom";
 
-export const HeaderAppMenuLink = styled(NavLink).attrs(() => ({
+import { colors } from "../../style";
+
+const AppMenuLink = styled(NavLink).attrs(() => ({
   activeStyle: { fontWeight: 700 },
 }))`
   font-weight: 200;
-  color: #222;
+  color: ${colors.darkBlack};
   text-decoration: none;
-
-  &:not(:last-child) {
-    margin-right: 68px;
-  }
 
   &:after {
     display: block;
@@ -22,3 +21,5 @@ export const HeaderAppMenuLink = styled(NavLink).attrs(() => ({
     visibility: hidden;
   }
 `;
+
+export { AppMenuLink };

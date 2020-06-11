@@ -1,3 +1,4 @@
+export * from "./AppMenu";
 export * from "./Badge";
 export * from "./UIBadge";
 export * from "./Breadcrumbs";

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledHeaderAppMenu = styled.nav`
+const StyledAppMenu = styled.nav`
   display: flex;
   justify-content: space-between;
 `;
+
+export { StyledAppMenu };

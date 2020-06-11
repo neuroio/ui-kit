@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { text, object } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
-import { Header, HeaderTopMenu, HeaderAppMenu } from "./index.jsx";
+import { Header, HeaderTopMenu } from "./index.jsx";
 import { HeaderTopMenuLinks, HeaderTopMenuUser } from "./HeaderTopMenu";
 
 storiesOf("Navigation|Header", module).add("default", () => {
@@ -27,41 +27,12 @@ storiesOf("Navigation|Header", module).add("default", () => {
     },
   ]);
 
-  const appLinks = object("App links", [
-    {
-      id: 1,
-      title: "Enties",
-      to: "/entries",
-    },
-    {
-      id: 2,
-      title: "Sources",
-      to: "/sources",
-    },
-    {
-      id: 3,
-      title: "Persons groups",
-      to: "/persons-groups",
-    },
-    {
-      id: 4,
-      title: "Notifications",
-      to: "/notifications",
-    },
-    {
-      id: 5,
-      title: "Demo",
-      to: "/demo",
-    },
-  ]);
-
   return (
     <Header>
       <HeaderTopMenu>
         <HeaderTopMenuLinks links={Object.values(topLinks)} />
         <HeaderTopMenuUser username={username} onLogout={action("Logout")} />
       </HeaderTopMenu>
-      <HeaderAppMenu links={Object.values(appLinks)} />
     </Header>
   );
 });
