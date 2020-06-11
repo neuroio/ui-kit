@@ -12,8 +12,9 @@ function ListLayoutDetailed({
   offsetTop,
   "data-testid": testId,
   className,
+  updateDeps,
 }) {
-  const [rect, headerRef] = useClientRect();
+  const [rect, headerRef] = useClientRect(updateDeps);
   /**
    * 35 - высота верхней проскраливаемой области
    * TODO: вместо этого можно использовать header.offsetTop
@@ -39,6 +40,7 @@ ListLayoutDetailed.propTypes = {
   offsetTop: PropTypes.number.isRequired,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
+  updateDeps: PropTypes.array,
 };
 
 ListLayoutDetailed.defaultProps = {
