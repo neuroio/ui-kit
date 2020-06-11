@@ -32,10 +32,10 @@ function ListLayout({
             </ListLayoutHeader>
           )}
           {search && <ListLayoutSearch>{search}</ListLayoutSearch>}
+          {actions && actions}
         </ListLayoutTop>
       )}
 
-      {actions && actions}
       {content && <ListLayoutContent>{content}</ListLayoutContent>}
     </StyledListLayout>
   );

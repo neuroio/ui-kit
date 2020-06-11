@@ -4,8 +4,8 @@ import { ImageCentered } from "../../ImageCentered";
 
 const InfoCardPhotoImg = styled(ImageCentered)`
   border-radius: 4px;
-  height: 160px;
-  width: 160px;
+  width: 100%;
+  height: 100%;
   background-color: #f2f2f2;
 `;
 
