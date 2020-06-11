@@ -1,51 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useRef, useContext } from "react";
-import { useShortStickyHeader } from "./hooks";
-import { ListLayoutContext } from "../ListLayout";
+import { useRef } from "react";
+import usePortal from "react-useportal";
 
+import Sticky from "react-stickynode";
 import { StyledListStickyHeader } from "./StyledListStickyHeader";
-import { ListStickyHeaderInner } from "./ListStickyHeaderInner";
 import { ListStickyHeaderFixedBackground } from "./ListStickyHeaderFixedBackground";
 
-function ListStickyHeader({ children, listHeaderHeightShort, className }) {
-  const headerElRef = useRef(null);
-  const headerInnerRef = useRef(null);
-  const { isHeaderFull, appHeaderOffset } = useContext(ListLayoutContext);
-  const { isSticky } = useShortStickyHeader({
-    headerElRef,
+function ListStickyHeader({ children, className, offsetTop, innerZ }) {
+  const { Portal } = usePortal({
+    isOpen: true,
+    bindTo: document.getElementById("app-container") || document.body,
   });
 
+  const headerRef = useRef(null);
+
   return (
-    <>
-      <StyledListStickyHeader
-        style={{
-          transform: `translateY(${appHeaderOffset}px)`,
-          zIndex: isSticky ? 10 : 1,
-        }}
-        className={className}
-        ref={headerElRef}
-      >
-        <ListStickyHeaderInner ref={headerInnerRef}>
-          {typeof children === "function"
-            ? children({ isHeaderFull, isSticky })
-            : children}
-        </ListStickyHeaderInner>
-      </StyledListStickyHeader>
-      {/* Элемент для того, чтобы перекрывать элементы по бокам (вне основного контейнера) */}
-      {isSticky && headerElRef.current && (
-        <ListStickyHeaderFixedBackground
-          style={{
-            height:
-              !isHeaderFull && listHeaderHeightShort
-                ? listHeaderHeightShort
-                : headerElRef.current.node.offsetHeight,
-            transform: `translateY(${appHeaderOffset}px)`,
-          }}
-        />
-      )}
-    </>
+    <Sticky innerZ={innerZ} top={offsetTop}>
+      {(stickyProps) => {
+        return (
+          <StyledListStickyHeader className={className} ref={headerRef}>
+            {typeof children === "function" ? children(stickyProps) : children}
+            {/* Компонент нужен для того, чтобы перекрывать собой все, что по бокам от хедера */}
+            {headerRef.current && stickyProps.status === Sticky.STATUS_FIXED && (
+              <Portal>
+                <ListStickyHeaderFixedBackground
+                  headerRef={headerRef.current}
+                  style={{
+                    // TODO: проверить, что высота реагирует на изменение высоты хедера
+                    height: headerRef.current.offsetHeight,
+                    top: offsetTop,
+                  }}
+                />
+              </Portal>
+            )}
+          </StyledListStickyHeader>
+        );
+      }}
+    </Sticky>
   );
 }
 
@@ -55,11 +48,14 @@ ListStickyHeader.propTypes = {
     PropTypes.node,
     PropTypes.array,
   ]).isRequired,
-  listHeaderHeightShort: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
   className: PropTypes.string,
+  offsetTop: PropTypes.number.isRequired,
+  innerZ: PropTypes.number,
+};
+
+ListStickyHeader.defaultProps = {
+  appHeaderHeight: 59,
+  innerZ: 4,
 };
 
 export { ListStickyHeader };

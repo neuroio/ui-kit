@@ -67,7 +67,7 @@
     "react-dropzone": "^10.2.2",
     "react-i18next": "^11.3.5",
     "react-qr-svg": "^2.2.2",
-    "react-sticky-box": "^0.9.3",
+    "react-stickynode": "^3.0.3",
     "react-transition-group": "^4.3.0",
     "react-use": "^14.1.1",
     "react-useportal": "^1.0.13",

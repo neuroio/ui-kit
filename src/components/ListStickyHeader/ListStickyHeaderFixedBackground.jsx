@@ -8,8 +8,6 @@ const ListStickyHeaderFixedBackground = styled.div`
   width: 100%;
   background-color: ${colors.whiteSimple};
   left: 0;
-  top: 0;
-  transition: transform 200ms ease-in;
 `;
 
 export { ListStickyHeaderFixedBackground };

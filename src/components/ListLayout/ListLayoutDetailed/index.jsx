@@ -1,29 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useContext } from "react";
-
 import { StyledListLayoutDetailed } from "./StyledListLayoutDetailed";
 import { ListLayoutDetailedInner } from "./ListLayoutDetailedInner";
-import { ListLayoutContext } from "../index";
 
 function ListLayoutDetailed({
-  offsetTop,
   children,
+  innerZ,
+  offsetTop,
   "data-testid": testId,
   className,
 }) {
-  const { appHeaderOffset } = useContext(ListLayoutContext);
-
   return (
     <StyledListLayoutDetailed
-      offsetTop={offsetTop}
-      style={{
-        transform: `translateY(${appHeaderOffset}px)`,
-      }}
+      innerZ={innerZ}
+      top={offsetTop}
       className={className}
     >
-      <ListLayoutDetailedInner data-testid={testId}>
+      <ListLayoutDetailedInner data-testid={testId} className={className}>
         {children}
       </ListLayoutDetailedInner>
     </StyledListLayoutDetailed>
@@ -31,14 +25,16 @@ function ListLayoutDetailed({
 }
 
 ListLayoutDetailed.propTypes = {
-  offsetTop: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  innerZ: PropTypes.number,
+  offsetTop: PropTypes.number.isRequired,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
 };
 
 ListLayoutDetailed.defaultProps = {
   offsetTop: 120,
+  innerZ: 4,
 };
 
 export { ListLayoutDetailed };
