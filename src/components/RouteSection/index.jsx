@@ -59,7 +59,7 @@ export class RouteSection extends React.Component {
 
     return (
       <StyledRouteSection className={className}>
-        <RouteSectionHider isHide={!isLoaded} isCentered={isCentered}>
+        <RouteSectionHider isHidden={!isLoaded} isCentered={isCentered}>
           {children}
         </RouteSectionHider>
 
