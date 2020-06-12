@@ -36,7 +36,11 @@ function ListLayout({
         </ListLayoutTop>
       )}
 
-      {content && <ListLayoutContent>{content}</ListLayoutContent>}
+      {content && (
+        <ListLayoutContent id="list-layout-content">
+          {content}
+        </ListLayoutContent>
+      )}
     </StyledListLayout>
   );
 }
