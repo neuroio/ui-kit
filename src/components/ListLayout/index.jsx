@@ -8,6 +8,7 @@ import { ListLayoutButtons } from "./ListLayoutButtons";
 import { ListLayoutSearch } from "./ListLayoutSearch";
 import { ListLayoutContent } from "./ListLayoutContent";
 import { ListLayoutTop } from "./ListLayoutTop";
+import { ListLayoutProvider } from "./ListLayoutProvider";
 
 export const ListLayoutContext = React.createContext();
 
@@ -23,10 +24,8 @@ function ListLayout({
   const hasHeader = title || buttons;
   const hasTop = hasHeader || search || top;
 
-  const [headerRect, setHeaderRect] = React.useState(null);
-
   return (
-    <ListLayoutContext.Provider value={{ headerRect, setHeaderRect }}>
+    <ListLayoutProvider>
       <StyledListLayout className={className}>
         {hasTop && top ? (
           top
@@ -45,7 +44,7 @@ function ListLayout({
 
         {content && <ListLayoutContent>{content}</ListLayoutContent>}
       </StyledListLayout>
-    </ListLayoutContext.Provider>
+    </ListLayoutProvider>
   );
 }
 
@@ -66,4 +65,5 @@ export * from "./ListLayoutActions";
 export * from "./ListLayoutHeader";
 export * from "./ListLayoutTop";
 export * from "./ListLayoutSearch";
+export * from "./ListLayoutProvider";
 export { ListLayout };
