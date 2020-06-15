@@ -10,8 +10,6 @@ import { ListLayoutContent } from "./ListLayoutContent";
 import { ListLayoutTop } from "./ListLayoutTop";
 import { ListLayoutProvider } from "./ListLayoutProvider";
 
-export const ListLayoutContext = React.createContext();
-
 function ListLayout({
   top,
   title,
