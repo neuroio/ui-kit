@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useState } from "react";
-
-import Sticky from "react-stickynode";
 import { StyledAppMenu } from "./StyledAppMenu";
 import { AppMenuLink } from "./AppMenuLink";
 import { AppMenuContainer } from "./AppMenuContainer";
@@ -25,19 +22,12 @@ Link.propTypes = {
 };
 
 function AppMenu({ links, children, className }) {
-  const [stickyState, setStickyState] = useState({});
-
   return (
-    <Sticky
-      innerZ={stickyState.status === Sticky.STATUS_FIXED ? 3 : 1}
-      onStateChange={setStickyState}
-    >
-      <AppMenuContainer>
-        <StyledAppMenu className={className}>
-          {Array.isArray(links) && links.length ? links.map(Link) : children}
-        </StyledAppMenu>
-      </AppMenuContainer>
-    </Sticky>
+    <AppMenuContainer>
+      <StyledAppMenu className={className}>
+        {Array.isArray(links) && links.length ? links.map(Link) : children}
+      </StyledAppMenu>
+    </AppMenuContainer>
   );
 }
 

@@ -26,7 +26,6 @@ function PersonCardDetailed({
   className,
   "data-testid": testId,
   offsetTop,
-  updateDeps,
 }) {
   const { t, i18n } = useTranslation("PersonCardDetailed");
   i18n.addResourceBundle("en", "PersonCardDetailed", resources.en);
@@ -43,7 +42,6 @@ function PersonCardDetailed({
       data-testid={testId}
       className={className}
       offsetTop={offsetTop}
-      updateDeps={updateDeps}
     >
       {isLoading ? (
         <PersonCardDetailedSpinner />
@@ -74,7 +72,6 @@ PersonCardDetailed.propTypes = {
   className: PropTypes.string.isRequired,
   "data-testid": PropTypes.string,
   offsetTop: PropTypes.number.isRequired,
-  updateDeps: PropTypes.array,
 };
 
 PersonCardDetailed.defaultProps = {

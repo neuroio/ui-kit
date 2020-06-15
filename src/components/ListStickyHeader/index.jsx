@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useState, useContext, useEffect, useLayoutEffect } from "react";
+import { useWindowScroll } from "react-use";
 import usePortal from "react-useportal";
 
 import { StyledListStickyHeader } from "./StyledListStickyHeader";
 import { ListStickyHeaderFixedBackground } from "./ListStickyHeaderFixedBackground";
 import { ListLayoutContext } from "../ListLayout";
 
-function ListStickyHeader({ children, className, innerZ }) {
+function ListStickyHeader({ children, className, innerZ, offsetTop }) {
   const { Portal } = usePortal({
     isOpen: true,
     bindTo: document.getElementById("app-container") || document.body,
@@ -23,6 +24,8 @@ function ListStickyHeader({ children, className, innerZ }) {
     setHeaderRect(rect);
   }, [rect, setHeaderRect]);
 
+  // обновляем координаты по скроллу
+  useWindowScroll();
   useLayoutEffect(() => {
     if (ref.current) {
       const newRect = ref.current.getBoundingClientRect();
@@ -37,7 +40,7 @@ function ListStickyHeader({ children, className, innerZ }) {
     <StyledListStickyHeader
       className={className}
       ref={ref}
-      style={rect && { top: rect.top, zIndex: innerZ }}
+      style={rect && { top: offsetTop, zIndex: innerZ }}
     >
       {typeof children === "function" ? children({}) : children}
       {/* Компонент нужен для того, чтобы перекрывать собой все, что по бокам от хедера */}
@@ -45,7 +48,6 @@ function ListStickyHeader({ children, className, innerZ }) {
         <Portal>
           <ListStickyHeaderFixedBackground
             style={{
-              // TODO: проверить, что высота реагирует на изменение высоты хедера
               height: rect.height,
               top: rect.top,
               zIndex: innerZ - 1,
@@ -65,10 +67,12 @@ ListStickyHeader.propTypes = {
   ]).isRequired,
   className: PropTypes.string,
   innerZ: PropTypes.number,
+  offsetTop: PropTypes.number,
 };
 
 ListStickyHeader.defaultProps = {
   innerZ: 4,
+  offsetTop: 59,
 };
 
 export { ListStickyHeader };

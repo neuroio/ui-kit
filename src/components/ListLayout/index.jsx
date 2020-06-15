@@ -11,16 +11,26 @@ import { ListLayoutTop } from "./ListLayoutTop";
 
 export const ListLayoutContext = React.createContext();
 
-function ListLayout({ title, buttons, search, actions, content, className }) {
+function ListLayout({
+  top,
+  title,
+  buttons,
+  search,
+  actions,
+  content,
+  className,
+}) {
   const hasHeader = title || buttons;
-  const hasTop = hasHeader || search;
+  const hasTop = hasHeader || search || top;
 
   const [headerRect, setHeaderRect] = React.useState(null);
 
   return (
     <ListLayoutContext.Provider value={{ headerRect, setHeaderRect }}>
       <StyledListLayout className={className}>
-        {hasTop && (
+        {hasTop && top ? (
+          top
+        ) : (
           <ListLayoutTop>
             {hasHeader && (
               <ListLayoutHeader>
@@ -33,17 +43,14 @@ function ListLayout({ title, buttons, search, actions, content, className }) {
           </ListLayoutTop>
         )}
 
-        {content && (
-          <ListLayoutContent id="list-layout-content">
-            {content}
-          </ListLayoutContent>
-        )}
+        {content && <ListLayoutContent>{content}</ListLayoutContent>}
       </StyledListLayout>
     </ListLayoutContext.Provider>
   );
 }
 
 ListLayout.propTypes = {
+  top: PropTypes.element,
   title: PropTypes.string,
   buttons: PropTypes.element,
   search: PropTypes.element,
@@ -56,4 +63,7 @@ export * from "./ListLayoutList";
 export * from "./ListLayoutNotice";
 export * from "./ListLayoutDetailed";
 export * from "./ListLayoutActions";
+export * from "./ListLayoutHeader";
+export * from "./ListLayoutTop";
+export * from "./ListLayoutSearch";
 export { ListLayout };
