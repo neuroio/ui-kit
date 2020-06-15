@@ -1,55 +1,59 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useClientRect } from "../../hooks";
+import { useState, useContext, useEffect, useLayoutEffect } from "react";
 import usePortal from "react-useportal";
 
-import Sticky from "react-stickynode";
 import { StyledListStickyHeader } from "./StyledListStickyHeader";
 import { ListStickyHeaderFixedBackground } from "./ListStickyHeaderFixedBackground";
+import { ListLayoutContext } from "../ListLayout";
 
-function ListStickyHeader({
-  children,
-  className,
-  innerZ,
-  offsetTop,
-  updateDeps,
-}) {
+function ListStickyHeader({ children, className, innerZ }) {
   const { Portal } = usePortal({
     isOpen: true,
     bindTo: document.getElementById("app-container") || document.body,
   });
 
-  const [rect, ref] = useClientRect(updateDeps);
+  const ref = React.useRef(null);
+  const [rect, setRect] = useState(null);
 
-  /**
-   * 35 - высота верхней проскраливаемой области
-   * TODO: вместо этого можно использовать header.offsetTop
-   */
-  const top = offsetTop || (rect ? rect.y - 35 : 0);
+  const { setHeaderRect } = useContext(ListLayoutContext);
+
+  useEffect(() => {
+    setHeaderRect(rect);
+  }, [rect, setHeaderRect]);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      const newRect = ref.current.getBoundingClientRect();
+
+      if (JSON.stringify(newRect) !== JSON.stringify(rect)) {
+        setRect(ref.current.getBoundingClientRect());
+      }
+    }
+  });
 
   return (
-    <Sticky innerZ={innerZ} top={top}>
-      {(stickyProps) => {
-        return (
-          <StyledListStickyHeader className={className} ref={ref}>
-            {typeof children === "function" ? children(stickyProps) : children}
-            {/* Компонент нужен для того, чтобы перекрывать собой все, что по бокам от хедера */}
-            {rect && stickyProps.status === Sticky.STATUS_FIXED && (
-              <Portal>
-                <ListStickyHeaderFixedBackground
-                  style={{
-                    // TODO: проверить, что высота реагирует на изменение высоты хедера
-                    height: rect.height,
-                    top,
-                  }}
-                />
-              </Portal>
-            )}
-          </StyledListStickyHeader>
-        );
-      }}
-    </Sticky>
+    <StyledListStickyHeader
+      className={className}
+      ref={ref}
+      style={rect && { top: rect.top, zIndex: innerZ }}
+    >
+      {typeof children === "function" ? children({}) : children}
+      {/* Компонент нужен для того, чтобы перекрывать собой все, что по бокам от хедера */}
+      {rect && (
+        <Portal>
+          <ListStickyHeaderFixedBackground
+            style={{
+              // TODO: проверить, что высота реагирует на изменение высоты хедера
+              height: rect.height,
+              top: rect.top,
+              zIndex: innerZ - 1,
+            }}
+          />
+        </Portal>
+      )}
+    </StyledListStickyHeader>
   );
 }
 
@@ -60,9 +64,7 @@ ListStickyHeader.propTypes = {
     PropTypes.array,
   ]).isRequired,
   className: PropTypes.string,
-  offsetTop: PropTypes.number.isRequired,
   innerZ: PropTypes.number,
-  updateDeps: PropTypes.array.isRequired,
 };
 
 ListStickyHeader.defaultProps = {
