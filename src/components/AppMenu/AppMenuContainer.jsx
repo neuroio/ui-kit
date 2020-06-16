@@ -8,7 +8,8 @@ const AppMenuContainer = styled.div`
   padding-bottom: 20px;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
+  margin-bottom: 20px;
 `;
 
 export { AppMenuContainer };
