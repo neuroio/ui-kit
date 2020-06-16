@@ -5,7 +5,7 @@ import { StyledFooter } from "../Footer";
 
 const LoginPageWrapper = styled(RouteSection)`
   min-height: 640px;
-  width: 730px;
+  width: 940px;
   margin: 0 auto;
   justify-content: center;
 
