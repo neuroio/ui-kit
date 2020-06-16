@@ -10,10 +10,12 @@ const PageWrapper = styled.div`
 `;
 
 PageWrapper.Container = styled.div`
+  box-sizing: border-box;
   width: 1000px;
   padding-left: 30px;
   padding-right: 30px;
   margin: 0 auto;
+  display: flex;
 `;
 
 export { PageWrapper };
