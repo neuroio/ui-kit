@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { StyledAppMenu } from "./StyledAppMenu";
 import { AppMenuLink } from "./AppMenuLink";
-import { AppMenuContainer } from "./AppMenuContainer";
+import { Sticky } from "../Sticky";
 
 function Link(props) {
   const { id, title, to } = props;
@@ -23,11 +23,22 @@ Link.propTypes = {
 
 function AppMenu({ links, children, className }) {
   return (
-    <AppMenuContainer>
-      <StyledAppMenu className={className}>
-        {Array.isArray(links) && links.length ? links.map(Link) : children}
-      </StyledAppMenu>
-    </AppMenuContainer>
+    <Sticky offsetTop={0} hasBackground={true} innerZ={3}>
+      {({ isSticky, style, ref }) => {
+        return (
+          <StyledAppMenu
+            ref={ref}
+            className={className}
+            style={{
+              ...style,
+              backgroundColor: isSticky ? "white" : "transparent",
+            }}
+          >
+            {Array.isArray(links) && links.length ? links.map(Link) : children}
+          </StyledAppMenu>
+        );
+      }}
+    </Sticky>
   );
 }
 
