@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const StyledListStickyHeader = styled.div`
-  position: sticky;
-`;
+const StyledListStickyHeader = styled.div``;
 
 export { StyledListStickyHeader };
