@@ -40,7 +40,7 @@ function PersonsGroupPersonDetail({
               <PersonLabel>Photo</PersonLabel>
               <PersonValue>
                 <PersonPhoto
-                  src={person.initial_photo || noimageid}
+                  src={person.initial_face_image || noimageid}
                   facesize={formatFaceSize(person.initial_facesize)}
                 />
               </PersonValue>

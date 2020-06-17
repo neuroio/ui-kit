@@ -42,7 +42,7 @@ export function PersonsGroupListPerson({
       ) : (
         <React.Fragment>
           <PersonsGroupListPersonInfo
-            photo={person.initial_photo}
+            photo={person.initial_face_image}
             pid={person.pid}
           />
           <PersonsGroupListPersonTypeSelect

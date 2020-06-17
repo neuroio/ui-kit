@@ -27,7 +27,7 @@ function PersonEntriesCard({
     >
       <PersonEntriesCardPhoto
         facesize={formatFaceSize(person.initial_facesize)}
-        src={person.initial_photo}
+        src={person.initial_face_image}
         hasReinit={person.reinit > 0}
       />
 
