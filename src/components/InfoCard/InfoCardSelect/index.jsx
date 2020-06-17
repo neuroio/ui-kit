@@ -61,7 +61,7 @@ function InfoCardSelect({
         setTagsReadyToRender(true);
       }
     }
-  }, [tagsToRender]);
+  }, [tagsToRender, rowsCount]);
 
   return isArray(tagsToRender) ? (
     <StyledInfoCardSelect
