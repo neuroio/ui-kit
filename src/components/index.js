@@ -53,3 +53,4 @@ export * from "./GlobalStyles";
 export * from "./I18nProvider";
 export * from "./Uploader";
 export * from "./ResultBadge";
+export * from "./Sticky";
