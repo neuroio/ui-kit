@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useState, useRef, useMemo } from "react";
+import { useRef } from "react";
 import { useUpdateEffect } from "react-use";
 import { usePositionPopup } from "../../../../hooks";
 
@@ -25,7 +25,6 @@ function FormFromToPicker({
   children,
   placeholder,
 }) {
-  const [error, setError] = useState(null);
   const popupTrigger = useRef(null);
   const filterWrapper = useRef(null);
   const {
@@ -64,17 +63,6 @@ function FormFromToPicker({
     return `${value[0].label} --> ${value[1].label}`;
   }
 
-  const pickerBag = useMemo(
-    () => ({
-      value,
-      onChange,
-      error,
-      setError,
-      testId,
-    }),
-    [value, onChange, error, setError, testId]
-  );
-
   return (
     <StyledFormFromToPicker ref={filterWrapper} className={className}>
       <FormFromToPickerControl
@@ -112,7 +100,7 @@ function FormFromToPicker({
           data-testid={`${testId}-popup`}
           key={isOpen}
         >
-          {children(pickerBag)}
+          {children}
         </FormFromToPickerPopup>
       </Portal>
     </StyledFormFromToPicker>
@@ -128,7 +116,7 @@ FormFromToPicker.propTypes = {
   valuesOnReset: PropTypes.array.isRequired,
   onReset: PropTypes.func,
 
-  children: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
 
   className: PropTypes.string,
   "data-testid": PropTypes.string,
