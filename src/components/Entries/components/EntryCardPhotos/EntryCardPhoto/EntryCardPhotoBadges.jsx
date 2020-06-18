@@ -7,6 +7,7 @@ const EntryCardPhotoBadges = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  z-index: 1;
 
   ${EntryCardPhotoBadge}:not(:last-child) {
     margin-right: 4px;

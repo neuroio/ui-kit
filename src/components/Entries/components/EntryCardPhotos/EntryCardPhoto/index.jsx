@@ -10,9 +10,11 @@ import { EntryCardPhotoReinit } from "./EntryCardPhotoReinit";
 import { EntryCardPhotoBadges } from "./EntryCardPhotoBadges";
 
 import noimage from "../../../../../assets/images/noimage.png";
+import { EntryCardPhotoFullImage } from "./EntryCardPhotoFullImage/index";
 
 function EntryCardPhoto({
   facesize,
+  fullImage,
   hasReinit,
   src,
   title,
@@ -44,6 +46,12 @@ function EntryCardPhoto({
             </EntryCardPhotoReinit>
           )}
         </EntryCardPhotoBadges>
+        {fullImage && (
+          <EntryCardPhotoFullImage
+            data-testid="person-entries-card-full-image"
+            src={fullImage}
+          />
+        )}
       </EntryCardPhotoImgContainer>
     </StyledEntryCardPhoto>
   );
@@ -51,6 +59,7 @@ function EntryCardPhoto({
 
 EntryCardPhoto.propTypes = {
   facesize: PropTypes.string,
+  fullImage: PropTypes.string,
   hasReinit: PropTypes.bool,
   title: PropTypes.string,
   src: PropTypes.string,

@@ -67,6 +67,7 @@ function EntryCard({
           facesize={facesizeToRender}
           src={entry.face_image}
           hidden={!isDetectedShow}
+          fullImage={entry.full_image}
         />
       </EntryCardPhotos>
 

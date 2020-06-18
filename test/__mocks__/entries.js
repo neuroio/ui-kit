@@ -12,6 +12,6 @@ export const entryMock = {
   pid_created: "2019-05-21T12:28:26.243846Z",
   initial_face_image: "https://source.unsplash.com/420x420/?face",
   face_image: "https://source.unsplash.com/400x400/?face",
-  full_image: "https://source.unsplash.com/420x420/?face",
+  full_image: "https://source.unsplash.com/1200x1000/?face",
   initial_full_image: "https://source.unsplash.com/420x420/?face",
 };
