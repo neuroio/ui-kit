@@ -5,7 +5,7 @@ import { Button } from "../../../../../Button";
 import { colors } from "../../../../../../style";
 
 const EntryCardPhotoFullImageCloseButton = styled(Button)`
-  position: absolute;
+  position: fixed;
   top: 40px;
   right: 200px;
   height: 30px;

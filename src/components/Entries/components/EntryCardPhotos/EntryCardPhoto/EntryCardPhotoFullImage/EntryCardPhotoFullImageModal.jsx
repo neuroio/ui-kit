@@ -7,6 +7,7 @@ const EntryCardPhotoFullImageModal = styled.div`
   transform: translateX(-50%);
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   transition: opacity 200ms ease-in;
+  z-index: 21;
 `;
 
 export { EntryCardPhotoFullImageModal };
