@@ -27,8 +27,6 @@ const Button = React.forwardRef((props, ref) => {
     "data-testid": testId,
   } = props;
 
-  console.log({ theme });
-
   return (
     <StyledButton
       ref={ref}
