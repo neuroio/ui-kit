@@ -11,6 +11,7 @@ const EntryCardPhotoFullImageCloseButton = styled(Button)`
   height: 30px;
   width: 30px;
   line-height: 0;
+  z-index: 21;
   background-color: ${colors.grayLight};
 `;
 

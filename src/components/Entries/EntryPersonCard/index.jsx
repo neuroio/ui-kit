@@ -37,6 +37,7 @@ function EntryPersonCard({
       <EntryPersonCardPhoto
         facesize={facesizeToRender}
         src={entry.face_image}
+        fullImage={entry.full_image}
       />
 
       <EntryCardLiveness liveness={entry.liveness} />

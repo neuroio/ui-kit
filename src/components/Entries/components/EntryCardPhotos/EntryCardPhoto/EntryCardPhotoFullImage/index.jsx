@@ -6,6 +6,7 @@ import { useLockBodyScroll } from "react-use";
 import usePortal from "react-useportal";
 
 import { StyledEntryCardPhotoFullImage } from "./StyledEntryCardPhotoFullImage";
+import { EntryCardPhotoFullImageOverlay } from "./EntryCardPhotoFullImageOverlay";
 import { EntryCardPhotoFullImageControl } from "./EntryCardPhotoFullImageControl";
 import { EntryCardPhotoFullImageModal } from "./EntryCardPhotoFullImageModal";
 import { EntryCardPhotoFullImageImage } from "./EntryCardPhotoFullImageImage";
@@ -24,7 +25,9 @@ function EntryCardPhotoFullImage({ src, "data-testid": testId }) {
   }, [src, isModalOpen]);
 
   useLayoutEffect(() => {
-    const rootComponent = document.getElementById("root");
+    const rootComponent =
+      document.getElementById("app-container") ||
+      document.getElementById("root");
 
     if (isModalOpen) {
       rootComponent.style.filter = "blur(12px)";
@@ -37,7 +40,11 @@ function EntryCardPhotoFullImage({ src, "data-testid": testId }) {
 
   return (
     <>
-      <StyledEntryCardPhotoFullImage>
+      <StyledEntryCardPhotoFullImage
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <EntryCardPhotoFullImageControl
           onClick={openModal}
           data-testid={`${testId}-control`}
@@ -47,7 +54,18 @@ function EntryCardPhotoFullImage({ src, "data-testid": testId }) {
       </StyledEntryCardPhotoFullImage>
       {isModalOpen && (
         <Modal>
-          <EntryCardPhotoFullImageModal isVisible={isImageLoaded}>
+          <EntryCardPhotoFullImageOverlay
+            onClick={(e) => {
+              e.stopPropagation();
+              closeModal();
+            }}
+          />
+          <EntryCardPhotoFullImageModal
+            isVisible={isImageLoaded}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <EntryCardPhotoFullImageImage
               src={src}
               data-testid={`${testId}-image`}
@@ -56,9 +74,18 @@ function EntryCardPhotoFullImage({ src, "data-testid": testId }) {
               }}
             />
           </EntryCardPhotoFullImageModal>
-          {!isImageLoaded && <EntryCardPhotoFullImageSpinner />}
+          {!isImageLoaded && (
+            <EntryCardPhotoFullImageSpinner
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            />
+          )}
           <EntryCardPhotoFullImageCloseButton
-            onClick={closeModal}
+            onClick={(e) => {
+              e.stopPropagation();
+              closeModal();
+            }}
             data-testid={`${testId}-close-button`}
             fit="circle"
           >
