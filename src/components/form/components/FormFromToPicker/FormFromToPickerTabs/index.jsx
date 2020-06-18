@@ -9,11 +9,15 @@ import { StyledFormFromToPickerTabs } from "./StyledFormFromToPickerTabs";
 
 const { TabPanes, TabPane } = Tabs;
 
-function FormFromToPickerTabs({ items, defaultActiveTab }) {
+function FormFromToPickerTabs({
+  items,
+  defaultActiveTab,
+  "data-testid": testId,
+}) {
   return (
     <StyledFormFromToPickerTabs>
       <Tabs defaultActiveTab={defaultActiveTab || (items[0] && items[0].value)}>
-        <FormFromToPickerTabsTabbar items={items} />
+        <FormFromToPickerTabsTabbar items={items} data-testid={testId} />
         <FormFromToPickerTabsInner>
           <TabPanes>
             {items.map(({ value, Component }) => {
@@ -38,6 +42,11 @@ function FormFromToPickerTabs({ items, defaultActiveTab }) {
 FormFromToPickerTabs.propTypes = {
   items: PropTypes.array.isRequired,
   defaultActiveTab: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  "data-testid": PropTypes.string,
+};
+
+FormFromToPickerTabs.defaultProps = {
+  "data-testid": "form-from-to-picker",
 };
 
 export { FormFromToPickerTabs };

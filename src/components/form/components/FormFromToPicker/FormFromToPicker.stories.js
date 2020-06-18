@@ -72,6 +72,7 @@ storiesOf("Form Components/FormFromToPicker", module).add("default", () => {
         value={value}
         onChange={setValue}
         placeholder="select something...."
+        data-testid="form-from-to-picker"
       >
         <FormFromToPicker.Tabs items={items} />
       </FormFromToPicker>

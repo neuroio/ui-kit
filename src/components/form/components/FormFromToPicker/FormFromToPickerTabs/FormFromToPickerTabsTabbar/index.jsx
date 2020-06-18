@@ -8,7 +8,7 @@ import { TabsContext } from "../../../../../Tabs";
 import { StyledFormFromToPickerTabsTabbar } from "./StyledFormFromToPickerTabsTabbar";
 import { FormFromToPickerTabsTabbarButton } from "./FormFromToPickerTabsTabbarButton";
 
-function FormFromToPickerTabsTabbar({ items }) {
+function FormFromToPickerTabsTabbar({ items, "data-testid": testId }) {
   const { openTab, activeTab } = useContext(TabsContext);
 
   return (
@@ -17,7 +17,7 @@ function FormFromToPickerTabsTabbar({ items }) {
         return (
           <FormFromToPickerTabsTabbarButton
             key={value}
-            data-testid={value}
+            data-testid={`${testId}-${value}`}
             isActive={activeTab === value}
             onClick={() => {
               openTab(value);
@@ -33,6 +33,7 @@ function FormFromToPickerTabsTabbar({ items }) {
 
 FormFromToPickerTabsTabbar.propTypes = {
   items: PropTypes.array.isRequired,
+  "data-testid": PropTypes.string,
 };
 
 export { FormFromToPickerTabsTabbar };
