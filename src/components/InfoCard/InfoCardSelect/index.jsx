@@ -38,6 +38,13 @@ function InfoCardSelect({
     if (list.current) {
       setTagsReadyToRender(false);
 
+      if (!rowsCount && rowsCount !== 0) {
+        setTagsToRender(value);
+        setTagsReadyToRender(true);
+
+        return;
+      }
+
       const listHeight = list.current.offsetHeight;
       if (!listHeight) return;
 
