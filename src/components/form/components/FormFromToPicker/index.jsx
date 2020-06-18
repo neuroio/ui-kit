@@ -10,7 +10,7 @@ import { StyledFormFromToPicker } from "./StyledFormFromToPicker";
 import { FormFromToPickerPopup } from "./FormFromToPickerPopup";
 import { FormFromToPickerControl } from "./FormFromToPickerControl";
 import { FormFromToPickerResetButton } from "./FormFromToPickerResetButton";
-import { Times } from "../../../icons";
+import { Times, ArrowRight } from "../../../icons";
 
 import { isEqual, isArray } from "lodash-es";
 
@@ -56,11 +56,19 @@ function FormFromToPicker({
 
     if (!isArray(value)) return value.label;
 
-    if (!value[0] && !value[1]) return "Nothing selected";
     if (value[0] && !value[1]) return value[0].label;
-    if (!value[0] && value[1]) return `--> ${value[1].label}`;
+    if (!value[0] && value[1])
+      return (
+        <>
+          <ArrowRight /> {value[1].label}
+        </>
+      );
 
-    return `${value[0].label} --> ${value[1].label}`;
+    return (
+      <>
+        {value[0].label} <ArrowRight /> {value[1].label}
+      </>
+    );
   }
 
   return (

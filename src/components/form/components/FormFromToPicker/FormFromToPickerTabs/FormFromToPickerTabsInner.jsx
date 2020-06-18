@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { FormDropdownMenu } from "../../FormDropdown/FormDropdownMenu";
-import { FormDropdownInput } from "../../FormDropdown/FormDropdownInput";
+import { FormDropdownInputWrapper } from "../../FormDropdown/FormDropdownInputWrapper";
 
 const FormFromToPickerTabsInner = styled.div`
   height: 275px;
@@ -10,7 +10,7 @@ const FormFromToPickerTabsInner = styled.div`
     max-height: 275px;
   }
 
-  ${FormDropdownInput} {
+  ${FormDropdownInputWrapper} {
     padding-top: 0;
   }
 `;
