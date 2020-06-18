@@ -23,6 +23,7 @@ function InfiniteDropdown({
   withSearch,
   width,
   multiple,
+  inline,
   onStateChange,
   renderSelected,
 }) {
@@ -50,6 +51,7 @@ function InfiniteDropdown({
           renderItem={renderItem}
           width={width}
           multiple={multiple}
+          inline={inline}
           onStateChange={onStateChange}
           renderSelected={renderSelected}
           isFetching={isFetching}
@@ -79,6 +81,7 @@ InfiniteDropdown.propTypes = {
   renderItem: PropTypes.func,
   withSearch: PropTypes.bool,
   multiple: PropTypes.bool,
+  inline: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onStateChange: PropTypes.func,
   renderSelected: PropTypes.func,
@@ -86,6 +89,7 @@ InfiniteDropdown.propTypes = {
 
 InfiniteDropdown.defaultProps = {
   multiple: false,
+  inline: false,
   limit: 10,
 };
 

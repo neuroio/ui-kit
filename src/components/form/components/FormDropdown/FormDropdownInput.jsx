@@ -5,8 +5,7 @@ const FormDropdownInput = styled.input`
   border: none;
   outline: none;
   display: inline-block;
-  width: 100px;
-  margin: 4px 15px;
+  width: 100%;
   height: 20px;
 `;
 
