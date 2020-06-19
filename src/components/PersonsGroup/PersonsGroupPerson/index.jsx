@@ -45,7 +45,7 @@ function PersonsGroupPerson({
       onClick={handleListItemClick}
       onMouseOver={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      img={person.initial_photo || noimageid}
+      img={person.initial_face_image || noimageid}
       data-testid={testId}
     >
       {!isAddingMode && (
