@@ -5,13 +5,11 @@ import { StyledFooter } from "../Footer";
 
 const LoginPageWrapper = styled(RouteSection)`
   min-height: 640px;
-  width: 940px;
+  width: 1000px;
   margin: 0 auto;
   justify-content: center;
 
   ${StyledFooter} {
-    padding-left: 0px;
-    padding-right: 0px;
     padding-bottom: 20px;
   }
 `;

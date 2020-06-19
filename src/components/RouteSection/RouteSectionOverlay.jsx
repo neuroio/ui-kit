@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const RouteSectionOverlay = styled.div`
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: -20px;
   width: 120%;
   height: ${(props) => (props.height ? props.height + "px" : "100%")};
