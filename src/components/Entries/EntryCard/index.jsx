@@ -57,7 +57,7 @@ function EntryCard({
           title="Initial"
           data-phototype="initial"
           facesize={!isDetectedShow && facesizeToRender}
-          src={entry.initial_photo}
+          src={entry.initial_face_image}
           hidden={!isInitialShow}
         />
 
@@ -65,8 +65,9 @@ function EntryCard({
           title="Detected"
           data-phototype="detected"
           facesize={facesizeToRender}
-          src={entry.photo}
+          src={entry.face_image}
           hidden={!isDetectedShow}
+          fullImage={entry.full_image}
         />
       </EntryCardPhotos>
 

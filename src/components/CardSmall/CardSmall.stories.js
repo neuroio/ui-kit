@@ -23,7 +23,7 @@ storiesOf("Data display|CardSmall", module)
           onClick={action("onClick")}
           onMouseOver={() => setIsMouseOver(true)}
           onMouseLeave={() => setIsMouseOver(false)}
-          img={personMock.initial_photo}
+          img={personMock.initial_face_image}
         >
           <CardSmall.Data>
             <CardSmall.DataItem>

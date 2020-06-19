@@ -34,7 +34,11 @@ function EntryPersonCard({
       data-testid={testId}
       theme={theme}
     >
-      <EntryPersonCardPhoto facesize={facesizeToRender} src={entry.photo} />
+      <EntryPersonCardPhoto
+        facesize={facesizeToRender}
+        src={entry.face_image}
+        fullImage={entry.full_image}
+      />
 
       <EntryCardLiveness liveness={entry.liveness} />
 

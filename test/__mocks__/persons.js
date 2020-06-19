@@ -8,10 +8,11 @@ export const personMock = {
   pid_source: { id: 133971, name: "upload" },
   initial_facesize: 4095,
   initial_liveness: "",
-  initial_photo: "https://source.unsplash.com/400x400/?face",
   junk: 0,
   liveness: { failed: 0, passed: 0, undetermined: 0 },
   reinit: 0,
   sex: 1,
   total: 1,
+  initial_face_image: "https://source.unsplash.com/400x400/?face",
+  initial_full_image: "https://source.unsplash.com/420x420/?face",
 };
