@@ -26,6 +26,17 @@ function getStyles({ hasPhoto }) {
   );
 }
 
+function getCursorStyles({ onClick, onMouseOver, onMouseLeave }) {
+  const hasMouseHandler = onClick || onMouseOver || onMouseLeave;
+
+  return (
+    hasMouseHandler &&
+    css`
+      cursor: pointer;
+    `
+  );
+}
+
 const StyledCardSmall = styled.li`
   width: 278px;
   height: 94px;
@@ -43,6 +54,7 @@ const StyledCardSmall = styled.li`
   }
 
   ${getStyles}
+  ${getCursorStyles}
 `;
 
 export { StyledCardSmall };
