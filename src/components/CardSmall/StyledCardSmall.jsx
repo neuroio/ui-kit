@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { colors } from "../../style";
+import { Clickable, colors } from "../../style";
 import { CardSmallData } from "./index";
 
 const themes = {
@@ -26,18 +26,8 @@ function getStyles({ hasPhoto }) {
   );
 }
 
-function getCursorStyles({ onClick, onMouseOver, onMouseLeave }) {
-  const hasMouseHandler = onClick || onMouseOver || onMouseLeave;
-
-  return (
-    hasMouseHandler &&
-    css`
-      cursor: pointer;
-    `
-  );
-}
-
 const StyledCardSmall = styled.li`
+  ${Clickable}
   width: 278px;
   height: 94px;
   border-radius: 4px;
@@ -45,7 +35,6 @@ const StyledCardSmall = styled.li`
   position: relative;
   overflow: hidden;
   transition: background-color 120ms ease-in-out, color 120ms ease-in-out;
-
   background-color: ${({ theme }) => themes[theme.theme].backgroundColor};
   color: ${({ theme }) => themes[theme.theme].textColor};
 
@@ -54,7 +43,6 @@ const StyledCardSmall = styled.li`
   }
 
   ${getStyles}
-  ${getCursorStyles}
 `;
 
 export { StyledCardSmall };

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { textTrimStyles } from "../../Text/TextTrim";
-import { colors } from "../../../style";
+import { TextTrim, colors } from "../../../style";
 
 const InfoCardSelectNoItemsText = styled.li`
+  ${TextTrim}
   padding: 4px 0px;
   font-size: 12px;
   line-height: 11px;
@@ -12,7 +12,6 @@ const InfoCardSelectNoItemsText = styled.li`
   border-radius: 2px;
   height: 20px;
   max-width: 180px;
-  ${textTrimStyles}
 `;
 
 export { InfoCardSelectNoItemsText };

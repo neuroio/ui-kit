@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { textTrimStyles } from "../../Text/TextTrim";
-import { colors } from "../../../style";
+import { TextTrim, colors } from "../../../style";
 
 const InfoCardSelectTag = styled.li`
+  ${TextTrim}
   background-color: ${colors.grayLight};
   padding: 4px 6px;
   font-size: 12px;
@@ -14,7 +14,6 @@ const InfoCardSelectTag = styled.li`
   border-radius: 2px;
   height: 20px;
   max-width: 180px;
-  ${textTrimStyles}
 `;
 
 export { InfoCardSelectTag };

@@ -9,8 +9,10 @@ import {
   StyledEntryCardLiveness,
 } from "../components";
 import { EntryCardPhotoBadges } from "../components/EntryCardPhotos/EntryCardPhoto/EntryCardPhotoBadges";
+import { Clickable } from "../../../style";
 
 const StyledEntryCard = styled(EntryCardContainer)`
+  ${Clickable}
   height: 114px;
   padding: 10px 16px;
   border-radius: 4px;

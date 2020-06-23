@@ -4,12 +4,11 @@ import styled from "styled-components";
 
 import { EntryCardInfoItemLabel } from "./EntryCardInfoItemLabel";
 import { EntryCardInfoItemValue } from "./EntryCardInfoItemValue";
-import { textTrimStyles } from "../../../Text/TextTrim";
+import { TextTrim } from "../../../../style";
 
 const StyledEntryCardInfoItem = styled.div`
+  ${TextTrim}
   line-height: 18px;
-
-  ${textTrimStyles}
 `;
 
 function EntryCardInfoItem({ children, label, value, isZeroEmpty, className }) {
