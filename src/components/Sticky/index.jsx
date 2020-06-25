@@ -89,7 +89,7 @@ Sticky.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   hasBackground: PropTypes.bool.isRequired,
   onRectChange: PropTypes.func,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export { Sticky };
