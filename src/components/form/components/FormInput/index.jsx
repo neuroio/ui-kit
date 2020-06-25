@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { StyledFormInput } from "./StyledFormInput";
 import { FormInputUneditable } from "./FormInputUneditable";
+import { FormInputAutoSize } from "./FormInputAutoSize";
 
 import { getTestId } from "../../utils";
 
@@ -44,11 +45,14 @@ FormInput.Uneditable = function (props) {
   return <FormInputUneditable {...props}>{props.value}</FormInputUneditable>;
 };
 
+FormInput.AutoSize = FormInputAutoSize;
+
 const StyledFormInputUneditable = FormInputUneditable;
 
 export {
   FormInput,
   StyledFormInput,
   FormInputUneditable,
+  FormInputAutoSize,
   StyledFormInputUneditable,
 };
