@@ -100,7 +100,6 @@ function FormField(props) {
           >
             <FormLabelTitle>
               {label}
-              {labelType === "bold" && ":"}
               {getFormFieldTip()}
               {getFormFieldTag()}
             </FormLabelTitle>

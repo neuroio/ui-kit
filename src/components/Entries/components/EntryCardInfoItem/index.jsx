@@ -11,9 +11,16 @@ const StyledEntryCardInfoItem = styled.div`
   line-height: 18px;
 `;
 
-function EntryCardInfoItem({ children, label, value, isZeroEmpty, className }) {
+function EntryCardInfoItem({
+  children,
+  label,
+  value,
+  isZeroEmpty,
+  className,
+  onClick,
+}) {
   return (
-    <StyledEntryCardInfoItem className={className}>
+    <StyledEntryCardInfoItem className={className} onClick={onClick}>
       {!label ? (
         children
       ) : (
@@ -38,6 +45,7 @@ EntryCardInfoItem.propTypes = {
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  onClick: PropTypes.func,
   isZeroEmpty: PropTypes.bool,
   className: PropTypes.string,
 };
