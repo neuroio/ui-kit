@@ -1,7 +1,9 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
 
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
+
 import { Tooltip } from "../index.jsx";
 
 describe("Tooltip tests", () => {
@@ -27,10 +29,12 @@ describe("Tooltip tests", () => {
   }
 
   test("Tooltip trigger open and close popup", () => {
-    const { getByTestId } = renderTooltip();
-    fireEvent.mouseEnter(getByTestId("tooltip-trigger-content"));
-    expect(getByTestId("tooltip-inner")).toBeVisible();
-    fireEvent.mouseLeave(getByTestId("tooltip-trigger-content"));
-    expect(getByTestId("tooltip-inner")).not.toBeVisible();
+    renderTooltip();
+
+    userEvent.hover(screen.getByTestId("tooltip-trigger-content"));
+    expect(screen.getByTestId("tooltip-inner")).toBeVisible();
+
+    userEvent.unhover(screen.getByTestId("tooltip-trigger-content"));
+    expect(screen.getByTestId("tooltip-inner")).not.toBeVisible();
   });
 });

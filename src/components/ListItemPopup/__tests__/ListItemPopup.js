@@ -1,7 +1,9 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
 
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
+
 import { ListItemPopup } from "../index.jsx";
 
 describe("ListItemPopup tests", () => {
@@ -42,12 +44,12 @@ describe("ListItemPopup tests", () => {
   }
 
   test("ListItemPopup trigger open and close popup", () => {
-    const { getByTestId } = renderListItemPopup();
+    renderListItemPopup();
 
-    fireEvent.click(getByTestId("button-open"));
-    expect(getByTestId("list-item-popup-content")).toBeVisible();
+    userEvent.click(screen.getByTestId("button-open"));
+    expect(screen.getByTestId("list-item-popup-content")).toBeVisible();
 
-    fireEvent.click(getByTestId("button-close"));
-    expect(getByTestId("list-item-popup-content")).not.toBeVisible();
+    userEvent.click(screen.getByTestId("button-close"));
+    expect(screen.getByTestId("list-item-popup-content")).not.toBeVisible();
   });
 });

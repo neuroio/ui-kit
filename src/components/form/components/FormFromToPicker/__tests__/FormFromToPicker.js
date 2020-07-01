@@ -1,10 +1,10 @@
 import React from "react";
-
 import { useState, useMemo } from "react";
 
 import { render } from "../../../../../../test/utils";
+import userEvent from "@testing-library/user-event";
 import { generateOptions } from "../../../../../../test/generate";
-import { fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { FormFromToPicker } from "../index.jsx";
 import { FormDropdown } from "../../FormDropdown";
@@ -101,33 +101,33 @@ describe("FormFromToPicker tests", () => {
   }
 
   test("FormFromToPicker should open and close popup correctly", () => {
-    const { getByTestId } = renderFormFromToPicker();
+    renderFormFromToPicker();
 
-    expect(getByTestId(getComponentTestId("popup"))).not.toBeVisible();
+    expect(screen.getByTestId(getComponentTestId("popup"))).not.toBeVisible();
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
-    expect(getByTestId(getComponentTestId("popup"))).toBeVisible();
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
+    expect(screen.getByTestId(getComponentTestId("popup"))).toBeVisible();
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
-    expect(getByTestId(getComponentTestId("popup"))).not.toBeVisible();
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
+    expect(screen.getByTestId(getComponentTestId("popup"))).not.toBeVisible();
   });
 
   test("FormFromToPicker should call onChange correctly on FROM and TO values select", () => {
-    const { getByTestId } = renderFormFromToPicker();
+    renderFormFromToPicker();
 
     const fromOption = options[0];
     const toOption = options[0];
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
-    fireEvent.click(getByTestId(getComponentTestId("from")));
-    fireEvent.click(
-      getByTestId(getComponentTestId(`option-${fromOption.value}`))
+    userEvent.click(screen.getByTestId(getComponentTestId("from")));
+    userEvent.click(
+      screen.getByTestId(getComponentTestId(`option-${fromOption.value}`))
     );
 
-    fireEvent.click(getByTestId(getComponentTestId("to")));
-    fireEvent.click(
-      getByTestId(getComponentTestId(`option-${toOption.value}`))
+    userEvent.click(screen.getByTestId(getComponentTestId("to")));
+    userEvent.click(
+      screen.getByTestId(getComponentTestId(`option-${toOption.value}`))
     );
 
     expect(onChangeMock.mock.calls).toEqual([
@@ -141,24 +141,24 @@ describe("FormFromToPicker tests", () => {
     const fromOption = options[0];
     const toOption = options[0];
 
-    const { getByTestId } = renderFormFromToPicker({
+    renderFormFromToPicker({
       valuesOnReset,
     });
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
-    fireEvent.click(getByTestId(getComponentTestId("from")));
-    fireEvent.click(
-      getByTestId(getComponentTestId(`option-${fromOption.value}`))
+    userEvent.click(screen.getByTestId(getComponentTestId("from")));
+    userEvent.click(
+      screen.getByTestId(getComponentTestId(`option-${fromOption.value}`))
     );
 
-    fireEvent.click(getByTestId(getComponentTestId("to")));
-    fireEvent.click(
-      getByTestId(getComponentTestId(`option-${toOption.value}`))
+    userEvent.click(screen.getByTestId(getComponentTestId("to")));
+    userEvent.click(
+      screen.getByTestId(getComponentTestId(`option-${toOption.value}`))
     );
     onChangeMock.mockClear();
 
-    fireEvent.click(getByTestId(getComponentTestId("reset")));
+    userEvent.click(screen.getByTestId(getComponentTestId("reset")));
 
     expect(onChangeMock.mock.calls).toEqual([[valuesOnReset]]);
   });

@@ -1,7 +1,9 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
 
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
+
 import { DeleteSureButton } from "../index.jsx";
 
 describe("DeleteSureButton tests", () => {
@@ -31,32 +33,32 @@ describe("DeleteSureButton tests", () => {
     const deleteText = "some delete text";
     const sureText = "some sure text";
 
-    const { getByTestId } = renderDeleteSureButton({
+    renderDeleteSureButton({
       deleteText,
       sureText,
     });
 
-    expect(getByTestId("delete-button")).toHaveTextContent(deleteText);
+    expect(screen.getByTestId("delete-button")).toHaveTextContent(deleteText);
 
-    fireEvent.mouseEnter(getByTestId("delete-button"));
-    expect(getByTestId("delete-button")).toHaveTextContent(deleteText);
+    userEvent.hover(screen.getByTestId("delete-button"));
+    expect(screen.getByTestId("delete-button")).toHaveTextContent(deleteText);
 
-    fireEvent.click(getByTestId("delete-button"));
-    expect(getByTestId("delete-button")).toHaveTextContent(sureText);
+    userEvent.click(screen.getByTestId("delete-button"));
+    expect(screen.getByTestId("delete-button")).toHaveTextContent(sureText);
 
-    fireEvent.mouseLeave(getByTestId("delete-button"));
-    expect(getByTestId("delete-button")).toHaveTextContent(deleteText);
+    userEvent.unhover(screen.getByTestId("delete-button"));
+    expect(screen.getByTestId("delete-button")).toHaveTextContent(deleteText);
 
-    fireEvent.click(getByTestId("delete-button"));
-    fireEvent.click(getByTestId("delete-button"));
-    expect(getByTestId("delete-button")).toHaveTextContent(deleteText);
+    userEvent.click(screen.getByTestId("delete-button"));
+    userEvent.click(screen.getByTestId("delete-button"));
+    expect(screen.getByTestId("delete-button")).toHaveTextContent(deleteText);
   });
 
   test("DeleteSureButton calls onDelete callback correctly", () => {
-    const { getByTestId } = renderDeleteSureButton();
+    renderDeleteSureButton();
 
-    fireEvent.click(getByTestId("delete-button"));
-    fireEvent.click(getByTestId("delete-button"));
+    userEvent.click(screen.getByTestId("delete-button"));
+    userEvent.click(screen.getByTestId("delete-button"));
 
     expect(onDeleteMock).toHaveBeenCalledTimes(1);
   });
