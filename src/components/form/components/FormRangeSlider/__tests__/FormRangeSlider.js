@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
+
+import { screen, fireEvent } from "@testing-library/react";
+import { render } from "../../../../../../test/utils";
 
 import { FormRangeSlider } from "../index";
-
-import { fireEvent } from "@testing-library/react";
-import { render } from "../../../../../../test/utils";
 
 const componentName = "test-form-range-slider";
 
@@ -42,13 +43,13 @@ function renderFormRangeSlider(props) {
 
 describe("FormRangeSlider tests", () => {
   test("FormRangeSlider should render initial values correctly", () => {
-    const { getByTestId } = renderFormRangeSlider();
+    renderFormRangeSlider();
 
     expect(
-      getByTestId(componentName).querySelector('div[data-handle="0"]')
+      screen.getByTestId(componentName).querySelector('div[data-handle="0"]')
     ).toHaveTextContent(0);
     expect(
-      getByTestId(componentName).querySelector('div[data-handle="1"]')
+      screen.getByTestId(componentName).querySelector('div[data-handle="1"]')
     ).toHaveTextContent(99);
   });
 
@@ -56,21 +57,21 @@ describe("FormRangeSlider tests", () => {
    * TODO: Подумать как написать этот тест
    */
   test.skip("FormRangeSlider should change value correctly", () => {
-    const { getByTestId } = renderFormRangeSlider();
+    renderFormRangeSlider();
 
     /**
      * реализация тестирования drag and drop
      * https://github.com/testing-library/react-testing-library/issues/268#issuecomment-493772289
      */
     fireEvent.mouseDown(
-      getByTestId(componentName).querySelector('div[data-handle="0"]'),
+      screen.getByTestId(componentName).querySelector('div[data-handle="0"]'),
       { clientX: 0, clientY: 0 }
     );
-    fireEvent.mouseMove(getByTestId(componentName), {
+    fireEvent.mouseMove(screen.getByTestId(componentName), {
       clientX: 1,
       clientY: 0,
     });
-    fireEvent.mouseUp(getByTestId(componentName), {
+    fireEvent.mouseUp(screen.getByTestId(componentName), {
       clientX: 1,
       clientY: 0,
     });

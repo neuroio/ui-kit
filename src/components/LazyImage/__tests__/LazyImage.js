@@ -1,5 +1,6 @@
 import React from "react";
 
+import { screen } from "@testing-library/react";
 import { render } from "../../../../test/utils";
 
 import { LazyImage } from "../index.jsx";
@@ -31,18 +32,21 @@ describe("ButtonToggle tests", () => {
   }
 
   test("LazyImage image not visible on initial render", () => {
-    const { getByTestId } = renderLazyImage();
+    renderLazyImage();
 
-    expect(getByTestId("lazy-image")).not.toBeVisible();
+    expect(screen.getByTestId("lazy-image")).not.toBeVisible();
   });
 
   /**
    * TODO: разобраться, как мокать вызов `onLoad` у HTML img
    */
   test.skip("LazyImage renders image after image load", () => {
-    const { getByTestId } = renderLazyImage();
+    renderLazyImage();
 
-    expect(getByTestId("lazy-image")).toBeVisible();
-    expect(getByTestId("lazy-image")).toHaveAttribute("src", defaultProps.src);
+    expect(screen.getByTestId("lazy-image")).toBeVisible();
+    expect(screen.getByTestId("lazy-image")).toHaveAttribute(
+      "src",
+      defaultProps.src
+    );
   });
 });
