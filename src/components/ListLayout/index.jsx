@@ -18,6 +18,7 @@ function ListLayout({
   actions,
   content,
   className,
+  isTopSticky,
 }) {
   const hasHeader = title || buttons;
   const hasTop = hasHeader || search || top;
@@ -28,7 +29,7 @@ function ListLayout({
         {hasTop && top ? (
           top
         ) : (
-          <ListLayoutTop>
+          <ListLayoutTop isSticky={isTopSticky}>
             {hasHeader && (
               <ListLayoutHeader>
                 {title && <ListLayoutTitle level={1}>{title}</ListLayoutTitle>}
@@ -48,12 +49,17 @@ function ListLayout({
 
 ListLayout.propTypes = {
   top: PropTypes.element,
+  isTopSticky: PropTypes.bool,
   title: PropTypes.string,
   buttons: PropTypes.element,
   search: PropTypes.element,
   actions: PropTypes.element,
   content: PropTypes.element,
   className: PropTypes.string,
+};
+
+ListLayout.defaultProps = {
+  isTopSticky: true,
 };
 
 export * from "./ListLayoutList";

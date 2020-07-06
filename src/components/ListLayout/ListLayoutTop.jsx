@@ -4,7 +4,9 @@ import { ListStickyHeader } from "../ListStickyHeader";
 
 import { colors } from "../../style";
 
-const ListLayoutTop = styled(ListStickyHeader)`
+const ListLayoutTop = styled.div.attrs(
+  ({ isSticky }) => isSticky && { as: ListStickyHeader }
+)`
   padding-bottom: 24px;
   background-color: ${colors.whiteSimple};
 `;

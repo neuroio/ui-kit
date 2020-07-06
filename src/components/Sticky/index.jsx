@@ -21,10 +21,12 @@ function Sticky({
   const [rect, setRect] = useState(null);
 
   const { y } = useWindowScroll();
-  const [isSticky, setIsSticky] = useState(rect ? y >= rect.top : false);
+  const [isSticky, setIsSticky] = useState(
+    rect ? y !== 0 && y >= rect.top : false
+  );
 
   useEffect(() => {
-    setIsSticky(rect ? y > rect.top : false);
+    setIsSticky(rect ? y !== 0 && y >= rect.top : false);
   }, [y, rect]);
 
   useEffect(() => {
