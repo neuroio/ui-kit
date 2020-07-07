@@ -8,5 +8,6 @@ export * from "./use-popup";
 export * from "./use-position-popup";
 export * from "./use-redirect-on-error";
 export * from "./use-scroll-direction";
+export * from "./use-scroll-to-current";
 export * from "./use-selectable-list";
 export * from "./use-timeout";
