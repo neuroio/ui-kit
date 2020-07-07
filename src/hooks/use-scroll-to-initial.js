@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { scrollToItem } from "../utils";
 
-function useScrollToCurrent(currentId, onScroll) {
+function useScrollToInitial(currentId, onScroll) {
   useEffect(() => {
     if (currentId) {
       setTimeout(() => {
@@ -12,4 +12,4 @@ function useScrollToCurrent(currentId, onScroll) {
   }, []);
 }
 
-export { useScrollToCurrent };
+export { useScrollToInitial };
