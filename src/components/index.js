@@ -38,6 +38,7 @@ export * from "./PersonCardDetailed";
 export * from "./PersonsGroup";
 export * from "./PopupConfirm";
 export * from "./PopupContainer";
+export * from "./PortalBackground";
 export * from "./ResultBadge";
 export * from "./RouteSection";
 export * from "./Search";
