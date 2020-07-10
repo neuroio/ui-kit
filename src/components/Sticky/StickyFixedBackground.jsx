@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-const StickyFixedBackground = styled.div`
+import { PortalBackground } from "../PortalBackground";
+
+const StickyFixedBackground = styled(PortalBackground)`
   position: fixed;
-  width: 100%;
 `;
 
 export { StickyFixedBackground };

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useWindowScroll } from "react-use";
-import usePortal from "react-useportal";
+import { useRefRect } from "../../hooks/use-ref-rect";
 
 import { StickyFixedBackground } from "./StickyFixedBackground";
 
@@ -15,10 +15,8 @@ function Sticky({
   onRectChange,
   className,
 }) {
-  const { Portal } = usePortal();
-
-  const ref = React.useRef(null);
-  const [rect, setRect] = useState(null);
+  const ref = useRef(null);
+  const rect = useRefRect(ref, onRectChange);
 
   const { y } = useWindowScroll();
   const [isSticky, setIsSticky] = useState(
@@ -28,22 +26,6 @@ function Sticky({
   useEffect(() => {
     setIsSticky(rect ? y !== 0 && y >= rect.top : false);
   }, [y, rect]);
-
-  useEffect(() => {
-    if (onRectChange) {
-      onRectChange(rect);
-    }
-  }, [rect, onRectChange]);
-
-  useLayoutEffect(() => {
-    if (ref.current) {
-      const newRect = ref.current.getBoundingClientRect();
-
-      if (JSON.stringify(newRect) !== JSON.stringify(rect)) {
-        setRect(ref.current.getBoundingClientRect());
-      }
-    }
-  });
 
   const stickyBag = {
     ref,
@@ -67,18 +49,17 @@ function Sticky({
         на 1px сдвигается для того, чтобы не было бага в chrome на windows
         https://bugs.chromium.org/p/chromium/issues/detail?id=693412
       */}
-      {hasBackground && isSticky && rect && (
-        <Portal>
-          <StickyFixedBackground
-            style={{
-              height: rect.height + 2,
-              top: rect.top - 1,
-              zIndex: innerZ - 1,
-              backgroundColor: window.getComputedStyle(ref.current)
-                .backgroundColor,
-            }}
-          />
-        </Portal>
+      {hasBackground && isSticky && (
+        <StickyFixedBackground
+          rect={rect}
+          style={{
+            zIndex: innerZ - 1,
+            // так как компонент стики, мы не должны учитывать window.scrollY
+            top: rect.top - 1,
+            backgroundColor: window.getComputedStyle(ref.current)
+              .backgroundColor,
+          }}
+        />
       )}
     </>
   );
