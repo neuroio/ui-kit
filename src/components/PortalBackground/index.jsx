@@ -15,9 +15,9 @@ function PortalBackground({ rect, style, className, "data-testid": testId }) {
           data-testid={testId}
           className={className}
           style={{
-            ...style,
             height: rect.height + 2,
-            top: rect.top - 1,
+            top: window.scrollY + rect.top - 1,
+            ...style,
           }}
         />
       </Portal>
