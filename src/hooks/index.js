@@ -7,6 +7,7 @@ export * from "./use-pagination";
 export * from "./use-popup";
 export * from "./use-position-popup";
 export * from "./use-redirect-on-error";
+export * from "./use-ref-rect";
 export * from "./use-scroll-direction";
 export * from "./use-scroll-to-initial";
 export * from "./use-selectable-list";
