@@ -111,7 +111,7 @@ PersonsGroupPersonDetailed.propTypes = {
 };
 
 PersonsGroupPersonDetailed.defaultProps = {
-  "data-testid": "persons-group-person-detail",
+  "data-testid": "persons-group-person-detailed",
 };
 
 export { PersonsGroupPersonDetailed, StyledPersonsGroupPersonDetailed };
