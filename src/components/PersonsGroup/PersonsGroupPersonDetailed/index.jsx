@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { StyledPersonsGroupPersonDetail } from "./StyledPersonsGroupPersonDetail";
+import { StyledPersonsGroupPersonDetailed } from "./StyledPersonsGroupPersonDetailed";
 
 import {
   PersonCardDetailed,
@@ -16,22 +16,27 @@ import { IdFormat } from "../../IdFormat";
 import { formatSex, formatDate, formatFaceSize } from "../../../utils";
 import { noimageid } from "../../../assets/images";
 
-function PersonsGroupPersonDetail({
+function PersonsGroupPersonDetailed({
   person,
   fetchPerson,
   pid,
   isLoading,
   isPersonNotExists,
   actions,
+  offsetTop,
+  className,
+  "data-testid": testId,
 }) {
   return (
-    <StyledPersonsGroupPersonDetail
+    <StyledPersonsGroupPersonDetailed
       person={person}
       fetchPerson={fetchPerson}
       pid={pid}
       isLoading={isLoading}
       isPersonNotExists={isPersonNotExists}
-      data-testid="persons-group-person-detail"
+      className={className}
+      offsetTop={offsetTop}
+      data-testid={testId}
     >
       {person && !isPersonNotExists && (
         <>
@@ -89,17 +94,24 @@ function PersonsGroupPersonDetail({
           )}
         </>
       )}
-    </StyledPersonsGroupPersonDetail>
+    </StyledPersonsGroupPersonDetailed>
   );
 }
 
-PersonsGroupPersonDetail.propTypes = {
+PersonsGroupPersonDetailed.propTypes = {
   person: PropTypes.object,
   fetchPerson: PropTypes.func,
   pid: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,
   actions: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  offsetTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
+  "data-testid": PropTypes.string,
 };
 
-export { PersonsGroupPersonDetail, StyledPersonsGroupPersonDetail };
+PersonsGroupPersonDetailed.defaultProps = {
+  "data-testid": "persons-group-person-detail",
+};
+
+export { PersonsGroupPersonDetailed, StyledPersonsGroupPersonDetailed };
