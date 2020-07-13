@@ -39,7 +39,7 @@ ListStickyHeader.propTypes = {
 };
 
 ListStickyHeader.defaultProps = {
-  innerZ: 4,
+  innerZ: 3,
   offsetTop: 59,
 };
 
