@@ -26,6 +26,9 @@ export function PersonsGroupListPerson({
   onAdd,
   isAddAvailable,
   isRemoveAvailable,
+  className,
+  "data-testid": testId,
+  offsetTop,
 }) {
   useEffect(() => {
     if (pid && fetchPerson) {
@@ -34,7 +37,11 @@ export function PersonsGroupListPerson({
   }, [pid]);
 
   return (
-    <StyledPersonsGroupListPerson>
+    <StyledPersonsGroupListPerson
+      className={className}
+      data-testid={testId}
+      offsetTop={offsetTop}
+    >
       {(isPersonFetching || !person) && !error ? (
         <PersonsGroupListPersonSpinner />
       ) : error ? (
@@ -89,4 +96,7 @@ PersonsGroupListPerson.propTypes = {
   onAdd: PropTypes.func.isRequired,
   isAddAvailable: PropTypes.bool.isRequired,
   isRemoveAvailable: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  "data-testid": PropTypes.string,
+  offsetTop: PropTypes.number,
 };

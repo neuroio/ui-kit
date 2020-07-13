@@ -69,9 +69,9 @@ PersonCardDetailed.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isPersonNotExists: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   "data-testid": PropTypes.string,
-  offsetTop: PropTypes.number.isRequired,
+  offsetTop: PropTypes.number,
 };
 
 PersonCardDetailed.defaultProps = {
