@@ -25,7 +25,7 @@ function ListLayoutDetailed({
             ref={ref}
             style={{
               ...style,
-              zIndex: rect && rect.top < innerOffsetTop ? 3 : 4,
+              zIndex: rect && rect.top < innerOffsetTop ? 2 : 3,
             }}
             className={className}
           >
