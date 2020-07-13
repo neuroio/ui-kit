@@ -1,6 +1,7 @@
 export { useTranslation, withTranslation } from "react-i18next";
 export * from "./use-client-rect";
 export * from "./use-copy-to-clipboard";
+export * from "./use-data-edit-mode";
 export * from "./use-infinite-menu";
 export * from "./use-list-fetch";
 export * from "./use-pagination";
