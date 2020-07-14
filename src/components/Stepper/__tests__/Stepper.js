@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
 
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
 
 import { Button } from "../../Button";
@@ -57,13 +58,16 @@ describe("Stepper tests", () => {
   }
 
   test("Stepper content catch default step", () => {
-    const { getByTestId } = renderStepper();
-    expect(getByTestId("stepper-index")).toHaveTextContent(steps.step1);
+    renderStepper();
+
+    expect(screen.getByTestId("stepper-index")).toHaveTextContent(steps.step1);
   });
 
   test("Stepper content have changed state when click to change", () => {
-    const { getByTestId } = renderStepper();
-    fireEvent.click(getByTestId("actions-button"));
-    expect(getByTestId("stepper-index")).toHaveTextContent(steps.step2);
+    renderStepper();
+
+    userEvent.click(screen.getByTestId("actions-button"));
+
+    expect(screen.getByTestId("stepper-index")).toHaveTextContent(steps.step2);
   });
 });

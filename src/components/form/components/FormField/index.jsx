@@ -25,6 +25,7 @@ function FormField(props) {
     showError,
     disabled,
     height,
+    style,
     className,
     placeholder,
     valuePlaceholder,
@@ -88,7 +89,11 @@ function FormField(props) {
   };
 
   return (
-    <StyledFormField className={className} isFullWidth={isFullWidth}>
+    <StyledFormField
+      className={className}
+      style={style}
+      isFullWidth={isFullWidth}
+    >
       {label ? (
         <React.Fragment>
           <FormLabel
@@ -100,7 +105,6 @@ function FormField(props) {
           >
             <FormLabelTitle>
               {label}
-              {labelType === "bold" && ":"}
               {getFormFieldTip()}
               {getFormFieldTag()}
             </FormLabelTitle>
@@ -136,6 +140,7 @@ FormField.propTypes = {
   showError: PropTypes.bool,
   disabled: PropTypes.bool,
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  style: PropTypes.object,
   className: PropTypes.string,
   /**
    * Разобраться, зачем эти пропсы

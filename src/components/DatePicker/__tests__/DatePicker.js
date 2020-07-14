@@ -1,13 +1,12 @@
 import React from "react";
-
 import { useState } from "react";
 
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
-import { fireEvent } from "@testing-library/react";
+import MockDate from "mockdate";
 
 import { DatePicker } from "../index.jsx";
-
-import MockDate from "mockdate";
 
 describe("DatePicker tests", () => {
   const onChangeMock = jest.fn();
@@ -63,15 +62,15 @@ describe("DatePicker tests", () => {
   }
 
   test("DatePicker should open and close popup correctly", () => {
-    const { getByTestId } = renderDatePicker();
+    renderDatePicker();
 
-    expect(getByTestId(getComponentTestId("popup"))).not.toBeVisible();
+    expect(screen.getByTestId(getComponentTestId("popup"))).not.toBeVisible();
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
-    expect(getByTestId(getComponentTestId("popup"))).toBeVisible();
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
+    expect(screen.getByTestId(getComponentTestId("popup"))).toBeVisible();
 
-    fireEvent.click(getByTestId(getComponentTestId("control")));
-    expect(getByTestId(getComponentTestId("popup"))).not.toBeVisible();
+    userEvent.click(screen.getByTestId(getComponentTestId("control")));
+    expect(screen.getByTestId(getComponentTestId("popup"))).not.toBeVisible();
   });
 
   describe("DatePicker absolute", () => {
@@ -89,12 +88,12 @@ describe("DatePicker tests", () => {
       const lastDate = getDateToCompare("2001-09-18T00:00:00.000Z");
       const firstDateDay = "13";
       const lastDateDay = "18";
-      const { getByText, getByTestId } = renderDatePicker();
+      const { getByText } = renderDatePicker();
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
-      fireEvent.click(getByText(firstDateDay));
-      fireEvent.click(getByText(lastDateDay));
-      fireEvent.click(getByTestId(getComponentTestId("control")));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
+      userEvent.click(getByText(firstDateDay));
+      userEvent.click(getByText(lastDateDay));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
       expect(onChangeMock.mock.calls).toEqual([
         [[firstDate, null]],
@@ -107,12 +106,12 @@ describe("DatePicker tests", () => {
       const lastDate = getDateToCompare("2001-09-13T00:00:00.000Z");
       const firstDateDay = "18";
       const lastDateDay = "13";
-      const { getByText, getByTestId } = renderDatePicker();
+      const { getByText } = renderDatePicker();
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
-      fireEvent.click(getByText(firstDateDay));
-      fireEvent.click(getByText(lastDateDay));
-      fireEvent.click(getByTestId(getComponentTestId("control")));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
+      userEvent.click(getByText(firstDateDay));
+      userEvent.click(getByText(lastDateDay));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
       expect(onChangeMock.mock.calls).toEqual([
         [[firstDate, null]],
@@ -124,13 +123,13 @@ describe("DatePicker tests", () => {
       const dateFrom = getDateToCompare("2001-09-13T00:00:00.000Z");
       const dateTo = getDateToCompare("2001-09-14T00:00:00.000Z");
       const dateFromDay = "13";
-      const { getByText, getByTestId } = renderDatePicker();
+      const { getByText } = renderDatePicker();
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
-      fireEvent.click(getByText(dateFromDay));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
+      userEvent.click(getByText(dateFromDay));
       onChangeMock.mockClear();
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
       expect(onChangeMock.mock.calls).toEqual([[[dateFrom, dateTo]]]);
     });
@@ -142,14 +141,14 @@ describe("DatePicker tests", () => {
       ];
       const dateFromDay = "15";
       const dateToDay = "18";
-      const { getByText, getByTestId } = renderDatePicker({ valuesOnReset });
+      const { getByText } = renderDatePicker({ valuesOnReset });
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
-      fireEvent.click(getByText(dateFromDay));
-      fireEvent.click(getByText(dateToDay));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
+      userEvent.click(getByText(dateFromDay));
+      userEvent.click(getByText(dateToDay));
       onChangeMock.mockClear();
 
-      fireEvent.click(getByTestId(getComponentTestId("reset")));
+      userEvent.click(screen.getByTestId(getComponentTestId("reset")));
 
       expect(onChangeMock.mock.calls).toEqual([[valuesOnReset]]);
     });
@@ -161,11 +160,13 @@ describe("DatePicker tests", () => {
         new Date("2001-09-01T00:00:00.000Z"),
         new Date("2001-09-04T00:00:00.000Z"),
       ];
-      const { getByTestId } = renderDatePicker();
+      renderDatePicker();
 
-      fireEvent.click(getByTestId(getComponentTestId("control")));
-      fireEvent.click(getByTestId(getComponentTestId("relative")));
-      fireEvent.click(getByTestId(getComponentTestId("relative-day-option-3")));
+      userEvent.click(screen.getByTestId(getComponentTestId("control")));
+      userEvent.click(screen.getByTestId(getComponentTestId("relative")));
+      userEvent.click(
+        screen.getByTestId(getComponentTestId("relative-day-option-3"))
+      );
 
       expect(onChangeMock.mock.calls).toEqual([[expectedValue]]);
     });

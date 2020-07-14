@@ -12,19 +12,25 @@ const centeredStyles = css`
     top: -24px;
   }
 `;
+
+const hiddenStyles = css`
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 /**
  * Компонент нужен только для того,
  * чтобы children рендерились всегда (и не срабатывал CDM несколько раз)
  */
 const RouteSectionHider = styled.div`
-  display: ${({ isHide }) => (isHide ? "none" : "flex")};
+  display: flex;
   width: 100%;
   flex: 100%;
   flex-direction: column;
-  padding-bottom: 30px;
-  padding-top: 26px;
 
   ${({ isCentered }) => isCentered && centeredStyles}
+  ${({ isHidden }) => isHidden && hiddenStyles}
 `;
 
 export default RouteSectionHider;

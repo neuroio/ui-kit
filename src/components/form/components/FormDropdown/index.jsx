@@ -46,6 +46,7 @@ function FormDropdown({
   multiple,
   renderSelected,
   isFetching,
+  inline,
 }) {
   if (name) {
     testId = name;
@@ -285,6 +286,8 @@ function FormDropdown({
         getInputProps,
         getItemProps,
       }) => {
+        const isMenuVisible = isOpen || inline;
+
         return (
           <StyledFormDropdown
             {...getRootProps({
@@ -295,38 +298,46 @@ function FormDropdown({
               isFetching,
             })}
           >
-            <FormDropdownControl
-              {...getToggleButtonProps({
-                disabled,
-                isOpen,
-                "data-testid": testId + "-control",
-                hasValue: getHasValue(selectedItem),
-              })}
-            >
-              {getRenderedSelected(selectedItem)}
-              {multiple &&
-              (!selectedItem.every(isDefault) ||
-                selectedItem.filter(isDefault).length !==
-                  options.filter(isDefault).length) ? (
-                <FormDropdownResetButton
-                  data-testid={`${testId}-reset`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    clearSelection();
-                    closeMenu();
-                  }}
-                >
-                  <Times size="12" />
-                </FormDropdownResetButton>
-              ) : null}
-            </FormDropdownControl>
+            {!inline && (
+              <FormDropdownControl
+                {...getToggleButtonProps({
+                  disabled,
+                  isOpen,
+                  "data-testid": testId + "-control",
+                  hasValue: getHasValue(selectedItem),
+                })}
+              >
+                {getRenderedSelected(selectedItem)}
+                {multiple &&
+                (!selectedItem.every(isDefault) ||
+                  selectedItem.filter(isDefault).length !==
+                    options.filter(isDefault).length) ? (
+                  <FormDropdownResetButton
+                    data-testid={`${testId}-reset`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      clearSelection();
+                      closeMenu();
+                    }}
+                  >
+                    <Times size="12" />
+                  </FormDropdownResetButton>
+                ) : null}
+              </FormDropdownControl>
+            )}
             <FormDropdownMenu
               {...getMenuProps(
-                { isOpen, "data-testid": testId + "-menu", ref: listRef },
+                {
+                  isOpen,
+                  "data-testid": testId + "-menu",
+                  ref: listRef,
+                  isVisible: isMenuVisible,
+                  inline,
+                },
                 { suppressRefError: true }
               )}
             >
-              {isOpen && (
+              {isMenuVisible && (
                 <React.Fragment>
                   {withSearch && (
                     <FormDropdownInputWrapper>
@@ -404,6 +415,7 @@ FormDropdown.propTypes = {
   isFetching: PropTypes.bool,
   "data-testid": PropTypes.string,
   renderSelected: PropTypes.func,
+  inline: PropTypes.bool,
 };
 
 FormDropdown.defaultProps = {
@@ -416,6 +428,7 @@ FormDropdown.defaultProps = {
   placeholder: "",
   renderItem: prop("label"),
   options: [],
+  inline: false,
 };
 
 FormDropdown.Option = FormDropdownOption;

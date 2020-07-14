@@ -7,9 +7,6 @@ const StyledFooter = styled.footer`
   width: 100%;
   padding-bottom: ${({ isDisclaimerShowing }) =>
     isDisclaimerShowing ? "42px" : "50px"};
-  padding-left: 30px;
-  padding-right: 30px;
-  box-sizing: border-box;
 `;
 
 export { StyledFooter };

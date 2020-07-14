@@ -11,7 +11,7 @@ import { ListLayout, ListLayoutList, ListLayoutActions } from "./index.jsx";
 import {
   PersonsGroupListPerson,
   PersonsGroupPerson,
-  PersonsGroupPersonDetail,
+  PersonsGroupPersonDetailed,
   personsGroupsSearchTypes,
 } from "../PersonsGroup";
 
@@ -418,7 +418,7 @@ storiesOf("List Layout", module)
                 )}
               />
 
-              <PersonsGroupPersonDetail
+              <PersonsGroupPersonDetailed
                 person={persons.find((person) => person.pid === detailed)}
               />
             </React.Fragment>

@@ -5,6 +5,7 @@ const StyledRouteSection = styled.div`
   min-height: 430px;
   height: ${({ height }) => height || "100%"};
   flex: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 

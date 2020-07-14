@@ -1,44 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useContext } from "react";
-
 import { StyledListLayoutDetailed } from "./StyledListLayoutDetailed";
-import { ListLayoutDetailedInner } from "./ListLayoutDetailedInner";
 import { ListLayoutContext } from "../index";
+import { Sticky } from "../../Sticky";
 
 function ListLayoutDetailed({
-  offsetTop,
   children,
   "data-testid": testId,
   className,
+  offsetTop,
 }) {
-  const { appHeaderOffset } = useContext(ListLayoutContext);
+  const { headerRect } = React.useContext(ListLayoutContext);
+
+  const innerOffsetTop =
+    offsetTop || (headerRect ? headerRect.top + headerRect.height : 0);
 
   return (
-    <StyledListLayoutDetailed
-      offsetTop={offsetTop}
-      style={{
-        transform: `translateY(${appHeaderOffset}px)`,
+    <Sticky offsetTop={innerOffsetTop} className={className}>
+      {({ ref, style, rect }) => {
+        return (
+          <StyledListLayoutDetailed
+            data-testid={testId}
+            ref={ref}
+            style={{
+              ...style,
+              zIndex: rect && rect.top < innerOffsetTop ? 2 : 3,
+            }}
+            className={className}
+          >
+            {children}
+          </StyledListLayoutDetailed>
+        );
       }}
-      className={className}
-    >
-      <ListLayoutDetailedInner data-testid={testId}>
-        {children}
-      </ListLayoutDetailedInner>
-    </StyledListLayoutDetailed>
+    </Sticky>
   );
 }
 
 ListLayoutDetailed.propTypes = {
-  offsetTop: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   "data-testid": PropTypes.string,
   className: PropTypes.string,
-};
-
-ListLayoutDetailed.defaultProps = {
-  offsetTop: 120,
+  offsetTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export { ListLayoutDetailed };

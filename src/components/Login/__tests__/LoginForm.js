@@ -1,6 +1,7 @@
 import React from "react";
 
-import { fireEvent, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../test/utils";
 
 import { LoginForm } from "../LoginForm";
@@ -25,17 +26,15 @@ describe("LoginForm tests", () => {
   }
 
   test("LoginForm submits with correct data", async () => {
-    const { getByPlaceholderText, getByTestId } = renderLoginForm();
+    renderLoginForm();
 
-    fireEvent.change(getByPlaceholderText("username"), {
-      target: { value: "Jane Doe" },
-    });
+    userEvent.type(screen.getByPlaceholderText("username"), "Jane Doe");
+    userEvent.type(
+      screen.getByPlaceholderText("password"),
+      "strong_password_here"
+    );
 
-    fireEvent.change(getByPlaceholderText("password"), {
-      target: { value: "strong_password_here" },
-    });
-
-    fireEvent.submit(getByTestId("login-form"));
+    userEvent.click(screen.getByRole("button", { type: /submit/i }));
 
     await waitFor(() => {
       expect(loginMock.mock.calls).toEqual([
@@ -45,9 +44,9 @@ describe("LoginForm tests", () => {
   });
 
   test("LoginForm does not call login when data is not valid", async () => {
-    const { getByTestId } = renderLoginForm();
+    renderLoginForm();
 
-    fireEvent.submit(getByTestId("login-form"));
+    userEvent.click(screen.getByRole("button", { type: /submit/i }));
 
     await waitFor(() => {
       expect(loginMock.mock.calls).toEqual([]);
@@ -55,12 +54,12 @@ describe("LoginForm tests", () => {
   });
 
   test("LoginForm renders validation errors", async () => {
-    const { getByTestId } = renderLoginForm();
+    renderLoginForm();
 
-    fireEvent.submit(getByTestId("login-form"));
+    userEvent.click(screen.getByRole("button", { type: /submit/i }));
 
     await waitFor(() => {
-      expect(getByTestId("login-form-error").innerHTML).toEqual(
+      expect(screen.getByTestId("login-form-error").innerHTML).toEqual(
         "Required fields are empty"
       );
     });

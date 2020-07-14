@@ -14,9 +14,10 @@ export function ListLayoutActions({
   selectAll,
   deselectAll,
   isAllSelected,
+  className,
 }) {
   return (
-    <StyledListLayoutActions>
+    <StyledListLayoutActions className={className}>
       <FormCheckbox
         disabled={isSelectionDisabled}
         checked={isAllSelected}
@@ -43,4 +44,5 @@ ListLayoutActions.propTypes = {
   isAllSelected: PropTypes.bool.isRequried,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   additional: PropTypes.element,
+  className: PropTypes.string,
 };

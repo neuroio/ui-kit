@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
-import { FormMultiSelect } from "../index";
-
-import { fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../../../test/utils";
 import { generateOptions } from "../../../../../../test/generate";
+
+import { FormMultiSelect } from "../index";
 
 const options = generateOptions(5);
 
@@ -47,49 +49,53 @@ function renderFormMultiSelect(props) {
 
 describe("FormMultiSelect tests", () => {
   test("FormMultiSelect menu should be visible after click on control", () => {
-    const { getByTestId } = renderFormMultiSelect();
+    renderFormMultiSelect();
 
-    expect(getByTestId(`${componentName}-menu`)).not.toBeVisible();
+    expect(screen.getByTestId(`${componentName}-menu`)).not.toBeVisible();
 
-    fireEvent.click(getByTestId(`${componentName}-input`));
+    userEvent.click(screen.getByTestId(`${componentName}-input`));
 
-    expect(getByTestId(`${componentName}-menu`)).toBeVisible();
+    expect(screen.getByTestId(`${componentName}-menu`)).toBeVisible();
   });
 
   test("FormMultiSelect menu should render correct number of options", () => {
-    const { getByTestId } = renderFormMultiSelect();
+    renderFormMultiSelect();
 
-    fireEvent.click(getByTestId(`${componentName}-input`));
+    userEvent.click(screen.getByTestId(`${componentName}-input`));
 
     expect(
-      getByTestId(`${componentName}-menu`).querySelectorAll(optionSelector)
+      screen
+        .getByTestId(`${componentName}-menu`)
+        .querySelectorAll(optionSelector)
     ).toHaveLength(options.length);
   });
 
   test("FormMultiSelect menu should be hidden after input blur", () => {
-    const { getByTestId } = renderFormMultiSelect();
+    renderFormMultiSelect();
 
-    fireEvent.click(getByTestId(`${componentName}-input`));
-    fireEvent.blur(getByTestId(`${componentName}-input`));
+    userEvent.click(screen.getByTestId(`${componentName}-input`));
+    userEvent.tab();
 
-    expect(getByTestId(`${componentName}-menu`)).not.toBeVisible();
+    expect(screen.getByTestId(`${componentName}-menu`)).not.toBeVisible();
   });
 
   test("FormDropdown should render selected items correctly and call onChange prop", () => {
-    const { getByTestId } = renderFormMultiSelect();
+    renderFormMultiSelect();
     const optionsToSelect = options.slice(0, 3);
 
-    fireEvent.click(getByTestId(`${componentName}-input`));
+    userEvent.click(screen.getByTestId(`${componentName}-input`));
 
     optionsToSelect.forEach((option) => {
-      fireEvent.click(getByTestId(`${componentName}-option-${option.value}`));
+      userEvent.click(
+        screen.getByTestId(`${componentName}-option-${option.value}`)
+      );
     });
 
     optionsToSelect.forEach((option) => {
-      expect(getByTestId(`${componentName}-tag-${option.value}`));
+      expect(screen.getByTestId(`${componentName}-tag-${option.value}`));
     });
     expect(
-      getByTestId(`${componentName}-tags`).querySelectorAll(tagSelector)
+      screen.getByTestId(`${componentName}-tags`).querySelectorAll(tagSelector)
     ).toHaveLength(3);
     expect(onChangeMock.mock.calls).toEqual([
       [[options[0]]],
@@ -99,24 +105,26 @@ describe("FormMultiSelect tests", () => {
   });
 
   test("FormDropdown tag cross tag should remove selected items correctly and call onChange prop", () => {
-    const { getByTestId } = renderFormMultiSelect();
+    renderFormMultiSelect();
     const optionsToSelect = options.slice(0, 3);
 
-    fireEvent.click(getByTestId(`${componentName}-input`));
+    userEvent.click(screen.getByTestId(`${componentName}-input`));
 
     optionsToSelect.forEach((option) => {
-      fireEvent.click(getByTestId(`${componentName}-option-${option.value}`));
+      userEvent.click(
+        screen.getByTestId(`${componentName}-option-${option.value}`)
+      );
     });
 
     optionsToSelect.forEach((option) => {
-      expect(getByTestId(`${componentName}-tag-${option.value}`));
+      expect(screen.getByTestId(`${componentName}-tag-${option.value}`));
     });
 
-    fireEvent.click(
-      getByTestId(`${componentName}-tag-${options[0].value}-cross`)
+    userEvent.click(
+      screen.getByTestId(`${componentName}-tag-${options[0].value}-cross`)
     );
     expect(
-      getByTestId(`${componentName}-tags`).querySelectorAll(tagSelector)
+      screen.getByTestId(`${componentName}-tags`).querySelectorAll(tagSelector)
     ).toHaveLength(2);
     expect(onChangeMock.mock.calls).toEqual([
       [[options[0]]],

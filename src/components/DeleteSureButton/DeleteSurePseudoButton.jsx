@@ -6,7 +6,7 @@ import { StyledDeleteSureButton } from "./index";
  * чтобы расчитать итоговый размер кнопки
  */
 const DeleteSurePseudoButton = styled(StyledDeleteSureButton)`
-  position: absolute;
+  position: fixed !important;
   visibility: hidden;
 `;
 

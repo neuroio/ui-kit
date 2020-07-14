@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 import { Flash } from "../Flash";
-
-import { colors } from "../../style";
+import { Clickable, colors } from "../../style";
 
 const StyledCopyItem = styled(Flash)`
-  cursor: pointer;
+  ${Clickable}
   font-size: 16px;
   line-height: 26px;
   color: ${colors.darkBlack};

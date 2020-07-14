@@ -5,6 +5,7 @@ function getStyles({ isOpen }) {
     ? css`
         opacity: 0;
         visibility: hidden;
+        position: fixed;
       `
     : css``;
 }

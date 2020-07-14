@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
-import { FormCheckboxGroup } from "../index";
-
-import { fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "../../../../../../test/utils";
 import { generateOptions } from "../../../../../../test/generate";
+
+import { FormCheckboxGroup } from "../index";
 
 const options = generateOptions(3);
 
@@ -58,9 +60,9 @@ function renderFormCheckboxGroup() {
 
 describe("FormCheckboxGroup tests", () => {
   test("FormCheckboxGroup should change checked state by click", () => {
-    const { getByTestId } = renderFormCheckboxGroup();
+    renderFormCheckboxGroup();
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
       "1": false,
@@ -68,10 +70,10 @@ describe("FormCheckboxGroup tests", () => {
       "3": false,
     });
 
-    fireEvent.click(getByTestId("test-group-1"));
-    fireEvent.click(getByTestId("test-group-2"));
+    userEvent.click(screen.getByTestId("test-group-1"));
+    userEvent.click(screen.getByTestId("test-group-2"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": false,
       "1": true,
@@ -79,9 +81,9 @@ describe("FormCheckboxGroup tests", () => {
       "3": false,
     });
 
-    fireEvent.click(getByTestId("test-group-1"));
+    userEvent.click(screen.getByTestId("test-group-1"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": false,
       "1": false,
@@ -90,9 +92,9 @@ describe("FormCheckboxGroup tests", () => {
     });
 
     // Select all
-    fireEvent.click(getByTestId("test-group-select-all"));
+    userEvent.click(screen.getByTestId("test-group-select-all"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": true,
       "test-group-deselect-all": false,
       "1": true,
@@ -100,9 +102,9 @@ describe("FormCheckboxGroup tests", () => {
       "3": true,
     });
 
-    fireEvent.click(getByTestId("test-group-select-all"));
+    userEvent.click(screen.getByTestId("test-group-select-all"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
       "1": false,
@@ -111,10 +113,10 @@ describe("FormCheckboxGroup tests", () => {
     });
 
     // Deselect all
-    fireEvent.click(getByTestId("test-group-1"));
-    fireEvent.click(getByTestId("test-group-deselect-all"));
+    userEvent.click(screen.getByTestId("test-group-1"));
+    userEvent.click(screen.getByTestId("test-group-deselect-all"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
       "1": false,
@@ -122,9 +124,9 @@ describe("FormCheckboxGroup tests", () => {
       "3": false,
     });
 
-    fireEvent.click(getByTestId("test-group-select-all"));
+    userEvent.click(screen.getByTestId("test-group-select-all"));
 
-    expect(getByTestId("test-form")).toHaveFormValues({
+    expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": true,
       "test-group-deselect-all": false,
       "1": true,

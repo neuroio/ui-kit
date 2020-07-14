@@ -13,20 +13,9 @@ function SegmentedTabs({
   onChange,
   "data-testid": testId,
   className,
+  renderTab,
+  children,
 }) {
-  function renderTabPane(option) {
-    const { value, Component } = option;
-
-    return (
-      <TabPane
-        id={value}
-        key={value}
-        // eslint-disable-next-line react/prop-types
-        render={(props) => props.isActive && <Component {...props} />}
-      />
-    );
-  }
-
   return (
     <StyledSegmentedTabs className={className}>
       <Tabs defaultActiveTab={defaultActiveTab} onChange={onChange}>
@@ -34,7 +23,7 @@ function SegmentedTabs({
           options={options}
           data-testid={`${testId}-tabbar`}
         />
-        <TabPanes>{options.map(renderTabPane)}</TabPanes>
+        <TabPanes>{children || options.map(renderTab)}</TabPanes>
       </Tabs>
     </StyledSegmentedTabs>
   );
@@ -46,6 +35,23 @@ SegmentedTabs.propTypes = {
   onChange: PropTypes.func,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
+  renderTab: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+};
+
+SegmentedTabs.defaultProps = {
+  renderTab(option) {
+    const { value, Component } = option;
+
+    return (
+      <TabPane
+        id={value}
+        key={value}
+        // eslint-disable-next-line react/prop-types
+        render={(props) => props.isActive && <Component {...props} />}
+      />
+    );
+  },
 };
 
 export { SegmentedTabs, SegmentedTabsTabbar, SegmentedTabsSpinner };

@@ -8,18 +8,28 @@ import { ListLayoutButtons } from "./ListLayoutButtons";
 import { ListLayoutSearch } from "./ListLayoutSearch";
 import { ListLayoutContent } from "./ListLayoutContent";
 import { ListLayoutTop } from "./ListLayoutTop";
+import { ListLayoutProvider } from "./ListLayoutProvider";
 
-import { ListLayoutContext, ListLayoutProvider } from "./ListLayoutProvider";
-
-function ListLayout({ title, buttons, search, actions, content, className }) {
+function ListLayout({
+  top,
+  title,
+  buttons,
+  search,
+  actions,
+  content,
+  className,
+  isTopSticky,
+}) {
   const hasHeader = title || buttons;
-  const hasTop = hasHeader || search;
+  const hasTop = hasHeader || search || top;
 
   return (
     <ListLayoutProvider>
       <StyledListLayout className={className}>
-        {hasTop && (
-          <ListLayoutTop>
+        {hasTop && top ? (
+          top
+        ) : (
+          <ListLayoutTop isSticky={isTopSticky}>
             {hasHeader && (
               <ListLayoutHeader>
                 {title && <ListLayoutTitle level={1}>{title}</ListLayoutTitle>}
@@ -27,10 +37,10 @@ function ListLayout({ title, buttons, search, actions, content, className }) {
               </ListLayoutHeader>
             )}
             {search && <ListLayoutSearch>{search}</ListLayoutSearch>}
+            {actions && actions}
           </ListLayoutTop>
         )}
 
-        {actions && actions}
         {content && <ListLayoutContent>{content}</ListLayoutContent>}
       </StyledListLayout>
     </ListLayoutProvider>
@@ -38,6 +48,8 @@ function ListLayout({ title, buttons, search, actions, content, className }) {
 }
 
 ListLayout.propTypes = {
+  top: PropTypes.element,
+  isTopSticky: PropTypes.bool,
   title: PropTypes.string,
   buttons: PropTypes.element,
   search: PropTypes.element,
@@ -46,9 +58,16 @@ ListLayout.propTypes = {
   className: PropTypes.string,
 };
 
+ListLayout.defaultProps = {
+  isTopSticky: true,
+};
+
 export * from "./ListLayoutList";
 export * from "./ListLayoutNotice";
 export * from "./ListLayoutDetailed";
 export * from "./ListLayoutActions";
+export * from "./ListLayoutHeader";
+export * from "./ListLayoutTop";
+export * from "./ListLayoutSearch";
+export * from "./ListLayoutProvider";
 export { ListLayout };
-export { ListLayoutContext, ListLayoutProvider };

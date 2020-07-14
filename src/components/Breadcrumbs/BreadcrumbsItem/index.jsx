@@ -10,9 +10,10 @@ function BreadcrumbsItem({
   isDisabled,
   onClick,
   isActive,
+  to,
   ...restProps
 }) {
-  const onClickAllowed = !isDisabled && !isActive;
+  const onClickAllowed = !isDisabled && !isActive && !to;
 
   return (
     <StyledBreadcrumbsItem
@@ -21,7 +22,7 @@ function BreadcrumbsItem({
       onClick={onClickAllowed ? onClick : undefined}
       {...restProps}
     >
-      <BreadcrumbsItemText>{children}</BreadcrumbsItemText>
+      <BreadcrumbsItemText to={to}>{children}</BreadcrumbsItemText>
       <BreadcrumbsItemIcon size="12" />
     </StyledBreadcrumbsItem>
   );
@@ -32,6 +33,7 @@ BreadcrumbsItem.propTypes = {
   isDisabled: PropTypes.bool,
   isActive: PropTypes.bool,
   onClick: PropTypes.func,
+  to: PropTypes.string,
 };
 
 export { BreadcrumbsItem, StyledBreadcrumbsItem };
