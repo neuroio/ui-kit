@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useListFetch } from "./use-list-fetch";
 
 function useInfiniteMenu({ limit, hasNext, fetchOptions }) {
   const [isListEnds, setIsListEnds] = useState(!hasNext);
 
+  const fetchList = useCallback(function (params) {
+    fetchOptions({ ...params, meta: { clearList: params.offset === 0 } });
+  }, []);
   const { pagination, setPagination, setFetchParams } = useListFetch({
-    fetchList: (params) => {
-      fetchOptions({ ...params, meta: { clearList: params.offset === 0 } });
-    },
+    fetchList,
     pagination: { limit, offset: 0 },
   });
 
