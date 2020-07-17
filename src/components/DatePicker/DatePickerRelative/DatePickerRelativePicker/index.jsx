@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import { DatePickerContext } from "../../index";
 import { useUpdateEffect } from "react-use";
+import { useTranslation } from "../../../../hooks";
 
 import { DatePickerRelativePickerSelect } from "./DatePickerRelativePickerSelect";
 
@@ -90,6 +91,7 @@ function getInitialSelected(value, currentDate) {
 }
 
 function DatePickerRelativePicker({ value, onChange }) {
+  const { t } = useTranslation("DatePicker");
   const { initialDateTo: currentDate, testId } = useContext(DatePickerContext);
   const [selected, setSelected] = useState(
     getInitialSelected(value, currentDate)
@@ -116,42 +118,42 @@ function DatePickerRelativePicker({ value, onChange }) {
   return (
     <>
       <DatePickerRelativePickerSelect
-        label="Minutes"
+        label={t("Minutes")}
         value={selected.type === "minute" ? selected.value : null}
         range={rangeMinute}
         onChange={handleSelectChange("minute")}
         data-testid={`${testId}-relative-minute`}
       />
       <DatePickerRelativePickerSelect
-        label="Hours"
+        label={t("Hours")}
         value={selected.type === "hour" ? selected.value : null}
         range={rangeHour}
         onChange={handleSelectChange("hour")}
         data-testid={`${testId}-relative-hour`}
       />
       <DatePickerRelativePickerSelect
-        label="Days"
+        label={t("Days")}
         value={selected.type === "day" ? selected.value : null}
         range={rangeDay}
         onChange={handleSelectChange("day")}
         data-testid={`${testId}-relative-day`}
       />
       <DatePickerRelativePickerSelect
-        label="Weeks"
+        label={t("Weeks")}
         value={selected.type === "week" ? selected.value : null}
         range={rangeWeek}
         onChange={handleSelectChange("week")}
         data-testid={`${testId}-relative-week`}
       />
       <DatePickerRelativePickerSelect
-        label="Months"
+        label={t("Months")}
         value={selected.type === "month" ? selected.value : null}
         range={rangeMonth}
         onChange={handleSelectChange("month")}
         data-testid={`${testId}-relative-month`}
       />
       <DatePickerRelativePickerSelect
-        label="Years"
+        label={t("Years")}
         value={selected.type === "year" ? selected.value : null}
         range={rangeYear}
         onChange={handleSelectChange("year")}

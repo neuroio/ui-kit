@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { useState, useRef, useMemo } from "react";
 import { useUpdateEffect } from "react-use";
-import { usePositionPopup } from "../../hooks";
+import { usePositionPopup, useTranslation } from "../../hooks";
 
 import { StyledDatePicker } from "./StyledDatePicker";
 import { DatePickerPopup } from "./DatePickerPopup";
@@ -18,6 +18,8 @@ import { Times } from "../icons";
 import { identity, isEqual } from "lodash-es";
 import { isEqual as isDatesEqual } from "date-fns";
 import dayjs from "dayjs";
+
+import { resources } from "./DatePicker.resources";
 
 const DatePickerContext = React.createContext({
   value: [],
@@ -41,8 +43,13 @@ function DatePicker({
   initialDateFrom,
   initialDateTo,
   className,
+  placeholder,
   "data-testid": testId,
 }) {
+  const { t, i18n } = useTranslation("DatePicker");
+  i18n.addResourceBundle("en", "DatePicker", resources.en);
+  i18n.addResourceBundle("ru", "DatePicker", resources.ru);
+
   const [error, setError] = useState(null);
   const popupTrigger = useRef(null);
   const filterWrapper = useRef(null);
@@ -92,12 +99,14 @@ function DatePicker({
   }, [isOpen]);
 
   function getValueRender(value) {
-    if (!value[0] && !value[1]) return "All dates";
-    if (value[0] && !value[1]) return `From ${formatDateTime(value[0])}`;
-    if (!value[0] && value[1]) return `To ${formatDateTime(value[1])}`;
+    if (!value[0] && !value[1])
+      return placeholder === undefined ? t("All dates") : placeholder;
+    if (value[0] && !value[1])
+      return `${t("From")} ${formatDateTime(value[0])}`;
+    if (!value[0] && value[1]) return `${t("To")} ${formatDateTime(value[1])}`;
 
     if (isDatesEqual(value[0], new Date(initialDateFrom))) {
-      return `All to ${formatDateTime(value[1])}`;
+      return `${t("All to")} ${formatDateTime(value[1])}`;
     }
 
     return formatDateTime(value[0]) + " - " + formatDateTime(value[1]);
@@ -175,6 +184,7 @@ DatePicker.propTypes = {
   onReset: PropTypes.func,
   className: PropTypes.string,
   "data-testid": PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 DatePicker.defaultProps = {

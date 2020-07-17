@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useContext } from "react";
+import { useTranslation } from "../../../hooks";
 
 import { StyledDatePickerTotalTime } from "./StyledDatePickerTotalTime";
 import { DatePickerContext } from "../index";
@@ -8,6 +9,7 @@ import { DatePickerContext } from "../index";
 import dayjs from "dayjs";
 
 function DatePickerTotalTime() {
+  const { t } = useTranslation("DatePicker");
   const { value, initialDateFrom, initialDateTo } = useContext(
     DatePickerContext
   );
@@ -45,9 +47,9 @@ function DatePickerTotalTime() {
 
   return (
     <StyledDatePickerTotalTime>
-      Total time selected:{" "}
+      {t("Total time selected")}:{" "}
       {isDateToInitial && isDateFromInitial ? (
-        <b>all</b>
+        <b>{t("all")}</b>
       ) : (
         <b>
           {diffYear ? diffYear + "y " : null}

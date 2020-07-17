@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useTranslation } from "../../../../hooks";
 import { useContext } from "react";
 import { TabsContext } from "../../../../components/Tabs";
 import { DatePickerContext } from "../../index";
@@ -10,6 +11,7 @@ import { DatePickerTabsTabbarButton } from "./DatePickerTabsTabbarButton";
 function DatePickerTabsTabbar() {
   const { openTab, activeTab } = useContext(TabsContext);
   const { testId } = useContext(DatePickerContext);
+  const { t } = useTranslation("DatePicker");
 
   return (
     <StyledDatePickerTabsTabbar>
@@ -20,7 +22,7 @@ function DatePickerTabsTabbar() {
           openTab("absolute");
         }}
       >
-        Absolute
+        {t("Absolute")}
       </DatePickerTabsTabbarButton>
       <DatePickerTabsTabbarButton
         data-testid={`${testId}-relative`}
@@ -29,7 +31,7 @@ function DatePickerTabsTabbar() {
           openTab("relative");
         }}
       >
-        Relative
+        {t("Relative")}
       </DatePickerTabsTabbarButton>
     </StyledDatePickerTabsTabbar>
   );

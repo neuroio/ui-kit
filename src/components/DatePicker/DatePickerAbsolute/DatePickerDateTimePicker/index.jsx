@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "../../../../hooks";
 
 import DatePicker from "react-datepicker";
 import { DatePickerDateTimeInputs } from "../DatePickerDateTimeInputs";
@@ -11,15 +12,21 @@ import { DatePickerContext } from "../../index";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isToday from "dayjs/plugin/isToday";
+
 import { registerLocale } from "react-datepicker";
 import enGb from "date-fns/locale/en-GB";
+registerLocale("en", enGb);
+import ru from "date-fns/locale/ru";
+registerLocale("ru", ru);
+
 import "./styles.css";
 
-registerLocale("en-GB", enGb);
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isToday);
 
 function DatePickerDateTimePicker({ value, onChange }) {
+  const { t, i18n } = useTranslation("DatePicker");
+
   const [selectionComplete, toggleSelectionComplete] = useState(
     value[0] && value[1]
   );
@@ -45,7 +52,9 @@ function DatePickerDateTimePicker({ value, onChange }) {
       onChange([dayjs(initialDateFrom).toDate(), value[1]]);
 
       setError(
-        `Dates before ${dayjs(initialDateFrom).year()} are not supported.`
+        t("Dates before are not supported.", {
+          date: dayjs(initialDateFrom).year(),
+        })
       );
 
       return;
@@ -59,9 +68,9 @@ function DatePickerDateTimePicker({ value, onChange }) {
       onChange([value[0], dayjs(currentDate).toDate()]);
 
       setError(
-        `Dates after ${
-          dayjs(initialDateTo).isToday() ? "today" : initialDateTo
-        } are not supported.`
+        t("Dates after are not supported.", {
+          date: dayjs(initialDateTo).isToday() ? t("today") : initialDateTo,
+        })
       );
 
       return;
@@ -144,7 +153,7 @@ function DatePickerDateTimePicker({ value, onChange }) {
         endDate={value[1] || value[0]}
         selectsStart={!selectionComplete}
         selectsEnd={!selectionComplete}
-        locale="en-GB"
+        locale={i18n.language || "en"}
         inline={true}
         openToDate={value[1]}
         minDate={initialDateFrom ? new Date(initialDateFrom) : undefined}
@@ -152,7 +161,7 @@ function DatePickerDateTimePicker({ value, onChange }) {
       />
       <DatePickerDateTimeInputs>
         <DatePickerDateTimeInput
-          label="From"
+          label={t("From")}
           value={value[0]}
           onChange={(date) => {
             onChange([date, value[1]]);
@@ -163,7 +172,7 @@ function DatePickerDateTimePicker({ value, onChange }) {
           data-testid={`${testId}-from`}
         />
         <DatePickerDateTimeInput
-          label="To"
+          label={t("To")}
           value={value[1]}
           onChange={(date) => {
             onChange([value[0], date]);
