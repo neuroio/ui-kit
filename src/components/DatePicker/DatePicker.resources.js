@@ -1,5 +1,6 @@
 export const resources = {
   en: {
+    "All dates": "All dates",
     Minutes: "Minutes",
     Hours: "Hours",
     Days: "Days",
@@ -18,6 +19,7 @@ export const resources = {
     "Total time selected": "Total time selected",
   },
   ru: {
+    "All dates": "Все даты",
     Minutes: "Минуты",
     Hours: "Часы",
     Days: "Дни",
