@@ -4,6 +4,7 @@ import { colors } from "../../../style";
 
 export const LoginMenuItem = styled.a`
   text-decoration: none;
+  text-transform: lowercase;
   font-size: 13px;
   line-height: 18px;
   font-weight: 700;

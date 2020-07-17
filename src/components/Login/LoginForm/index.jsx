@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { useState, useEffect, useRef } from "react";
 import { usePrevious, useUpdateEffect } from "react-use";
+import { useTranslation } from "../../../hooks";
 
 import { object, string } from "yup";
 
@@ -15,7 +16,7 @@ import { FormField, FormInput } from "../../form/components";
 import { withFormik } from "formik";
 import { isEmpty } from "lodash-es";
 
-const ERROR_EMPTY_FIELDS = "Required fields are empty";
+import { resources } from "./LoginForm.resources";
 
 function LoginFormComponent({
   isLogging,
@@ -29,6 +30,12 @@ function LoginFormComponent({
   submitCount,
   "data-testid": testId,
 }) {
+  const { t, i18n } = useTranslation("LoginForm");
+  i18n.addResourceBundle("en", "LoginForm", resources.en);
+  i18n.addResourceBundle("ru", "LoginForm", resources.ru);
+
+  const ERROR_EMPTY_FIELDS = t("Required fields are empty");
+
   const [stateAuthError, setStateAuthError] = useState(null);
   const [authErrorResetTimerId, setAuthErrorResetTimerId] = useState(null);
   const usernameInputRef = useRef();
@@ -115,7 +122,7 @@ function LoginFormComponent({
         </LoginFormError>
       </LoginFormFields>
       <Button type="submit" theme="dark" size="large">
-        Login
+        {t("Login")}
       </Button>
     </StyledLoginForm>
   );
