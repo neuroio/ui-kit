@@ -7,6 +7,7 @@ export * from "./ButtonUpload";
 export * from "./CardContainer";
 export * from "./CardSmall";
 export * from "./CopyItem";
+export * from "./DateDuration";
 export * from "./DeleteSureButton";
 export * from "./Entries";
 export * from "./ErrorBoundary";
