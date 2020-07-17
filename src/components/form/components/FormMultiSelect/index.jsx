@@ -168,8 +168,12 @@ function FormMultiSelect(props) {
               data-testid={`${testId}-tags`}
             >
               {selected.map((selected) => {
-                const tagName = selected.label || selected;
-                const tagValue = selected.value || selected;
+                const tagValue = hasProperty(selected, "value")
+                  ? selected.value
+                  : selected;
+                const tagName = hasProperty(selected, "label")
+                  ? selected.label
+                  : selected;
 
                 return (
                   <FormMultiSelectTagsItem
