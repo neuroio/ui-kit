@@ -20,12 +20,14 @@ export default function NotificationContent({ message, description, type }) {
     }[type];
   }
   return (
-    <StyledNotificationContent>
-      <h3>
+    <StyledNotificationContent data-testid="ui-notification-content">
+      <h3 data-testid="ui-notification-title">
         {type && <i>{getIcon(type)}</i>}
         {message}
       </h3>
-      {description && <p>{description}</p>}
+      {description && (
+        <p data-testid="ui-notification-description">{description}</p>
+      )}
     </StyledNotificationContent>
   );
 }
