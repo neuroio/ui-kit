@@ -26,6 +26,7 @@ function InfiniteDropdown({
   inline,
   onStateChange,
   renderSelected,
+  emptyNotice,
 }) {
   const { searchOptions, fetchNext } = useInfiniteMenu({
     limit,
@@ -56,6 +57,7 @@ function InfiniteDropdown({
           renderSelected={renderSelected}
           isFetching={isFetching}
           disabled={disabled}
+          emptyNotice={emptyNotice}
         />
       )}
     </InfiniteScroll>
@@ -85,6 +87,7 @@ InfiniteDropdown.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onStateChange: PropTypes.func,
   renderSelected: PropTypes.func,
+  emptyNotice: PropTypes.string,
 };
 
 InfiniteDropdown.defaultProps = {

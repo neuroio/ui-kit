@@ -13,6 +13,7 @@ import { FormDropdownInputWrapper } from "./FormDropdownInputWrapper";
 import { FormDropdownInput } from "./FormDropdownInput";
 import { FormDropdownResetButton } from "./FormDropdownResetButton";
 import { FormDropdownOptionSelectedIcon } from "./FormDropdownOptionSelectedIcon";
+import { FormDropdownNotice } from "./FormDropdownNotice";
 import { Times } from "../../../icons";
 
 import { searchInList, capitalize } from "../../../../utils/helpers";
@@ -47,6 +48,7 @@ function FormDropdown({
   renderSelected,
   isFetching,
   inline,
+  emptyNotice,
 }) {
   if (name) {
     testId = name;
@@ -260,6 +262,10 @@ function FormDropdown({
     }
   }
 
+  function getVisibleOptionsList(inputValue) {
+    return searchInList(options, inputValue, ["label"]);
+  }
+
   return (
     <Downshift
       initialSelectedItem={value}
@@ -287,6 +293,10 @@ function FormDropdown({
         getItemProps,
       }) => {
         const isMenuVisible = isOpen || inline;
+
+        const visibleOptionsList = getVisibleOptionsList(inputValue);
+        const isVisibleOptionsListEmpty =
+          visibleOptionsList.length === 0 && !isFetching;
 
         return (
           <StyledFormDropdown
@@ -349,8 +359,10 @@ function FormDropdown({
                       />
                     </FormDropdownInputWrapper>
                   )}
-                  {searchInList(options, inputValue, ["label"]).map(
-                    (item, index) => {
+                  {isVisibleOptionsListEmpty ? (
+                    <FormDropdownNotice>{emptyNotice}</FormDropdownNotice>
+                  ) : (
+                    visibleOptionsList.map((item, index) => {
                       const selected = getIsOptionSelected(item, selectedItem);
 
                       return (
@@ -373,7 +385,7 @@ function FormDropdown({
                           {renderItem(item)}
                         </FormDropdownOption>
                       );
-                    }
+                    })
                   )}
                 </React.Fragment>
               )}
@@ -416,6 +428,7 @@ FormDropdown.propTypes = {
   "data-testid": PropTypes.string,
   renderSelected: PropTypes.func,
   inline: PropTypes.bool,
+  emptyNotice: PropTypes.string,
 };
 
 FormDropdown.defaultProps = {
@@ -429,6 +442,7 @@ FormDropdown.defaultProps = {
   renderItem: prop("label"),
   options: [],
   inline: false,
+  emptyNotice: "No items",
 };
 
 FormDropdown.Option = FormDropdownOption;
