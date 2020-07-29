@@ -1,18 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { useRef } from "react";
+import { usePositionPopup } from "../../../../hooks/use-position-popup";
+
 import { StyledHeaderTopMenuUser } from "./StyledHeaderTopMenuUser";
 import { HeaderTopMenuUserUsername } from "./HeaderTopMenuUserUsername";
 import { HeaderTopMenuUserUsernameLogout } from "./HeaderTopMenuUserUsernameLogout";
+import { HeaderTopMenuUserDropdown } from "./HeaderTopMenuUserDropdown";
 import { ArrowAltCircleRight } from "../../../icons";
 
-function HeaderTopMenuUser({ username, onLogout }) {
+function HeaderTopMenuUser({ username, onLogout, dropdown }) {
+  const popupTrigger = useRef(null);
+
+  const {
+    Portal,
+    bind,
+    coords,
+    popupInner,
+    togglePortal,
+    isOpen,
+  } = usePositionPopup({
+    pupupTrigger: popupTrigger,
+    position: "bottomRight",
+  });
+
   return (
-    <StyledHeaderTopMenuUser>
-      <HeaderTopMenuUserUsername username={username} />
+    <StyledHeaderTopMenuUser {...bind} ref={popupTrigger}>
+      <HeaderTopMenuUserUsername
+        username={username}
+        onClick={dropdown && togglePortal}
+      />
       <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
         <ArrowAltCircleRight size="15" />
       </HeaderTopMenuUserUsernameLogout>
+      {dropdown && (
+        <Portal>
+          <HeaderTopMenuUserDropdown
+            innerRef={popupInner}
+            isOpen={isOpen}
+            coords={coords}
+          >
+            {dropdown}
+          </HeaderTopMenuUserDropdown>
+        </Portal>
+      )}
     </StyledHeaderTopMenuUser>
   );
 }
@@ -20,6 +52,13 @@ function HeaderTopMenuUser({ username, onLogout }) {
 HeaderTopMenuUser.propTypes = {
   username: PropTypes.string.isRequired,
   onLogout: PropTypes.func.isRequired,
+  dropdown: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
 };
+
+HeaderTopMenuUser.defaultProps = {
+  dropdown: null,
+};
+
+export * from "./HeaderTopMenuUserDropdown";
 
 export { HeaderTopMenuUser };

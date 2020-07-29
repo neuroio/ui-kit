@@ -5,6 +5,10 @@ import { action } from "@storybook/addon-actions";
 
 import { Header, HeaderTopMenu } from "./index.jsx";
 import { HeaderTopMenuLinks, HeaderTopMenuUser } from "./HeaderTopMenu";
+import { HeaderTopMenuUserDropdownItem } from "./HeaderTopMenu/HeaderTopMenuUser";
+import { InfiniteDropdown } from "../InfiniteDropdown";
+import { Plus, GearOutline } from "../icons/index.js";
+import { generateOptions } from "../../../test/generate.js";
 
 storiesOf("Navigation|Header", module).add("default", () => {
   const username = text("Username", "Arunoda Susiripala");
@@ -27,11 +31,51 @@ storiesOf("Navigation|Header", module).add("default", () => {
     },
   ]);
 
+  const options = generateOptions(10);
+
   return (
     <Header>
       <HeaderTopMenu>
         <HeaderTopMenuLinks links={Object.values(topLinks)} />
-        <HeaderTopMenuUser username={username} onLogout={action("Logout")} />
+        <HeaderTopMenuUser
+          username={username}
+          onLogout={action("Logout")}
+          dropdown={
+            <>
+              <HeaderTopMenuUserDropdownItem>
+                <HeaderTopMenuUserDropdownItem.Icon>
+                  <Plus size={16} />
+                </HeaderTopMenuUserDropdownItem.Icon>
+                <HeaderTopMenuUserDropdownItem.Text>
+                  Spaces
+                </HeaderTopMenuUserDropdownItem.Text>
+                <HeaderTopMenuUserDropdownItem.Action to="/spaces">
+                  manage
+                </HeaderTopMenuUserDropdownItem.Action>
+                <HeaderTopMenuUserDropdownItem.Menu>
+                  <InfiniteDropdown
+                    value={null}
+                    fetchOptions={console.log}
+                    onChange={console.log}
+                    options={options}
+                    inline={true}
+                    withSearch={true}
+                    hasNext={false}
+                  />
+                </HeaderTopMenuUserDropdownItem.Menu>
+              </HeaderTopMenuUserDropdownItem>
+
+              <HeaderTopMenuUserDropdownItem>
+                <HeaderTopMenuUserDropdownItem.Icon>
+                  <GearOutline size={16} />
+                </HeaderTopMenuUserDropdownItem.Icon>
+                <HeaderTopMenuUserDropdownItem.Text to="/settings">
+                  Settings
+                </HeaderTopMenuUserDropdownItem.Text>
+              </HeaderTopMenuUserDropdownItem>
+            </>
+          }
+        />
       </HeaderTopMenu>
     </Header>
   );

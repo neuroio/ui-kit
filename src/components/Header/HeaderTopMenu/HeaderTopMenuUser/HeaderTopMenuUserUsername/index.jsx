@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import { StyledHeaderTopMenuUserUsername } from "./StyledHeaderTopMenuUserUsername";
 import { HeaderTopMenuUserUsernameIcon } from "./HeaderTopMenuUserUsernameIcon";
 import { User } from "../../../../icons";
+import { Button } from "../../../../Button";
 
-function HeaderTopMenuUserUsername({ username }) {
+function HeaderTopMenuUserUsername({ username, onClick }) {
   return (
-    <StyledHeaderTopMenuUserUsername>
+    <StyledHeaderTopMenuUserUsername onClick={onClick} as={onClick && Button}>
       <HeaderTopMenuUserUsernameIcon>
         <User size="13" />
       </HeaderTopMenuUserUsernameIcon>
@@ -18,6 +19,7 @@ function HeaderTopMenuUserUsername({ username }) {
 
 HeaderTopMenuUserUsername.propTypes = {
   username: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export { HeaderTopMenuUserUsername };
