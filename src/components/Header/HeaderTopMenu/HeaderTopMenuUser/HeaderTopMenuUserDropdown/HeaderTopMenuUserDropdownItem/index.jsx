@@ -7,7 +7,7 @@ import { HeaderTopMenuUserDropdownItemMenu } from "./HeaderTopMenuUserDropdownIt
 
 const HeaderTopMenuUserDropdownItem = styled.li`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
   line-height: 26px;
 `;
