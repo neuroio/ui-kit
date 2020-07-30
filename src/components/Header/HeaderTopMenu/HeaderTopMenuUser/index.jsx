@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useRef, useEffect } from "react";
 import { useWindowScroll } from "react-use";
 import { usePositionPopup } from "../../../../hooks/use-position-popup";
+import { useLocation } from "react-router-dom";
 
 import { StyledHeaderTopMenuUser } from "./StyledHeaderTopMenuUser";
 import { HeaderTopMenuUserUsername } from "./HeaderTopMenuUserUsername";
@@ -14,6 +15,14 @@ import { ArrowAltCircleRight } from "../../../icons";
 function HeaderTopMenuUser({ username, onLogout, dropdown }) {
   const popupTrigger = useRef(null);
   const { y } = useWindowScroll();
+  useEffect(() => {
+    closePortal();
+  }, [y]);
+
+  const location = useLocation();
+  useEffect(() => {
+    closePortal();
+  }, [location.pathname]);
 
   const {
     Portal,
@@ -27,10 +36,6 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
     pupupTrigger: popupTrigger,
     position: "bottomRight",
   });
-
-  useEffect(() => {
-    closePortal();
-  }, [y]);
 
   return (
     <StyledHeaderTopMenuUser {...bind} ref={popupTrigger}>
