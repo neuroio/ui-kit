@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { StyledButton } from "./StyledButton";
+import { ButtonLink } from "../ButtonLink";
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -24,6 +25,7 @@ const Button = React.forwardRef((props, ref) => {
     style,
     className,
     disabled,
+    to,
     "data-testid": testId,
   } = props;
 
@@ -48,6 +50,8 @@ const Button = React.forwardRef((props, ref) => {
       fit={fit}
       isFullWidth={isFullWidth}
       isHardOutline={isHardOutline}
+      as={to && ButtonLink}
+      to={to}
     >
       {children}
     </StyledButton>
@@ -79,6 +83,9 @@ Button.propTypes = {
   // Но при желании его можно поставить в false, чтобы установать свой аутлайн
   isHardOutline: PropTypes.bool,
   style: PropTypes.object,
+
+  // Если нужно, чтобы кнопка была ссылкой
+  to: PropTypes.string,
 };
 
 Button.defaultProps = {
