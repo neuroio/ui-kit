@@ -9,7 +9,6 @@ export {
   UserPlus,
   UserTimes,
   Times,
-  Plus,
   Exclamation,
   Play,
   ArrowUp,
@@ -56,3 +55,4 @@ export { default as Gear } from "./Gear";
 export { default as GearOutline } from "./GearOutline";
 export { default as QRcode } from "./QRcode";
 export { default as Fullscreen } from "./Fullscreen";
+export { default as Plus } from "./Plus";
