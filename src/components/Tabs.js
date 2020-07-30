@@ -72,6 +72,7 @@ class Tabs extends Component {
     defaultActiveTab: PropTypes.string,
     disabledTabs: PropTypes.array,
     onChange: PropTypes.func,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -85,9 +86,13 @@ class Tabs extends Component {
   static TabPanes = TabPanes;
   static TabPane = TabPane;
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
       this.props.onChange(this.state);
+    }
+
+    if (this.props.value !== prevProps.value) {
+      this.openTab(this.props.value);
     }
   }
 

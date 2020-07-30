@@ -11,6 +11,7 @@ const { TabPanes, TabPane } = Tabs;
 function SegmentedTabs({
   options,
   defaultActiveTab,
+  value,
   onChange,
   "data-testid": testId,
   className,
@@ -22,7 +23,11 @@ function SegmentedTabs({
 
   return (
     <StyledSegmentedTabs className={className}>
-      <Tabs defaultActiveTab={defaultActiveTab} onChange={onChange}>
+      <Tabs
+        defaultActiveTab={defaultActiveTab}
+        value={value}
+        onChange={onChange}
+      >
         <SegmentedTabsTabbar
           options={options}
           data-testid={`${testId}-tabbar`}
@@ -36,6 +41,7 @@ function SegmentedTabs({
 SegmentedTabs.propTypes = {
   options: PropTypes.array.isRequired,
   defaultActiveTab: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
