@@ -32,7 +32,9 @@ function SegmentedTabs({
           options={options}
           data-testid={`${testId}-tabbar`}
         />
-        <TabsWrapper>{children || options.map(renderTab, routed)}</TabsWrapper>
+        <TabsWrapper>
+          {children || options.map((option) => renderTab(option, routed))}
+        </TabsWrapper>
       </Tabs>
     </StyledSegmentedTabs>
   );
