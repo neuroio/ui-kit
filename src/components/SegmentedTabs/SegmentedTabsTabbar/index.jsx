@@ -11,7 +11,7 @@ function SegmentedTabsTabbar({ options, "data-testid": testId, className }) {
   const { openTab, activeTab } = useContext(TabsContext);
 
   function renderTabBarItem(option) {
-    const { label, value } = option;
+    const { label, value, to } = option;
 
     function getButtonTheme(buttonName) {
       return activeTab === buttonName ? "dark" : "light";
@@ -25,6 +25,7 @@ function SegmentedTabsTabbar({ options, "data-testid": testId, className }) {
         onClick={() => {
           openTab(value);
         }}
+        to={to}
       >
         {label}
       </Button>

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { StyledSegmentedTabs } from "./StyledSegmentedTabs";
 import { SegmentedTabsTabbar } from "./SegmentedTabsTabbar";
 import { SegmentedTabsSpinner } from "./SegmentedTabsSpinner";
+import { Switch, Route } from "react-router-dom";
 import { Tabs } from "../Tabs";
 const { TabPanes, TabPane } = Tabs;
 
@@ -15,7 +16,10 @@ function SegmentedTabs({
   className,
   renderTab,
   children,
+  routed,
 }) {
+  const TabsWrapper = routed ? Switch : TabPanes;
+
   return (
     <StyledSegmentedTabs className={className}>
       <Tabs defaultActiveTab={defaultActiveTab} onChange={onChange}>
@@ -23,7 +27,7 @@ function SegmentedTabs({
           options={options}
           data-testid={`${testId}-tabbar`}
         />
-        <TabPanes>{children || options.map(renderTab)}</TabPanes>
+        <TabsWrapper>{children || options.map(renderTab, routed)}</TabsWrapper>
       </Tabs>
     </StyledSegmentedTabs>
   );
@@ -37,13 +41,16 @@ SegmentedTabs.propTypes = {
   className: PropTypes.string,
   renderTab: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  routed: PropTypes.bool,
 };
 
 SegmentedTabs.defaultProps = {
-  renderTab(option) {
-    const { value, Component } = option;
+  renderTab(option, routed) {
+    const { value, to, Component } = option;
 
-    return (
+    return routed ? (
+      <Route exact path={to} component={Component} />
+    ) : (
       <TabPane
         id={value}
         key={value}
