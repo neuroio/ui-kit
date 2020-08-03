@@ -67,15 +67,27 @@ function InfiniteDropdown({
 InfiniteDropdown.Option = FormDropdown.Option;
 InfiniteDropdown.Menu = FormDropdown.Menu;
 
+const optionShape = PropTypes.shape({
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+});
+
 InfiniteDropdown.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.oneOfType([
+    optionShape,
+    PropTypes.arrayOf(optionShape),
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
   onChange: PropTypes.func.isRequired,
   fetchOptions: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
-  hasNext: PropTypes.bool.isRequired,
+  hasNext: PropTypes.bool,
   limit: PropTypes.number.isRequired,
   "data-testid": PropTypes.string,
   name: PropTypes.string,
