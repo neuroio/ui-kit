@@ -149,41 +149,6 @@ describe("FormDropdown tests", () => {
     expect(onChangeMock.mock.calls).toHaveLength(0);
   });
 
-  test("FormDropdown search should search items correclty", () => {
-    renderFormDropdown({
-      withSearch: true,
-    });
-
-    userEvent.click(screen.getByTestId(`${componentName}-control`));
-
-    expect(
-      screen
-        .getByTestId(`${componentName}-menu`)
-        .querySelectorAll(optionSelector)
-    ).toHaveLength(options.length);
-
-    expect(screen.getByTestId(`${componentName}-search`)).toBeVisible();
-
-    userEvent.type(
-      screen.getByTestId(`${componentName}-search`),
-      options[0].label
-    );
-
-    expect(
-      screen
-        .getByTestId(`${componentName}-menu`)
-        .querySelectorAll(optionSelector)
-    ).toHaveLength(1);
-
-    userEvent.clear(screen.getByTestId(`${componentName}-search`));
-
-    expect(
-      screen
-        .getByTestId(`${componentName}-menu`)
-        .querySelectorAll(optionSelector)
-    ).toHaveLength(options.length);
-  });
-
   test("FormDropdown should set default option on initial render, if value is not setted", () => {
     const options = [defaultOption].concat(generateOptions(5));
 

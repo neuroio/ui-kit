@@ -14,9 +14,10 @@ import { FormDropdownInput } from "./FormDropdownInput";
 import { FormDropdownResetButton } from "./FormDropdownResetButton";
 import { FormDropdownOptionSelectedIcon } from "./FormDropdownOptionSelectedIcon";
 import { FormDropdownNotice } from "./FormDropdownNotice";
+import { TextBold } from "../../../Text/TextBold";
 import { Times } from "../../../icons";
 
-import { searchInList, capitalize } from "../../../../utils/helpers";
+import { capitalize } from "../../../../utils/helpers";
 import { identity, property as prop, isEqual, get } from "lodash-es";
 
 const { stateChangeTypes } = Downshift;
@@ -89,9 +90,7 @@ function FormDropdown({
 
   function getHighlighted(selected) {
     const selectedOptionIndex = selected
-      ? searchInList(options, inputValue, ["label"]).findIndex(
-          (item) => item.value === selected.value
-        )
+      ? options.findIndex((item) => item.value === selected.value)
       : 0;
 
     return selectedOptionIndex > 0 ? selectedOptionIndex : 0;
@@ -272,10 +271,6 @@ function FormDropdown({
     }
   }
 
-  function getVisibleOptionsList(inputValue) {
-    return searchInList(options, inputValue, ["label"]);
-  }
-
   return (
     <Downshift
       initialSelectedItem={value}
@@ -291,7 +286,7 @@ function FormDropdown({
         isOpen,
         selectedItem,
         highlightedIndex,
-        inputValue,
+        // inputValue,
 
         closeMenu,
         clearSelection,
@@ -304,7 +299,7 @@ function FormDropdown({
       }) => {
         const isMenuVisible = isOpen || inline;
 
-        const visibleOptionsList = getVisibleOptionsList(inputValue);
+        const visibleOptionsList = options;
         const isVisibleOptionsListEmpty =
           visibleOptionsList.length === 0 && !isFetching;
 
@@ -371,7 +366,7 @@ function FormDropdown({
                   )}
                   {isVisibleOptionsListEmpty ? (
                     <FormDropdownNotice style={{ color: "#AC3D03" }}>
-                      {emptyNotice}
+                      <TextBold>{emptyNotice}</TextBold>
                     </FormDropdownNotice>
                   ) : (
                     visibleOptionsList.map((item, index) => {
