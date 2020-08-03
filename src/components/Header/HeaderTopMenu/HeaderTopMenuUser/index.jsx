@@ -46,7 +46,7 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
       <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
         <ArrowAltCircleRight size="15" />
       </HeaderTopMenuUserUsernameLogout>
-      {dropdown && (
+      {dropdown && isOpen && (
         <Portal>
           <HeaderTopMenuUserDropdown
             innerRef={popupInner}
