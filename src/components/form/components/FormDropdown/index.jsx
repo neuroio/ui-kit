@@ -54,6 +54,12 @@ function FormDropdown({
     testId = name;
   }
 
+  useEffect(() => {
+    if (withSearch && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const [preselected, setPreselected] = useState(value);
   const [selected, setSelected] = useState(value);
   useEffect(() => {
@@ -129,6 +135,10 @@ function FormDropdown({
 
     if (changes.type === Downshift.stateChangeTypes.changeInput) {
       setInputValue(changes.inputValue);
+    }
+
+    if (changes.isOpen && withSearch && inputRef.current) {
+      inputRef.current.focus();
     }
 
     if (
