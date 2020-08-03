@@ -135,7 +135,7 @@ LoginFormComponent.propTypes = {
   "data-testid": PropTypes.string,
   login: PropTypes.func.isRequired,
   isLogging: PropTypes.bool.isRequired,
-  authError: PropTypes.object,
+  authError: PropTypes.string,
   values: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   setErrors: PropTypes.func.isRequired,
