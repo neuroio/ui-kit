@@ -12,7 +12,7 @@ const RouteSectionSpinner = styled(Spinner).attrs(() => ({ height: 40 }))`
   left: 0;
   justify-content: center;
   background-color: #fff;
-  z-index: 1000;
+  z-index: 10;
   pointer-events: ${(props) => (props.transparentForEvents ? "none" : "auto")};
 
   svg {
