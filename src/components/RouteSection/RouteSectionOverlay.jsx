@@ -16,7 +16,7 @@ const RouteSectionOverlay = styled.div`
     width: 100%;
     height: 100%;
     background-color: #fff;
-    z-index: 999;
+    z-index: 10;
     opacity: 0.8;
   }
 `;
