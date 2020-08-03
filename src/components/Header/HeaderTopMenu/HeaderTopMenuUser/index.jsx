@@ -46,14 +46,14 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
       <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
         <ArrowAltCircleRight size="15" />
       </HeaderTopMenuUserUsernameLogout>
-      {dropdown && isOpen && (
+      {dropdown && (
         <Portal>
           <HeaderTopMenuUserDropdown
             innerRef={popupInner}
             isOpen={isOpen}
             coords={coords}
           >
-            {dropdown}
+            {typeof dropdown === "function" ? dropdown({ isOpen }) : dropdown}
           </HeaderTopMenuUserDropdown>
         </Portal>
       )}
@@ -64,7 +64,11 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
 HeaderTopMenuUser.propTypes = {
   username: PropTypes.string.isRequired,
   onLogout: PropTypes.func.isRequired,
-  dropdown: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
+  dropdown: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.element,
+    PropTypes.func,
+  ]),
 };
 
 HeaderTopMenuUser.defaultProps = {
