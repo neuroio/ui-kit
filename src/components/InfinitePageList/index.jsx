@@ -41,7 +41,7 @@ function InfinitePageList({
 
 InfinitePageList.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
-  hasNext: PropTypes.bool.isRequired,
+  hasNext: PropTypes.bool,
   lockScroll: PropTypes.bool,
   changeOffset: PropTypes.func.isRequired,
   offset: PropTypes.number.isRequired,

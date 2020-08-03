@@ -52,7 +52,7 @@ ListLayoutList.propTypes = {
   items: PropTypes.array.isRequired,
   renderItem: PropTypes.func.isRequired,
   noItemsText: PropTypes.string,
-  hasNext: PropTypes.bool.isRequired,
+  hasNext: PropTypes.bool,
   columns: PropTypes.oneOf([1, 2]),
   className: PropTypes.string,
   isLoading: PropTypes.bool,

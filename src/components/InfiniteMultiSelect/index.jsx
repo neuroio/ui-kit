@@ -60,7 +60,7 @@ InfiniteMultiSelect.propTypes = {
   "data-testid": PropTypes.string,
   name: PropTypes.string,
   className: PropTypes.string,
-  hasNext: PropTypes.bool.isRequired,
+  hasNext: PropTypes.bool,
 };
 
 InfiniteMultiSelect.defaultProps = {
