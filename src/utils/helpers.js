@@ -97,7 +97,7 @@ export function mapDataToGetParams(data) {
   return (
     "?" +
     Object.keys(data)
-      .filter((key) => data[key] !== null)
+      .filter((key) => data[key] !== null && data[key].length !== 0)
       .map((key) => `${key}=${data[key]}`)
       .join("&")
   );
