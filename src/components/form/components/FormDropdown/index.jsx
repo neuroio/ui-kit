@@ -360,7 +360,9 @@ function FormDropdown({
                     </FormDropdownInputWrapper>
                   )}
                   {isVisibleOptionsListEmpty ? (
-                    <FormDropdownNotice>{emptyNotice}</FormDropdownNotice>
+                    <FormDropdownNotice style={{ color: "#AC3D03" }}>
+                      {emptyNotice}
+                    </FormDropdownNotice>
                   ) : (
                     visibleOptionsList.map((item, index) => {
                       const selected = getIsOptionSelected(item, selectedItem);
