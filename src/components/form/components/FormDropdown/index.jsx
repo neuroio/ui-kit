@@ -347,6 +347,7 @@ function FormDropdown({
                   ref: listRef,
                   isVisible: isMenuVisible,
                   inline,
+                  withSearch,
                 },
                 { suppressRefError: true }
               )}

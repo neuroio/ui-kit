@@ -23,15 +23,19 @@ const FormDropdownMenu = styled.ul`
   margin: 0;
   background-color: ${colors.whiteSimple};
   max-height: 260px;
-  padding-top: 16px;
-  padding-bottom: 16px;
   overflow-y: auto;
   ${getInlineStyles}
-
+  
   ${({ isVisible }) =>
     !isVisible &&
     css`
       display: none;
+    `}
+  
+  ${({ withSearch }) =>
+    withSearch &&
+    css`
+      padding-top: 16px;
     `}
 `;
 
