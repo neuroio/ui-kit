@@ -22,6 +22,8 @@ function Search({
   className,
   "data-testid": testId,
   isCompact,
+
+  ...inputProps
 }) {
   const inputRef = useRef(null);
 
@@ -41,6 +43,7 @@ function Search({
         placeholder={placeholder ? placeholder : undefined}
         onChange={onChange}
         value={value}
+        {...inputProps}
       />
       <SearchFakeInputValue>{value}</SearchFakeInputValue>
       {value && (
