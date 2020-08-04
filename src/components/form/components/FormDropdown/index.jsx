@@ -358,7 +358,7 @@ function FormDropdown({
                     <FormDropdownSearch
                       {...getInputProps({
                         "data-testid": testId + "-search",
-                        ref: inputRef,
+                        innerRef: inputRef,
                         placeholder: "Enter name...",
                       })}
                     />

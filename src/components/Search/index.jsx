@@ -23,11 +23,12 @@ function Search({
   "data-testid": testId,
   isCompact,
 }) {
-  const inputRef = useRef(innerRef ? innerRef.current : null);
+  const inputRef = useRef(null);
 
   function clearInputValue() {
-    setNativeValue(inputRef.current, "");
-    inputRef.current.dispatchEvent(new Event("input", { bubbles: true }));
+    const ref = innerRef || inputRef;
+    setNativeValue(ref.current, "");
+    ref.current.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
   return (
@@ -36,7 +37,7 @@ function Search({
       <SearchInput
         name={name}
         data-testid={testId}
-        ref={inputRef}
+        ref={innerRef || inputRef}
         placeholder={placeholder ? placeholder : undefined}
         onChange={onChange}
         value={value}
