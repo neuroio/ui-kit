@@ -35,7 +35,7 @@ const FormDropdownOption = styled.li`
   font-size: 16px;
   line-height: 26px;
   transition: background-color 120ms ease-in-out;
-  padding: 6px 36px;
+  padding: 8px 32px;
   ${getHighlightedStyles}
   ${getDisabledStyles}
 `;
