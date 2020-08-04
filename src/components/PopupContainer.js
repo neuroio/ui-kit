@@ -12,10 +12,10 @@ function getStyles({ isOpen }) {
 
 function getCoords({ top, bottom, left, right }) {
   return css`
-    ${top !== undefined && `top: ${top}px`}
-    ${bottom !== undefined && `bottom: ${bottom}px`}
-    ${left !== undefined && `left: ${left}px`}
-    ${right !== undefined && `right: ${right}px`}
+    ${top !== undefined && `top: ${top}px;`}
+    ${bottom !== undefined && `bottom: ${bottom}px;`}
+    ${left !== undefined && `left: ${left}px;`}
+    ${right !== undefined && `right: ${right}px;`}
   `;
 }
 
