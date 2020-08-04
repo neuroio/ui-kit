@@ -6,8 +6,7 @@ const FormDropdownNotice = styled.li`
   color: ${colors.darkBlack};
   font-size: 16px;
   line-height: 1.63;
-  padding: 6px 36px;
-  padding-top: 16px;
+  padding: 8px 32px;
 `;
 
 export { FormDropdownNotice };
