@@ -31,20 +31,13 @@ const FormDropdownOption = styled.li`
   ${TextTrim}
   position: relative;
   color: ${colors.darkBlack};
+  font-weight: 300;
   font-size: 16px;
-  line-height: 1.63;
+  line-height: 26px;
   transition: background-color 120ms ease-in-out;
   padding: 6px 36px;
   ${getHighlightedStyles}
   ${getDisabledStyles}
-
-  &:first-child {
-    padding-top: 16px;
-  }
-
-  &:last-child {
-    padding-bottom: 16px;
-  }
 `;
 
 export { FormDropdownOption };

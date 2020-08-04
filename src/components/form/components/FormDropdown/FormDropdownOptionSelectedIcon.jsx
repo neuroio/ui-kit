@@ -4,7 +4,7 @@ import { Check } from "../../../icons";
 
 const FormDropdownOptionSelectedIcon = styled(Check)`
   position: absolute;
-  left: 17px;
+  left: 16px;
   top: 0;
   height: 100%;
   color: #324252;

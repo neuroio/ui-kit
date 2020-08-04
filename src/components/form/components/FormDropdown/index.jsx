@@ -9,13 +9,12 @@ import { StyledFormDropdown } from "./StyledFormDropdown";
 import { FormDropdownControl } from "./FormDropdownControl";
 import { FormDropdownMenu } from "./FormDropdownMenu";
 import { FormDropdownOption } from "./FormDropdownOption";
-import { FormDropdownInputWrapper } from "./FormDropdownInputWrapper";
-import { FormDropdownInput } from "./FormDropdownInput";
 import { FormDropdownResetButton } from "./FormDropdownResetButton";
 import { FormDropdownOptionSelectedIcon } from "./FormDropdownOptionSelectedIcon";
 import { FormDropdownNotice } from "./FormDropdownNotice";
 import { TextBold } from "../../../Text/TextBold";
 import { Times } from "../../../icons";
+import { FormDropdownSearch } from "./FormDropdownSearch";
 
 import { capitalize } from "../../../../utils/helpers";
 import { identity, property as prop, isEqual, get } from "lodash-es";
@@ -355,14 +354,13 @@ function FormDropdown({
               {isMenuVisible && (
                 <React.Fragment>
                   {withSearch && (
-                    <FormDropdownInputWrapper>
-                      <FormDropdownInput
-                        {...getInputProps({
-                          "data-testid": testId + "-search",
-                          ref: inputRef,
-                        })}
-                      />
-                    </FormDropdownInputWrapper>
+                    <FormDropdownSearch
+                      {...getInputProps({
+                        "data-testid": testId + "-search",
+                        ref: inputRef,
+                        placeholder: "Enter name...",
+                      })}
+                    />
                   )}
                   {isVisibleOptionsListEmpty ? (
                     <FormDropdownNotice style={{ color: "#AC3D03" }}>
