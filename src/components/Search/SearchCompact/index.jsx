@@ -10,7 +10,8 @@ import {
 import { colors } from "../../../style";
 
 const SearchCompact = styled(Search).attrs(() => ({ isCompact: true }))`
-  padding: 3px 8px;
+  border-radius: 4px;
+  padding: 4px 8px;
   padding-right: 30px;
   height: 30px;
 
