@@ -5,7 +5,7 @@ import { TextTrim, colors } from "../../../../../style";
 
 const StyledHeaderTopMenuUserUsername = styled(TextBold)`
   ${TextTrim}
-  box-sizing: border-box;
+  position: relative;
   padding-left: 32px;
   padding-right: 32px;
   min-width: 120px;

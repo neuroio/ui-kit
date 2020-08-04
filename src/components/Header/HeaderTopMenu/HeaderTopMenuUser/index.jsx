@@ -7,8 +7,11 @@ import { usePositionPopup } from "../../../../hooks/use-position-popup";
 import { useLocation } from "react-router-dom";
 
 import { StyledHeaderTopMenuUser } from "./StyledHeaderTopMenuUser";
-import { HeaderTopMenuUserUsername } from "./HeaderTopMenuUserUsername";
-import { HeaderTopMenuUserUsernameLogout } from "./HeaderTopMenuUserUsernameLogout";
+import {
+  HeaderTopMenuUserUsername,
+  HeaderTopMenuUserUsernameArrow,
+  HeaderTopMenuUserUsernameLogout,
+} from "./HeaderTopMenuUserUsername";
 import { HeaderTopMenuUserDropdown } from "./HeaderTopMenuUserDropdown";
 import { ArrowAltCircleRight } from "../../../icons";
 
@@ -35,14 +38,15 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
   } = usePositionPopup({
     pupupTrigger: popupTrigger,
     position: "bottomRight",
+    bindTo: document.querySelector("header"),
   });
 
   return (
     <StyledHeaderTopMenuUser {...bind} ref={popupTrigger}>
-      <HeaderTopMenuUserUsername
-        username={username}
-        onClick={dropdown && togglePortal}
-      />
+      <HeaderTopMenuUserUsername onClick={dropdown && togglePortal}>
+        {username}
+        {dropdown && <HeaderTopMenuUserUsernameArrow />}
+      </HeaderTopMenuUserUsername>
       <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
         <ArrowAltCircleRight size="16" />
       </HeaderTopMenuUserUsernameLogout>

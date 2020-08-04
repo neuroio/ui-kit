@@ -4,17 +4,20 @@ import PropTypes from "prop-types";
 import { StyledHeaderTopMenuUserUsername } from "./StyledHeaderTopMenuUserUsername";
 import { Button } from "../../../../Button";
 
-function HeaderTopMenuUserUsername({ username, onClick }) {
+function HeaderTopMenuUserUsername({ onClick, children }) {
   return (
     <StyledHeaderTopMenuUserUsername onClick={onClick} as={onClick && Button}>
-      {username}
+      {children}
     </StyledHeaderTopMenuUserUsername>
   );
 }
 
 HeaderTopMenuUserUsername.propTypes = {
-  username: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 };
+
+export * from "./HeaderTopMenuUserUsernameArrow";
+export * from "./HeaderTopMenuUserUsernameLogout";
 
 export { HeaderTopMenuUserUsername };

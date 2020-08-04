@@ -9,8 +9,8 @@ function HeaderTopMenuUserDropdown({ isOpen, children, innerRef, coords }) {
     <StyledHeaderTopMenuUserDropdown
       isOpen={isOpen}
       ref={innerRef}
-      left={coords.left}
       top={coords.top + 18}
+      right={0}
       as="ul"
     >
       {children}
