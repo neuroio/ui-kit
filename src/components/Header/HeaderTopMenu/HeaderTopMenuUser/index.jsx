@@ -44,7 +44,7 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
         onClick={dropdown && togglePortal}
       />
       <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
-        <ArrowAltCircleRight size="15" />
+        <ArrowAltCircleRight size="16" />
       </HeaderTopMenuUserUsernameLogout>
       {dropdown && (
         <Portal>

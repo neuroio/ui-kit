@@ -10,7 +10,7 @@ function HeaderTopMenuUserDropdown({ isOpen, children, innerRef, coords }) {
       isOpen={isOpen}
       ref={innerRef}
       left={coords.left}
-      top={coords.top + 20}
+      top={coords.top + 18}
       as="ul"
     >
       {children}

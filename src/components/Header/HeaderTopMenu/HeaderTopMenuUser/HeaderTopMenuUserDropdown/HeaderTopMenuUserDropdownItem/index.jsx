@@ -9,7 +9,7 @@ const HeaderTopMenuUserDropdownItem = styled.li`
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  line-height: 26px;
+  line-height: 24px;
 `;
 
 HeaderTopMenuUserDropdownItem.Action = HeaderTopMenuUserDropdownItemAction;

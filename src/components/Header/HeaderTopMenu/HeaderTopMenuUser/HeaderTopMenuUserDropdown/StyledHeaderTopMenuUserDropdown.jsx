@@ -20,14 +20,14 @@ const StyledHeaderTopMenuUserDropdown = styled(PopupContainer)`
 
   &:after {
     content: "";
-    top: -10px;
-    right: 10px;
     position: absolute;
     width: 0;
     height: 0;
+    top: -8px;
+    right: 10px;
+    border-width: 0 10px 8px 10px;
     border-style: solid;
-    border-width: 0 15px 10px 15px;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent ${colors.whiteSimple} transparent;
   }
 `;
 

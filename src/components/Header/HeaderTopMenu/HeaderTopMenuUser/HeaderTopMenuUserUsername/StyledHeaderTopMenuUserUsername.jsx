@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
-export const StyledHeaderTopMenuUserUsername = styled.div`
+import { TextBold } from "../../../../Text/TextBold";
+import { TextTrim, colors } from "../../../../../style";
+
+const StyledHeaderTopMenuUserUsername = styled(TextBold)`
+  ${TextTrim}
+  box-sizing: border-box;
+  padding-left: 32px;
+  padding-right: 32px;
+  min-width: 120px;
+  max-width: 320px;
+  color: ${colors.darkBlack};
   line-height: 1.5;
   font-size: 13px;
-  color: #222;
-  font-weight: 700;
-  padding-left: 17px;
-  padding-right: 17px;
-  min-width: 120px;
-  max-width: 220px;
-  box-sizing: border-box;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
+
+export { StyledHeaderTopMenuUserUsername };
