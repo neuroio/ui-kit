@@ -4,8 +4,8 @@ const StyledEntryCardPhoto = styled.div`
   display: flex;
   align-items: center;
 
-  ${({ hidden }) =>
-    hidden &&
+  ${({ isHidden }) =>
+    isHidden &&
     css`
       opacity: 0;
     `}

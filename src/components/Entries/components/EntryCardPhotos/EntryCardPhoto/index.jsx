@@ -30,7 +30,7 @@ function EntryCardPhoto({
       className={className}
       data-testid={testId}
       data-phototype={photoType}
-      hidden={hidden}
+      isHidden={hidden}
     >
       {title && <EntryCardPhotoTitle>{title}</EntryCardPhotoTitle>}
 
