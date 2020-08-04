@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 import { PopupContainer } from "../../../../PopupContainer";
-import { HeaderTopMenuUserDropdownItem } from "./HeaderTopMenuUserDropdownItem";
+import { StyledHeaderTopMenuUserDropdownItem } from "./HeaderTopMenuUserDropdownItem";
 import { colors } from "../../../../../style";
 
 const StyledHeaderTopMenuUserDropdown = styled(PopupContainer)`
+  list-style-type: none;
   margin: 0;
   background-color: ${colors.whiteSimple};
   min-width: 280px;
@@ -15,7 +16,7 @@ const StyledHeaderTopMenuUserDropdown = styled(PopupContainer)`
   box-sizing: border-box;
   z-index: 11;
 
-  ${HeaderTopMenuUserDropdownItem}:not(:last-child) {
+  ${StyledHeaderTopMenuUserDropdownItem}:not(:last-child) {
     margin-bottom: 24px;
   }
 

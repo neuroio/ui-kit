@@ -17,6 +17,7 @@ function getInlineStyles({ inline }) {
 }
 
 const FormDropdownMenu = styled.ul`
+  cursor: default;
   box-sizing: border-box;
   list-style-type: none;
   padding-left: 0;
