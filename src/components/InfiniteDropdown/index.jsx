@@ -58,6 +58,7 @@ function InfiniteDropdown({
           isFetching={isFetching}
           disabled={disabled}
           emptyNotice={emptyNotice}
+          hasNext={hasNext}
         />
       )}
     </InfiniteScroll>

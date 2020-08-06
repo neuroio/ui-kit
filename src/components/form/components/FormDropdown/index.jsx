@@ -49,6 +49,7 @@ function FormDropdown({
   isFetching,
   inline,
   emptyNotice,
+  hasNext,
 }) {
   if (name) {
     testId = name;
@@ -285,7 +286,6 @@ function FormDropdown({
         isOpen,
         selectedItem,
         highlightedIndex,
-        // inputValue,
 
         closeMenu,
         clearSelection,
@@ -300,7 +300,9 @@ function FormDropdown({
 
         const visibleOptionsList = options;
         const isVisibleOptionsListEmpty =
-          visibleOptionsList.length === 0 && !isFetching;
+          visibleOptionsList.length === 0 &&
+          !isFetching &&
+          hasNext !== undefined;
 
         return (
           <StyledFormDropdown
@@ -435,6 +437,7 @@ FormDropdown.propTypes = {
   renderSelected: PropTypes.func,
   inline: PropTypes.bool,
   emptyNotice: PropTypes.string,
+  hasNext: PropTypes.bool,
 };
 
 FormDropdown.defaultProps = {
