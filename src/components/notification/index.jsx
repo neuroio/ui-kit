@@ -4,7 +4,7 @@ import React from "react";
 import NotificationContent from "./NotificationContent";
 import NotificationCloseButton from "./NotificationCloseButton";
 
-import { Times } from "../icons";
+import { TimesDelete } from "../icons";
 
 import "./style.css";
 
@@ -13,16 +13,16 @@ let notification = null;
 Notification.newInstance(
   {
     style: {
-      top: 45,
-      right: 10,
+      top: 40,
+      right: 8,
       bottom: "auto",
       position: "fixed",
     },
-    maxCount: 6,
+    maxCount: 3,
     prefixCls: "ui-notification",
     closeIcon: (
       <NotificationCloseButton>
-        <Times size={14} />
+        <TimesDelete size={16} />
       </NotificationCloseButton>
     ),
   },
