@@ -19,6 +19,7 @@ function ListLayoutList({
   "data-testid": testId,
   hasNext,
 }) {
+  const isFirstLoading = hasNext === undefined;
   const isListEmpty = hasNext === false && items.length === 0;
 
   return (
@@ -27,7 +28,7 @@ function ListLayoutList({
       ref={listRef}
       className={className}
     >
-      {isListEmpty ? (
+      {isListEmpty || isFirstLoading ? (
         isLoading ? (
           <ListLayoutListSpinner />
         ) : (
