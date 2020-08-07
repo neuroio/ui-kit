@@ -7,7 +7,7 @@ function useLocalId(props) {
   const hasIdInProps = hasProperty(props, "id");
   const localId = hasIdInProps ? id : children;
 
-  return { localId, shortLocalId: getShortId(localId) };
+  return { localId, shortLocalId: localId ? getShortId(localId) : localId };
 }
 
 export { useLocalId };
