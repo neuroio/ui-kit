@@ -23,7 +23,7 @@ const FormDropdownMenu = styled.ul`
   padding-left: 0;
   margin: 0;
   background-color: ${colors.whiteSimple};
-  max-height: 260px;
+  max-height: 210px;
   overflow-y: auto;
   ${getInlineStyles}
   
