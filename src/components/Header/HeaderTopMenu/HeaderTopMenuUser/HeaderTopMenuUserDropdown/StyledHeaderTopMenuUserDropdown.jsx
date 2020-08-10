@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { PopupContainer } from "../../../../PopupContainer";
-import { StyledHeaderTopMenuUserDropdownItem } from "./HeaderTopMenuUserDropdownItem";
 import { colors } from "../../../../../style";
 
 const StyledHeaderTopMenuUserDropdown = styled(PopupContainer)`
@@ -16,7 +15,7 @@ const StyledHeaderTopMenuUserDropdown = styled(PopupContainer)`
   box-sizing: border-box;
   z-index: 11;
 
-  ${StyledHeaderTopMenuUserDropdownItem}:not(:last-child) {
+  & > li:not(:last-child) {
     margin-bottom: 24px;
   }
 

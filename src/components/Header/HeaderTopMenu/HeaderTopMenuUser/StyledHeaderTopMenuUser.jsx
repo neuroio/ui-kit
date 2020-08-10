@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-export const StyledHeaderTopMenuUser = styled.div`
+import { Button } from "../../../Button";
+
+export const StyledHeaderTopMenuUser = styled(Button)`
+  padding: 0;
   height: 35px;
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 10px 0px rgba(162, 182, 189, 0.3);
-  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 0px 10px rgba(168, 179, 190, 0.3);
+  border-radius: 0px 0px 4px 4px;
 `;

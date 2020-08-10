@@ -7,15 +7,12 @@ import { usePositionPopup } from "../../../../hooks/use-position-popup";
 import { useLocation } from "react-router-dom";
 
 import { StyledHeaderTopMenuUser } from "./StyledHeaderTopMenuUser";
-import {
-  HeaderTopMenuUserUsername,
-  HeaderTopMenuUserUsernameArrow,
-  HeaderTopMenuUserUsernameLogout,
-} from "./HeaderTopMenuUserUsername";
 import { HeaderTopMenuUserDropdown } from "./HeaderTopMenuUserDropdown";
-import { ArrowAltCircleRight } from "../../../icons";
+import { Menu } from "../../../icons";
+import { HeaderTopMenuUserSection } from "./HeaderTopMenuUserSection";
+import { HeaderTopMenuUserMenuButton } from "./HeaderTopMenuUserMenuButton";
 
-function HeaderTopMenuUser({ username, onLogout, dropdown }) {
+function HeaderTopMenuUser({ username, space, dropdown }) {
   const popupTrigger = useRef(null);
   const { y } = useWindowScroll();
   useEffect(() => {
@@ -41,15 +38,25 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
     bindTo: document.querySelector("header"),
   });
 
+  function handleTriggerClick() {
+    togglePortal();
+  }
+
   return (
-    <StyledHeaderTopMenuUser {...bind} ref={popupTrigger}>
-      <HeaderTopMenuUserUsername onClick={dropdown && togglePortal}>
-        {username}
-        {dropdown && <HeaderTopMenuUserUsernameArrow />}
-      </HeaderTopMenuUserUsername>
-      <HeaderTopMenuUserUsernameLogout onClick={onLogout}>
-        <ArrowAltCircleRight size="16" />
-      </HeaderTopMenuUserUsernameLogout>
+    <>
+      <StyledHeaderTopMenuUser
+        {...bind}
+        ref={popupTrigger}
+        onClick={dropdown && handleTriggerClick}
+      >
+        {username && (
+          <HeaderTopMenuUserSection>{username}</HeaderTopMenuUserSection>
+        )}
+        {space && <HeaderTopMenuUserSection>{space}</HeaderTopMenuUserSection>}
+        <HeaderTopMenuUserMenuButton>
+          <Menu size={16} />
+        </HeaderTopMenuUserMenuButton>
+      </StyledHeaderTopMenuUser>
       {dropdown && (
         <Portal>
           <HeaderTopMenuUserDropdown
@@ -61,13 +68,13 @@ function HeaderTopMenuUser({ username, onLogout, dropdown }) {
           </HeaderTopMenuUserDropdown>
         </Portal>
       )}
-    </StyledHeaderTopMenuUser>
+    </>
   );
 }
 
 HeaderTopMenuUser.propTypes = {
   username: PropTypes.string.isRequired,
-  onLogout: PropTypes.func.isRequired,
+  space: PropTypes.string.isRequired,
   dropdown: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.element,
