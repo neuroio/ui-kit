@@ -18,12 +18,15 @@ function getInlineStyles({ inline }) {
 
 const FormDropdownMenu = styled.ul`
   cursor: default;
-  box-sizing: border-box;
+  /* сделано для того, чтобы вне зависимости от
+    паддинги не влияли на максимальную установленную высоту
+   */
+  box-sizing: content-box;
+  max-height: 248px;
   list-style-type: none;
   padding-left: 0;
   margin: 0;
   background-color: ${colors.whiteSimple};
-  max-height: 248px;
   overflow-y: auto;
   ${getInlineStyles}
   
