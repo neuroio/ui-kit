@@ -18,9 +18,7 @@ function getInlineStyles({ inline }) {
 
 const FormDropdownMenu = styled.ul`
   cursor: default;
-  /* сделано для того, чтобы вне зависимости от
-    паддинги не влияли на максимальную установленную высоту
-   */
+  /* сделано для того, чтобы паддинги не влияли на max-height */
   box-sizing: content-box;
   max-height: 248px;
   list-style-type: none;
