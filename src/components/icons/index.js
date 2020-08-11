@@ -54,6 +54,7 @@ export { default as Pencil } from "./Pencil";
 export { default as Plus } from "./Plus";
 export { default as QRcode } from "./QRcode";
 export { default as Search } from "./Search";
+export { default as Spaces } from "./Spaces";
 export { default as Sync } from "./Sync";
 export { default as TimesDelete } from "./TimesDelete";
 export { default as TimesDeleteBold } from "./TimesDeleteBold";
