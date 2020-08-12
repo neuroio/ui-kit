@@ -54,6 +54,7 @@ function FormField(props) {
     disabled,
     placeholder,
     valuePlaceholder,
+    "data-testid": props["data-testid"],
   };
 
   const getFormComponent = () => {
@@ -152,6 +153,7 @@ FormField.propTypes = {
    */
   type: PropTypes.string,
   isFullWidth: PropTypes.bool,
+  "data-testid": PropTypes.string,
 };
 
 FormField.defaultProps = {
