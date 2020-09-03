@@ -9,7 +9,7 @@ function IdCopy(props) {
   const { localId, shortLocalId } = useLocalId(props);
 
   return (
-    <Value value={localId} defaultValue={null}>
+    <Value value={localId}>
       <CopyItem value={localId}>{shortLocalId}</CopyItem>
     </Value>
   );

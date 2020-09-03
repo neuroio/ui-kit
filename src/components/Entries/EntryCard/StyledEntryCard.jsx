@@ -18,7 +18,7 @@ const StyledEntryCard = styled(EntryCardContainer)`
   border-radius: 4px;
 
   ${EntryCardPhotos} {
-    margin-right: 25px;
+    margin-right: 24px;
   }
 
   ${StyledEntryCardPhoto} {
