@@ -16,6 +16,8 @@ const StyledHeaderTopMenuUserDropdownItem = styled.li`
   align-items: baseline;
   flex-wrap: wrap;
   line-height: 24px;
+  /* Safari */
+  height: 24px;
   text-decoration: none;
   color: ${colors.darkBlack};
 `;
