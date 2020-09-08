@@ -20,7 +20,8 @@ export const ButtonLink = styled(StyledButton).attrs(() => ({
   as: LinkWithOmittedProps,
 }))`
   text-decoration: none;
-  -webkit-appearance: none;
+  /* Safari */
+  -webkit-appearance: none !important;
 `;
 
 ButtonLink.defaultProps = {

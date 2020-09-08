@@ -15,7 +15,8 @@ const StyledFormInput = styled.input`
 
   &[type="number"]::-webkit-inner-spin-button,
   &[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+    /* Safari */
+    -webkit-appearance: none !important;
     margin: 0;
   }
 
