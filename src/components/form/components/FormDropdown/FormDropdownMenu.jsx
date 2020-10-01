@@ -27,7 +27,7 @@ const FormDropdownMenu = styled.ul`
   background-color: ${colors.whiteSimple};
   overflow-y: auto;
   ${getInlineStyles}
-  
+
   ${({ isVisible }) =>
     !isVisible &&
     css`

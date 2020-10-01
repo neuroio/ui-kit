@@ -65,9 +65,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
-      "1": false,
-      "2": false,
-      "3": false,
+      1: false,
+      2: false,
+      3: false,
     });
 
     userEvent.click(screen.getByTestId("test-group-1"));
@@ -76,9 +76,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": false,
-      "1": true,
-      "2": true,
-      "3": false,
+      1: true,
+      2: true,
+      3: false,
     });
 
     userEvent.click(screen.getByTestId("test-group-1"));
@@ -86,9 +86,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": false,
-      "1": false,
-      "2": true,
-      "3": false,
+      1: false,
+      2: true,
+      3: false,
     });
 
     // Select all
@@ -97,9 +97,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": true,
       "test-group-deselect-all": false,
-      "1": true,
-      "2": true,
-      "3": true,
+      1: true,
+      2: true,
+      3: true,
     });
 
     userEvent.click(screen.getByTestId("test-group-select-all"));
@@ -107,9 +107,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
-      "1": false,
-      "2": false,
-      "3": false,
+      1: false,
+      2: false,
+      3: false,
     });
 
     // Deselect all
@@ -119,9 +119,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": false,
       "test-group-deselect-all": true,
-      "1": false,
-      "2": false,
-      "3": false,
+      1: false,
+      2: false,
+      3: false,
     });
 
     userEvent.click(screen.getByTestId("test-group-select-all"));
@@ -129,9 +129,9 @@ describe("FormCheckboxGroup tests", () => {
     expect(screen.getByTestId("test-form")).toHaveFormValues({
       "test-group-select-all": true,
       "test-group-deselect-all": false,
-      "1": true,
-      "2": true,
-      "3": true,
+      1: true,
+      2: true,
+      3: true,
     });
   });
 });
