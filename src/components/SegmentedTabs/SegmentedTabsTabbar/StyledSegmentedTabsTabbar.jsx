@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 import { StyledButton } from "../../Button";
+import { TabList } from "@reach/tabs";
 
 import { colors } from "../../../style/color";
 
-const StyledSegmentedTabsTabbar = styled.div`
+const StyledSegmentedTabsTabbar = styled(TabList)`
   display: flex;
 
   &:not(:last-child) {

@@ -139,7 +139,7 @@ describe("DatePicker tests", () => {
         getDateToCompare("2001-09-13T00:00:00.000Z"),
         getDateToCompare("2001-09-14T00:00:00.000Z"),
       ];
-      const dateFromDay = "15";
+      const dateFromDay = "16";
       const dateToDay = "18";
       const { getByText } = renderDatePicker({ valuesOnReset });
 

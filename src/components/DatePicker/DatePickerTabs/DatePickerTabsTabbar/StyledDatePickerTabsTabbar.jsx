@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-const StyledDatePickerTabsTabbar = styled.div`
+import { TabList } from "@reach/tabs";
+
+const StyledDatePickerTabsTabbar = styled(TabList)`
   margin-bottom: 24px;
 `;
 

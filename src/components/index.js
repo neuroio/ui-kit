@@ -49,7 +49,6 @@ export * from "./Slider";
 export * from "./Spinner";
 export * from "./Stepper";
 export * from "./Sticky";
-export * from "./Tabs";
 export * from "./Text";
 export * from "./Tooltip";
 export * from "./UIBadge";

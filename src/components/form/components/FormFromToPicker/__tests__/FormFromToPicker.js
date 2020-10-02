@@ -30,7 +30,8 @@ describe("FormFromToPicker tests", () => {
     return `${testId}-${component}`;
   }
 
-  const options = generateOptions(10);
+  const fromOptions = generateOptions(10);
+  const toOptions = generateOptions(10);
 
   function FormFromToPickerConsumer(props) {
     const [value, setValue] = useState([null, null]);
@@ -47,8 +48,8 @@ describe("FormFromToPicker tests", () => {
                 setValue([selected, value[1]]);
                 onChangeMock([selected, value[1]]);
               }}
-              options={options}
-              data-testid={testId}
+              options={fromOptions}
+              data-testid={`${testId}-from-dropdown`}
               inline={true}
             />
           ),
@@ -63,8 +64,8 @@ describe("FormFromToPicker tests", () => {
                 setValue([value[0], selected]);
                 onChangeMock([value[0], selected]);
               }}
-              options={options}
-              data-testid={testId}
+              options={toOptions}
+              data-testid={`${testId}-to-dropdown`}
               inline={true}
             />
           ),
@@ -115,19 +116,23 @@ describe("FormFromToPicker tests", () => {
   test("FormFromToPicker should call onChange correctly on FROM and TO values select", () => {
     renderFormFromToPicker();
 
-    const fromOption = options[0];
-    const toOption = options[0];
+    const fromOption = fromOptions[0];
+    const toOption = toOptions[0];
 
     userEvent.click(screen.getByTestId(getComponentTestId("control")));
 
     userEvent.click(screen.getByTestId(getComponentTestId("from")));
     userEvent.click(
-      screen.getByTestId(getComponentTestId(`option-${fromOption.value}`))
+      screen.getByTestId(
+        getComponentTestId(`from-dropdown-option-${fromOption.value}`)
+      )
     );
 
     userEvent.click(screen.getByTestId(getComponentTestId("to")));
     userEvent.click(
-      screen.getByTestId(getComponentTestId(`option-${toOption.value}`))
+      screen.getByTestId(
+        getComponentTestId(`to-dropdown-option-${toOption.value}`)
+      )
     );
 
     expect(onChangeMock.mock.calls).toEqual([
@@ -138,8 +143,8 @@ describe("FormFromToPicker tests", () => {
 
   test("FormFromToPicker should reset value to resetValues on reset click", () => {
     const valuesOnReset = [null, null];
-    const fromOption = options[0];
-    const toOption = options[0];
+    const fromOption = fromOptions[0];
+    const toOption = toOptions[0];
 
     renderFormFromToPicker({
       valuesOnReset,
@@ -149,12 +154,16 @@ describe("FormFromToPicker tests", () => {
 
     userEvent.click(screen.getByTestId(getComponentTestId("from")));
     userEvent.click(
-      screen.getByTestId(getComponentTestId(`option-${fromOption.value}`))
+      screen.getByTestId(
+        getComponentTestId(`from-dropdown-option-${fromOption.value}`)
+      )
     );
 
     userEvent.click(screen.getByTestId(getComponentTestId("to")));
     userEvent.click(
-      screen.getByTestId(getComponentTestId(`option-${toOption.value}`))
+      screen.getByTestId(
+        getComponentTestId(`to-dropdown-option-${toOption.value}`)
+      )
     );
     onChangeMock.mockClear();
 
