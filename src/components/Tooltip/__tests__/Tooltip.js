@@ -31,6 +31,8 @@ describe("Tooltip tests", () => {
   test("Tooltip trigger open and close popup", () => {
     renderTooltip();
 
+    expect(screen.getByTestId("tooltip-inner")).not.toBeVisible();
+
     userEvent.hover(screen.getByTestId("tooltip-trigger-content"));
     expect(screen.getByTestId("tooltip-inner")).toBeVisible();
 
