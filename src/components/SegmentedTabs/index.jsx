@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { StyledSegmentedTabs } from "./StyledSegmentedTabs";
 import { SegmentedTabsTabbar } from "./SegmentedTabsTabbar";
 import { SegmentedTabsSpinner } from "./SegmentedTabsSpinner";
-import { TabPanels, TabPanel } from "@reach/tabs";
+import { SegmentedTabsPanels } from "./SegmentedTabsPanels";
+import { SegmentedTabsPanel } from "./SegmentedTabsPanel";
 
 import { findOptionIndexByValue } from "../../utils";
 
@@ -25,14 +26,16 @@ function SegmentedTabs({
       }
       index={value ? findOptionIndexByValue(options, value) : null}
       onChange={(index) => {
-        onChange({ activeTab: options[index].value });
+        if (onChange) {
+          onChange({ activeTab: options[index].value });
+        }
       }}
       className={className}
     >
       <SegmentedTabsTabbar options={options} data-testid={`${testId}-tabbar`} />
-      <TabPanels data-testid={`${testId}-tabpanels`}>
+      <SegmentedTabsPanels data-testid={`${testId}-tabpanels`}>
         {children || options.map((option) => renderTab(option, testId))}
-      </TabPanels>
+      </SegmentedTabsPanels>
     </StyledSegmentedTabs>
   );
 }
@@ -44,18 +47,22 @@ SegmentedTabs.propTypes = {
   onChange: PropTypes.func,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
-  renderTab: PropTypes.func,
+  renderTab: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 };
 
 SegmentedTabs.defaultProps = {
+  options: [],
   renderTab(option, testId) {
     const { value, Component } = option;
 
     return (
-      <TabPanel key={value} data-testid={`${testId}-tabpanel-${value}`}>
+      <SegmentedTabsPanel
+        key={value}
+        data-testid={`${testId}-tabpanel-${value}`}
+      >
         {React.isValidElement(Component) ? Component : <Component />}
-      </TabPanel>
+      </SegmentedTabsPanel>
     );
   },
 };
