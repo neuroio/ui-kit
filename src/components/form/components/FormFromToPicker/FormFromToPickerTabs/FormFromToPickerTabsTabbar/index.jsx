@@ -1,30 +1,27 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
-import { useContext } from "react";
-import { TabsContext } from "../../../../../Tabs";
+import { useTabsContext } from "@reach/tabs";
 
+import { Tab } from "@reach/tabs";
 import { StyledFormFromToPickerTabsTabbar } from "./StyledFormFromToPickerTabsTabbar";
 import { FormFromToPickerTabsTabbarButton } from "./FormFromToPickerTabsTabbarButton";
 
 function FormFromToPickerTabsTabbar({ items, "data-testid": testId }) {
-  const { openTab, activeTab } = useContext(TabsContext);
+  const { selectedIndex } = useTabsContext();
 
   return (
     <StyledFormFromToPickerTabsTabbar>
-      {items.map(({ label, value }) => {
+      {items.map(({ label, value }, index) => {
         return (
-          <FormFromToPickerTabsTabbarButton
+          <Tab
+            as={FormFromToPickerTabsTabbarButton}
             key={value}
             data-testid={`${testId}-${value}`}
-            isActive={activeTab === value}
-            onClick={() => {
-              openTab(value);
-            }}
+            isActive={selectedIndex === index}
           >
             {label}
-          </FormFromToPickerTabsTabbarButton>
+          </Tab>
         );
       })}
     </StyledFormFromToPickerTabsTabbar>

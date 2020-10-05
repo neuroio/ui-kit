@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import { StyledSegmentedTabs } from "./StyledSegmentedTabs";
 import { SegmentedTabsTabbar } from "./SegmentedTabsTabbar";
 import { SegmentedTabsSpinner } from "./SegmentedTabsSpinner";
-import { Switch, Route } from "react-router-dom";
-import { Tabs } from "../Tabs";
-const { TabPanes, TabPane } = Tabs;
+import { SegmentedTabsPanels } from "./SegmentedTabsPanels";
+import { SegmentedTabsPanel } from "./SegmentedTabsPanel";
+
+import { findOptionIndexByValue } from "../../utils";
 
 function SegmentedTabs({
   options,
@@ -17,54 +18,51 @@ function SegmentedTabs({
   className,
   renderTab,
   children,
-  routed,
 }) {
-  const TabsWrapper = routed ? Switch : TabPanes;
-
   return (
-    <StyledSegmentedTabs className={className}>
-      <Tabs
-        defaultActiveTab={defaultActiveTab}
-        value={value}
-        onChange={onChange}
-      >
-        <SegmentedTabsTabbar
-          options={options}
-          data-testid={`${testId}-tabbar`}
-        />
-        <TabsWrapper>
-          {children || options.map((option) => renderTab(option, routed))}
-        </TabsWrapper>
-      </Tabs>
+    <StyledSegmentedTabs
+      defaultIndex={
+        defaultActiveTab ? findOptionIndexByValue(options, defaultActiveTab) : 0
+      }
+      index={value ? findOptionIndexByValue(options, value) : null}
+      onChange={(index) => {
+        if (onChange) {
+          onChange({ activeTab: options[index].value });
+        }
+      }}
+      className={className}
+    >
+      <SegmentedTabsTabbar options={options} data-testid={`${testId}-tabbar`} />
+      <SegmentedTabsPanels data-testid={`${testId}-tabpanels`}>
+        {children || options.map((option) => renderTab(option, testId))}
+      </SegmentedTabsPanels>
     </StyledSegmentedTabs>
   );
 }
 
 SegmentedTabs.propTypes = {
   options: PropTypes.array.isRequired,
-  defaultActiveTab: PropTypes.string,
+  defaultActiveTab: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
-  renderTab: PropTypes.func,
+  renderTab: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-  routed: PropTypes.bool,
 };
 
 SegmentedTabs.defaultProps = {
-  renderTab(option, routed) {
-    const { value, to, Component } = option;
+  options: [],
+  renderTab(option, testId) {
+    const { value, Component } = option;
 
-    return routed ? (
-      <Route exact path={to} component={Component} />
-    ) : (
-      <TabPane
-        id={value}
+    return (
+      <SegmentedTabsPanel
         key={value}
-        // eslint-disable-next-line react/prop-types
-        render={(props) => props.isActive && <Component {...props} />}
-      />
+        data-testid={`${testId}-tabpanel-${value}`}
+      >
+        {React.isValidElement(Component) ? Component : <Component />}
+      </SegmentedTabsPanel>
     );
   },
 };

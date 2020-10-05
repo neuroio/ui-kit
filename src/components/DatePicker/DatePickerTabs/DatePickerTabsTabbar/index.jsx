@@ -2,37 +2,34 @@ import React from "react";
 
 import { useTranslation } from "../../../../hooks";
 import { useContext } from "react";
-import { TabsContext } from "../../../../components/Tabs";
+import { useTabsContext } from "@reach/tabs";
 import { DatePickerContext } from "../../index";
 
 import { StyledDatePickerTabsTabbar } from "./StyledDatePickerTabsTabbar";
 import { DatePickerTabsTabbarButton } from "./DatePickerTabsTabbarButton";
+import { Tab } from "@reach/tabs";
 
 function DatePickerTabsTabbar() {
-  const { openTab, activeTab } = useContext(TabsContext);
+  const { selectedIndex } = useTabsContext();
   const { testId } = useContext(DatePickerContext);
   const { t } = useTranslation("DatePicker");
 
   return (
     <StyledDatePickerTabsTabbar>
-      <DatePickerTabsTabbarButton
+      <Tab
+        as={DatePickerTabsTabbarButton}
         data-testid={`${testId}-absolute`}
-        isActive={activeTab === "absolute"}
-        onClick={() => {
-          openTab("absolute");
-        }}
+        isActive={selectedIndex === 0}
       >
         {t("Absolute")}
-      </DatePickerTabsTabbarButton>
-      <DatePickerTabsTabbarButton
+      </Tab>
+      <Tab
+        as={DatePickerTabsTabbarButton}
         data-testid={`${testId}-relative`}
-        isActive={activeTab === "relative"}
-        onClick={() => {
-          openTab("relative");
-        }}
+        isActive={selectedIndex === 1}
       >
         {t("Relative")}
-      </DatePickerTabsTabbarButton>
+      </Tab>
     </StyledDatePickerTabsTabbar>
   );
 }

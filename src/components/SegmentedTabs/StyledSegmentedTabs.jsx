@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-const StyledSegmentedTabs = styled.div`
+import { Tabs } from "@reach/tabs";
+
+const StyledSegmentedTabs = styled(Tabs)`
   flex: 100%;
   display: flex;
   flex-direction: column;

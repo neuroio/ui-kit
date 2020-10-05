@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.11.2",
+    "@reach/tabs": "^0.11.2",
     "browser-cookie-lite": "^1.0.4",
     "date-fns": "^2.16.1",
     "dayjs": "^1.9.1",

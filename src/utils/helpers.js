@@ -93,6 +93,14 @@ export function findOptionByValue(options, value) {
   return options.find((option) => isEqual(option.value, value));
 }
 
+export function findOptionIndexByValue(options, value) {
+  try {
+    return options.findIndex((option) => option.value === value);
+  } catch {
+    return null;
+  }
+}
+
 export function mapDataToGetParams(data) {
   return (
     "?" +

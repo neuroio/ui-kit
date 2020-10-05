@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-const StyledDatePickerTabs = styled.div``;
+import { Tabs } from "@reach/tabs";
+
+const StyledDatePickerTabs = styled(Tabs)``;
 
 export { StyledDatePickerTabs };

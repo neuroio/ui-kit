@@ -1,34 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useContext } from "react";
-import { TabsContext } from "../../Tabs";
+import { useTabsContext } from "@reach/tabs";
 
 import { StyledSegmentedTabsTabbar } from "./StyledSegmentedTabsTabbar";
 import { Button } from "../../Button";
+import { Tab } from "@reach/tabs";
+
+import { findOptionIndexByValue } from "../../../utils";
 
 function SegmentedTabsTabbar({ options, "data-testid": testId, className }) {
-  const { openTab, activeTab } = useContext(TabsContext);
+  const { selectedIndex } = useTabsContext();
 
-  function renderTabBarItem(option) {
+  function renderTabBarItem(option, _, options) {
     const { label, value, to } = option;
 
-    function getButtonTheme(buttonName) {
-      return activeTab === buttonName ? "dark" : "light";
+    function getButtonTheme(buttonIndex) {
+      return selectedIndex === buttonIndex ? "dark" : "light";
     }
 
     return (
-      <Button
+      <Tab
+        as={Button}
         key={value}
         data-testid={`${testId}-${value}`}
-        theme={getButtonTheme(value)}
-        onClick={() => {
-          openTab(value);
-        }}
+        theme={getButtonTheme(findOptionIndexByValue(options, value))}
         to={to}
       >
         {label}
-      </Button>
+      </Tab>
     );
   }
 
