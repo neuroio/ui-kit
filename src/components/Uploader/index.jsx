@@ -41,7 +41,7 @@ function Uploader({
       className={className}
     >
       {children}
-      <input {...getInputProps()} data-testid="upload-input" />
+      <input {...getInputProps()} data-testid={`${testId}-upload-input`} />
     </StyledUploader>
   );
 }
