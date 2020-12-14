@@ -37,7 +37,8 @@ FormInput.Password = function (props) {
 };
 
 FormInput.Number = function (props) {
-  return <FormInput {...props} type="number" />;
+  // Safari input type float number issue
+  return <FormInput {...props} />;
 };
 
 FormInput.Uneditable = function (props) {
