@@ -14,6 +14,7 @@ function FormCheckboxGroupItem({
   onChange,
   className,
   groupName,
+  disabled,
   ...props
 }) {
   return (
@@ -25,6 +26,7 @@ function FormCheckboxGroupItem({
         <FormCheckbox
           name={name}
           checked={checked}
+          disabled={disabled}
           onChange={onChange}
           data-testid={props["data-testid"] || `${groupName}-${name}`}
         />
@@ -38,6 +40,7 @@ FormCheckboxGroupItem.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   checked: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   "data-testid": PropTypes.string,
   className: PropTypes.string,
