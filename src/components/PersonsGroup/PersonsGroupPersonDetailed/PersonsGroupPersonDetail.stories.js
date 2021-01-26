@@ -6,7 +6,7 @@ import { PersonsGroupPersonDetailed } from "./index";
 
 import { personMock } from "../../../../test/__mocks__";
 
-storiesOf("Persons Groups| PersonDetail", module).add("default", () => {
+storiesOf("Persons Groups/PersonDetail", module).add("default", () => {
   const person = object("Person", personMock);
 
   const isLoading = boolean("isLoading", false);

@@ -13,7 +13,7 @@ function isEven(n) {
   return n === 0 || !!(n && !(n % 2));
 }
 
-storiesOf("Controls|InfiniteDropdown", module)
+storiesOf("Controls/InfiniteDropdown", module)
   .add("default", () => {
     const options = generateOptions(10);
     const isFetching = boolean("is fetching", false);

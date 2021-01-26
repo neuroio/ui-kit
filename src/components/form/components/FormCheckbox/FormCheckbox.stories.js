@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { FormCheckbox } from "./index";
 
-storiesOf("Form Components| FormCheckbox", module).add("default", () => {
+storiesOf("Form Components/FormCheckbox", module).add("default", () => {
   const isCheckboxDisabled = boolean("Disabled", false);
   const checkboxChecked = boolean("Checked", false);
 

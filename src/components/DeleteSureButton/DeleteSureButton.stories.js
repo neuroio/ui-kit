@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import { DeleteSureButton } from "./index.jsx";
 
-storiesOf("Controls|DeleteSureButton", module).add("default", () => {
+storiesOf("Controls/DeleteSureButton", module).add("default", () => {
   return (
     <DeleteSureButton
       onDelete={action("On delete")}

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { Breadcrumbs } from "./index.jsx";
 
-storiesOf("Navigation|Breadcrumbs", module).add("default", () => {
+storiesOf("Navigation/Breadcrumbs", module).add("default", () => {
   const [active, setActive] = useState("first");
   return (
     <Breadcrumbs>

@@ -7,7 +7,7 @@ import { SegmentedTabs } from "./index";
 
 import { generateOptions } from "../../../test/generate";
 
-storiesOf("Data display|SegmentedTabs", module).add("default", () => {
+storiesOf("Data display/SegmentedTabs", module).add("default", () => {
   const options = generateOptions(5).map((option) => ({
     ...option,
     Component: () => <p>{option.label}</p>,

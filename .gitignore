@@ -1,6 +1,4 @@
-# Dependencies
-node_modules/
-
-# Tests
-coverage/
+node_modules
+coverage
+docs
 

@@ -10,7 +10,7 @@ import { InfiniteDropdown } from "../InfiniteDropdown";
 import { Plus, GearOutline } from "../icons/index.js";
 import { generateOptions } from "../../../test/generate.js";
 
-storiesOf("Navigation|Header", module).add("default", () => {
+storiesOf("Navigation/Header", module).add("default", () => {
   const username = text("Username", "Arunoda Susiripala");
 
   const topLinks = object("Top links", [

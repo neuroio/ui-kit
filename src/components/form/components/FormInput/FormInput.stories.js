@@ -5,7 +5,7 @@ import { boolean } from "@storybook/addon-knobs";
 
 import { FormInput } from "./index";
 
-storiesOf("Form Components| FormInput", module).add("default", () => {
+storiesOf("Form Components/FormInput", module).add("default", () => {
   const isDisabled = boolean("Disabled", false);
 
   function ComponentWrapper() {

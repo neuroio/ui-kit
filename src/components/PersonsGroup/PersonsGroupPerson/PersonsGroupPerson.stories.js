@@ -7,7 +7,7 @@ import { PersonsGroupPerson } from "./index";
 
 import { personMock } from "../../../../test/__mocks__";
 
-storiesOf("Persons Groups|PersonsGroupPerson", module)
+storiesOf("Persons Groups/PersonsGroupPerson", module)
   .add("default", () => {
     const person = object("Person", personMock);
 

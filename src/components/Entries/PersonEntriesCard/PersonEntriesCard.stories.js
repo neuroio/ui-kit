@@ -9,7 +9,7 @@ import { PersonEntriesCard } from "./index.jsx";
 
 import { personMock } from "../../../../test/__mocks__";
 
-storiesOf("Entries|PersonEntriesCard", module).add("default", () => {
+storiesOf("Entries/PersonEntriesCard", module).add("default", () => {
   const person = { ...personMock, reinit: number("Reinit count", 0) };
 
   return (

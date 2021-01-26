@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import { Button } from "./index.jsx";
 
-storiesOf("Controls|Button", module).add("default", () => {
+storiesOf("Controls/Button", module).add("default", () => {
   const buttonText = text("Button text", "Arunoda");
   const theme = select(
     "Button theme",

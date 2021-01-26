@@ -10,7 +10,7 @@ import { InfiniteMultiSelect } from "./index.jsx";
 
 import { generateOptions } from "../../../test/generate";
 
-storiesOf("Controls|InfiniteMultiSelect", module).add("default", () => {
+storiesOf("Controls/InfiniteMultiSelect", module).add("default", () => {
   const options = generateOptions(10);
   const isFetching = boolean("is fetching", false);
 

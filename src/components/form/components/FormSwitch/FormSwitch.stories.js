@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { FormSwitch } from "./index";
 
-storiesOf("Form Components| FormSwitch", module).add("default", () => {
+storiesOf("Form Components/FormSwitch", module).add("default", () => {
   function ComponentWrapper() {
     const [value, setValue] = useState(false);
 

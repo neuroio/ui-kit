@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { FormRangeSlider } from "./index";
 
-storiesOf("Form Components| FormRangeSlider", module).add("default", () => {
+storiesOf("Form Components/FormRangeSlider", module).add("default", () => {
   function ComponentWrapper() {
     const [value, setValue] = useState([0, 99]);
 

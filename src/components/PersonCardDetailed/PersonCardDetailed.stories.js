@@ -23,7 +23,7 @@ const StyledPersonCardDetailed = styled(PersonCardDetailed)`
   width: 334px;
 `;
 
-storiesOf("Persons| PersonCardDetailed", module).add("default", () => {
+storiesOf("Persons/PersonCardDetailed", module).add("default", () => {
   const person = object("Person", personMock);
 
   const isLoading = boolean("isLoading", false);

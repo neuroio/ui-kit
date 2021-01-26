@@ -17,7 +17,7 @@ const StyledForm = styled.form`
   }
 `;
 
-storiesOf("Form Components| FormCheckboxGroup", module).add("default", () => {
+storiesOf("Form Components/FormCheckboxGroup", module).add("default", () => {
   function ComponentWrapper() {
     const [checked, setChecked] = useState([]);
 

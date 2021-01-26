@@ -10,7 +10,7 @@ import { FormMultiSelect } from "./index";
 
 const options = generateOptions(20);
 
-storiesOf("Form Components| FormMultiSelect", module)
+storiesOf("Form Components/FormMultiSelect", module)
   .add("default", () => {
     function ComponentWrapper() {
       const [multiSelectValue, setMultiSelectValue] = useState(

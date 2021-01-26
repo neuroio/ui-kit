@@ -9,7 +9,7 @@ import { EntryCardButtonDelete } from "../components";
 
 import { entryMock } from "../../../../test/__mocks__";
 
-storiesOf("Entries|EntryCard", module).add("default", () => {
+storiesOf("Entries/EntryCard", module).add("default", () => {
   const result = select(
     "Result",
     ["new", "reinit", "exact", "ha", "junk", "nm", "det"],

@@ -1,20 +1,18 @@
-import React from "react";
-
 import { GlobalStyles, I18nProvider } from "../src/components";
 import { Normalize } from "styled-normalize";
 
-const ProviderWrapper = ({ children }) => (
+const withProvider = (Story, context) => (
   <I18nProvider>
     <div style={{ padding: 16, maxWidth: 940 }}>
       <Normalize />
       <GlobalStyles />
-      {children}
+      <Story {...context} />
     </div>
   </I18nProvider>
 );
 
-export const withProvider = (story) => (
-  <ProviderWrapper>{story()}</ProviderWrapper>
-);
+export const decorators = [withProvider];
 
-export default ProviderWrapper;
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+};
