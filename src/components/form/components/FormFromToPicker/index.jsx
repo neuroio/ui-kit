@@ -72,7 +72,11 @@ function FormFromToPicker({
   }
 
   return (
-    <StyledFormFromToPicker ref={filterWrapper} className={className}>
+    <StyledFormFromToPicker
+      ref={filterWrapper}
+      className={className}
+      data-testid={testId}
+    >
       <FormFromToPickerControl
         {...bind}
         data-testid={`${testId}-control`}
