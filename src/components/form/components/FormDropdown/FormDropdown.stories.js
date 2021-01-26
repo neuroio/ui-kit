@@ -18,7 +18,8 @@ storiesOf("Form Components/FormDropdown", module)
     const options = generateOptions(15);
 
     function ComponentWrapper() {
-      const [selected, setSelected] = useState(null);
+      const isMultiple = boolean("multiple", false);
+      const [selected, setSelected] = useState(isMultiple ? [] : null);
 
       return (
         <FormDropdown
@@ -28,7 +29,7 @@ storiesOf("Form Components/FormDropdown", module)
           onChange={setSelected}
           width={number("width", 200)}
           withSearch={boolean("with search", false)}
-          multiple={boolean("multiple", false)}
+          multiple={isMultiple}
           disabled={boolean("disabled", false)}
         />
       );
