@@ -1,17 +1,26 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { text, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
 import { DeleteSureButton } from "./index.jsx";
+import { colors } from "../../style/index.js";
 
-storiesOf("Controls/DeleteSureButton", module).add("default", () => {
-  return (
-    <DeleteSureButton
-      onDelete={action("On delete")}
-      deleteText={text("delete text", "Delete")}
-      sureText={text("sure text", "Sure?")}
-      isDisabled={boolean("is disabled", false)}
-    />
-  );
-});
+export default {
+  title: "Controls/DeleteSureButton",
+  component: DeleteSureButton,
+  argTypes: {
+    deleteColor: { control: "color" },
+  },
+  args: {
+    deleteColor: colors.brownSimple,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Use this button if you need delete confirmation",
+      },
+    },
+  },
+};
+
+const Template = (args) => <DeleteSureButton {...args} />;
+
+export const Basic = Template.bind({});
+Basic.args = {};

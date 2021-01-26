@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { DatePicker } from "./index.jsx";
 
-import { storiesOf } from "@storybook/react";
+export default {
+  title: "Controls/DatePicker",
+  component: DatePicker,
+  argTypes: {},
+  args: {},
+};
 
-import { DatePicker } from "./index";
+const Template = (args) => {
+  const [value, setValue] = useState([null, null]);
 
-storiesOf("Controls/DatePicker", module).add("default", () => {
-  function DatePickerWrapper() {
-    const [value, setValue] = useState([null, null]);
+  return <DatePicker {...args} value={value} onChange={setValue} />;
+};
 
-    return <DatePicker value={value} onChange={setValue} />;
-  }
-
-  return <DatePickerWrapper />;
-});
+export const Basic = Template.bind({});
+Basic.args = {};

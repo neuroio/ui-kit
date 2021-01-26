@@ -9,7 +9,7 @@ import { CardSmallButton } from "./CardSmallButton";
 import { CardSmallCheckbox } from "./CardSmallCheckbox";
 import { CardSmallTitle } from "./CardSmallTitle";
 
-import { hasProperty } from "../../utils/helpers";
+import has from "lodash-es/has";
 
 function CardSmall(props) {
   const {
@@ -22,7 +22,7 @@ function CardSmall(props) {
     className,
   } = props;
 
-  const hasPhoto = hasProperty(props, "img");
+  const hasPhoto = has(props, "img");
 
   return (
     <ThemeProvider theme={{ theme }}>

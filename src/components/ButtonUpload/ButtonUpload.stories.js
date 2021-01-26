@@ -1,16 +1,16 @@
 import React from "react";
-import { Button } from "./index.jsx";
+import { ButtonUpload } from "./index.jsx";
 
 export default {
-  title: "Controls/Button",
-  component: Button,
+  title: "Controls/ButtonUpload",
+  component: ButtonUpload,
   argTypes: {},
   args: {
     children: "Click me",
   },
 };
 
-const Template = (args) => <Button {...args} />;
+const Template = (args) => <ButtonUpload {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {};
