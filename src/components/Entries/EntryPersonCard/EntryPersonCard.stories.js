@@ -1,61 +1,83 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-import { select, number, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
 import { EntryPersonCard } from "./index.jsx";
 import { EntryCardActionsButton, EntryCardButtonDelete } from "../components";
 
-import { entryMock, personMock } from "../../../../test/__mocks__";
+import { entryMock } from "../../../../test/__mocks__";
+import { noop } from "lodash-es";
 
-storiesOf("Entries/EntryPersonCard", module).add("default", () => {
-  const result = select(
-    "Conf",
-    ["new", "reinit", "exact", "ha", "junk", "nm", "det"],
-    "exact"
-  );
-  const liveness = select(
-    "Liveness",
-    ["failed", "passed", "undetermined"],
-    "failed"
-  );
-  const theme = select("theme", ["light", "dark"], "light");
-  const deleted = boolean("Deleted", false);
-  const entry = { ...entryMock, result, liveness, deleted };
-  const person = { ...personMock, reinit: number("Reinit count", 0) };
+export default {
+  title: "Entries/EntryPersonCard",
+  component: EntryPersonCard,
+  argTypes: {
+    entryResult: {
+      control: {
+        type: "select",
+        options: ["new", "reinit", "exact", "ha", "junk", "nm", "det"],
+      },
+    },
+    entryLiveness: {
+      control: {
+        type: "select",
+        options: ["failed", "passed", "undetermined"],
+      },
+    },
+    entryDeleted: {
+      control: {
+        type: "boolean",
+      },
+    },
+  },
+  args: {
+    entry: entryMock,
+    entryResult: "new",
+    entryLiveness: "passed",
+    entryDeleted: false,
+    reinitCount: 0,
+    onReinit: noop,
+    onDelete: noop,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Use this card to show entry info without person info",
+      },
+    },
+  },
+};
+
+const Template = (args) => {
+  const { entry } = args;
   const resultsWithDelete = ["exact", "junk", "ha"];
-  /**
-   * Если персона не была реиничена ранее (reinit === 0),
-   * то не имеет смысла давать возможность реинита на new
-   */
-  const resultsWithReinit = ["exact", "junk", "ha"].concat(
-    person.reinit > 0 ? ["new"] : []
-  );
-
   const isDeleteble =
-    resultsWithDelete.includes(entry.result) && !entry.deleted;
-  const isReinitable = resultsWithReinit.includes(entry.result);
+    resultsWithDelete.includes(args.entryResult) && !args.entryDeleted;
+  const resultsWithReinit = ["exact", "junk", "ha"].concat(
+    args.reinitCount > 0 ? ["new"] : []
+  );
+  const isReinitable = resultsWithReinit.includes(args.entryResult);
 
   return (
     <EntryPersonCard
-      entry={entry}
-      onClick={action("Click")}
-      theme={theme}
+      {...args}
+      entry={{
+        ...args.entry,
+        result: args.entryResult,
+        liveness: args.entryLiveness,
+        deleted: args.entryDeleted,
+      }}
       actions={
         !entry.deleted && (
           <React.Fragment>
             {isReinitable && (
               <EntryCardActionsButton
-                onClick={() => action("Reinit")(entry.id)}
+                onClick={args.onReinit(entry.id)}
+                theme="light"
               >
                 reinit
               </EntryCardActionsButton>
             )}
             {isDeleteble && (
-              <EntryCardButtonDelete
-                onDelete={() => action("Delete")(entry.id)}
-              >
+              <EntryCardButtonDelete onDelete={args.onDelete(entry.id)}>
                 delete
               </EntryCardButtonDelete>
             )}
@@ -64,4 +86,7 @@ storiesOf("Entries/EntryPersonCard", module).add("default", () => {
       }
     />
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

@@ -1,31 +1,46 @@
 import React from "react";
-
-import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
 import { EntryCardActionsButton, EntryCardButtonDelete } from "../components";
 import { PersonEntriesCard } from "./index.jsx";
-
 import { personMock } from "../../../../test/__mocks__";
+import { noop } from "lodash-es";
 
-storiesOf("Entries/PersonEntriesCard", module).add("default", () => {
-  const person = { ...personMock, reinit: number("Reinit count", 0) };
+export default {
+  title: "Entries/PersonEntriesCard",
+  component: PersonEntriesCard,
+  argTypes: {},
+  args: {
+    person: personMock,
+    onDelete: noop,
+    reinitCount: 0,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Use this card to show person info",
+      },
+    },
+  },
+};
 
+const Template = (args) => {
   return (
     <PersonEntriesCard
-      person={person}
+      {...args}
+      person={{ ...args.person, reinit: args.reinitCount }}
       actions={
         <React.Fragment>
-          <EntryCardActionsButton to="/some-url">close</EntryCardActionsButton>
-          <EntryCardActionsButton to="/some-url" theme="light">
-            lists
-          </EntryCardActionsButton>
-          <EntryCardButtonDelete onDelete={() => action("Delete")(person.pid)}>
+          <EntryCardActionsButton theme="light">close</EntryCardActionsButton>
+          <EntryCardActionsButton theme="light">lists</EntryCardActionsButton>
+          <EntryCardButtonDelete
+            onDelete={() => args.onDelete(args.person.pid)}
+          >
             delete
           </EntryCardButtonDelete>
         </React.Fragment>
       }
     />
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

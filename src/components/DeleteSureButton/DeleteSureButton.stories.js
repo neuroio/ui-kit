@@ -14,7 +14,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: "Use this button if you need delete confirmation",
+        component: "Use this button if you need a delete confirmation",
       },
     },
   },
