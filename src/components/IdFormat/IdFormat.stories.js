@@ -1,12 +1,17 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs";
-
 import { IdFormat } from "./index.jsx";
 import { personMock } from "../../../test/__mocks__";
 
-storiesOf("IdFormat", module).add("default", () => {
-  const pid = text("IdFormat text", personMock.pid);
+export default {
+  title: "IDS/IdFormat",
+  component: IdFormat,
+  argTypes: {},
+  args: {
+    children: personMock.pid,
+  },
+};
 
-  return <IdFormat>{pid}</IdFormat>;
-});
+const Template = (args) => <IdFormat {...args} />;
+
+export const Basic = Template.bind({});
+Basic.args = {};

@@ -390,7 +390,7 @@ function FormDropdown({
                           {multiple && selected && (
                             <FormDropdownOptionSelectedIcon size="10" />
                           )}
-                          {renderItem(item)}
+                          {renderItem(item, index)}
                         </FormDropdownOption>
                       );
                     })

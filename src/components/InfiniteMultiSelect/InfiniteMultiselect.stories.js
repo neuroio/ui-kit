@@ -1,33 +1,78 @@
 import React from "react";
-
 import { useState } from "react";
+import { InfiniteMultiSelect } from "./index";
+import { fetchPokemons } from "../../../test/api";
 
-import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
+export default {
+  title: "Controls/InfiniteMultiSelect",
+  component: InfiniteMultiSelect,
+  argTypes: {},
+  args: {
+    ...InfiniteMultiSelect.defaultProps,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple controlled infinite multiselect component",
+      },
+    },
+  },
+};
 
-import { InfiniteMultiSelect } from "./index.jsx";
+const Template = (args) => {
+  const [selected, setSelected] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [hasNext, setHasNext] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-import { generateOptions } from "../../../test/generate";
+  return (
+    <InfiniteMultiSelect
+      {...args}
+      hasNext={hasNext}
+      fetchOptions={async (params) => {
+        setLoading(true);
 
-storiesOf("Controls/InfiniteMultiSelect", module).add("default", () => {
-  const options = generateOptions(10);
-  const isFetching = boolean("is fetching", false);
+        const { data } = await fetchPokemons({
+          search: params.q,
+          limit: params.limit,
+          offset: params.offset,
+        });
 
-  function InfiniteMultiSelectConsumer() {
-    const [value, setValue] = useState([]);
+        setOptions((options) => {
+          const newOptions = data.results.map(({ name, url }) => ({
+            label: name,
+            value: url,
+          }));
 
-    return (
-      <InfiniteMultiSelect
-        value={value}
-        onChange={setValue}
-        options={options}
-        fetchOptions={action("fetch items")}
-        isFetching={isFetching}
-        placeholder={isFetching ? "Loading..." : "Select value..."}
-      />
-    );
-  }
+          if (params.meta.clearList) {
+            return newOptions;
+          }
 
-  return <InfiniteMultiSelectConsumer />;
-});
+          return options.concat(newOptions);
+        });
+        setHasNext(Boolean(data.next));
+        setLoading(false);
+      }}
+      placeholder={loading ? "loading..." : "select character"}
+      isFetching={loading}
+      options={options}
+      value={selected}
+      onChange={(value) => {
+        setSelected(value);
+      }}
+    />
+  );
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};
+
+export const WithSearch = Template.bind({});
+WithSearch.args = {
+  withSearch: true,
+};
+
+export const Multiple = Template.bind({});
+Multiple.args = {
+  multiple: true,
+};
