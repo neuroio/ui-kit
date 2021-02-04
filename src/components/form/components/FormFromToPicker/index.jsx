@@ -24,6 +24,7 @@ function FormFromToPicker({
   "data-testid": testId,
   children,
   placeholder,
+  width,
 }) {
   const popupTrigger = useRef(null);
   const filterWrapper = useRef(null);
@@ -76,6 +77,7 @@ function FormFromToPicker({
       ref={filterWrapper}
       className={className}
       data-testid={testId}
+      width={width}
     >
       <FormFromToPickerControl
         {...bind}
@@ -134,6 +136,7 @@ FormFromToPicker.propTypes = {
   "data-testid": PropTypes.string,
 
   placeholder: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 FormFromToPicker.defaultProps = {

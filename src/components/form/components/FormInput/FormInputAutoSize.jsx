@@ -34,7 +34,9 @@ const FormInputAutoSize = styled(StyledFormInput).attrs(
     "data-testid": getTestId(name, testId),
   })
 )`
+  display: inline-block;
   white-space: nowrap;
+  user-select: text;
   cursor: text;
 `;
 

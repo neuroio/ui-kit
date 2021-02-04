@@ -1,28 +1,39 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs";
-
 import { useState } from "react";
-
 import { FormRangeSlider } from "./index";
 
-storiesOf("Form Components/FormRangeSlider", module).add("default", () => {
-  function ComponentWrapper() {
-    const [value, setValue] = useState([0, 99]);
+export default {
+  title: "Form Components/FormRangeSlider",
+  component: FormRangeSlider,
+  argTypes: {},
+  args: {
+    minFrom: 0,
+    maxTo: 100,
+    width: 200,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple controlled range component",
+      },
+    },
+  },
+};
 
-    return (
-      <div style={{ marginTop: 20 }}>
-        <FormRangeSlider
-          from={value[0]}
-          to={value[1]}
-          onChange={setValue}
-          minFrom={number("min from", 0)}
-          minTo={number("min from", 99)}
-          width={number("width", 200)}
-        />
-      </div>
-    );
-  }
+const Template = (args) => {
+  const [value, setValue] = useState([args.from || 0, args.to || 99]);
 
-  return <ComponentWrapper />;
-});
+  return (
+    <div style={{ marginTop: 20 }}>
+      <FormRangeSlider
+        {...args}
+        from={value[0]}
+        to={value[1]}
+        onChange={setValue}
+      />
+    </div>
+  );
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

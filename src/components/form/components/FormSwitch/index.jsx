@@ -12,6 +12,7 @@ function FormSwitch({
   size,
   checked,
   onChange,
+  disabled,
   className,
   "data-testid": testId,
 }) {
@@ -23,6 +24,7 @@ function FormSwitch({
       size={size}
       className={className}
       data-testid={testId}
+      disabled={disabled}
     >
       <FormSwitchCheckbox
         id={name}
@@ -32,6 +34,7 @@ function FormSwitch({
         onChange={onChange}
         size={size}
         data-testid={testId + "-checkbox"}
+        disabled={disabled}
       />
       <FormSwitchLabel
         size={size}
@@ -46,9 +49,10 @@ FormSwitch.propTypes = {
   onChange: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["s", "m"]),
+  size: PropTypes.oneOf(["m"]),
   className: PropTypes.string,
   "data-testid": PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 FormSwitch.defaultProps = {
