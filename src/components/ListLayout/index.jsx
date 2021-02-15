@@ -26,20 +26,23 @@ function ListLayout({
   return (
     <ListLayoutProvider>
       <StyledListLayout className={className}>
-        {hasTop && top ? (
-          top
-        ) : (
-          <ListLayoutTop isSticky={isTopSticky}>
-            {hasHeader && (
-              <ListLayoutHeader>
-                {title && <ListLayoutTitle level={1}>{title}</ListLayoutTitle>}
-                {buttons && <ListLayoutButtons>{buttons}</ListLayoutButtons>}
-              </ListLayoutHeader>
-            )}
-            {search && <ListLayoutSearch>{search}</ListLayoutSearch>}
-            {actions && actions}
-          </ListLayoutTop>
-        )}
+        {hasTop &&
+          (top ? (
+            top
+          ) : (
+            <ListLayoutTop isSticky={isTopSticky}>
+              {hasHeader && (
+                <ListLayoutHeader>
+                  {title && (
+                    <ListLayoutTitle level={1}>{title}</ListLayoutTitle>
+                  )}
+                  {buttons && <ListLayoutButtons>{buttons}</ListLayoutButtons>}
+                </ListLayoutHeader>
+              )}
+              {search && <ListLayoutSearch>{search}</ListLayoutSearch>}
+              {actions && actions}
+            </ListLayoutTop>
+          ))}
 
         {content && <ListLayoutContent>{content}</ListLayoutContent>}
       </StyledListLayout>
