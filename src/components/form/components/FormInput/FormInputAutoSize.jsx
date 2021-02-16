@@ -26,10 +26,10 @@ const FormInputAutoSize = styled(StyledFormInput).attrs(
     onChange: addNameToTarget(name, onChange),
     onBlur: addNameToTarget(name, onBlur),
     onFocus: addNameToTarget(name, onFocus),
-    onPaste(evt) {
-      evt.preventDefault();
-      const text = evt.clipboardData.getData("text/plain");
-      document.execCommand("insertHTML", false, text);
+    onPaste(ev) {
+      ev.preventDefault();
+      const text = ev.clipboardData.getData("text");
+      document.execCommand("insertText", false, text);
     },
     "data-testid": getTestId(name, testId),
   })
