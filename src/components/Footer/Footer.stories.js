@@ -1,13 +1,26 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-
 import { Footer } from "./index.jsx";
 import { TextBold } from "../../components/Text/TextBold";
 import { TextThin } from "../../components/Text/TextThin";
 
-storiesOf("Footer", module).add("default", () => {
+export default {
+  title: "Layout/Footer",
+  component: Footer,
+  argTypes: {},
+  args: {},
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple footer component",
+      },
+    },
+  },
+};
+
+const Template = (args) => {
   return (
     <Footer
+      {...args}
       Disclamer={
         <React.Fragment>
           <p>
@@ -15,7 +28,7 @@ storiesOf("Footer", module).add("default", () => {
             compliant. The cloud does not keep any data except for fully
             impersonalized, in the database. All data is kept on servers in EU.
           </p>
-          <span>© 2019 DATA CORPORATION OÜ, ESTONIA</span>
+          <span>© {new Date().getFullYear()} DATA CORPORATION OÜ, ESTONIA</span>
         </React.Fragment>
       }
       Credits={
@@ -27,4 +40,7 @@ storiesOf("Footer", module).add("default", () => {
       }
     />
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

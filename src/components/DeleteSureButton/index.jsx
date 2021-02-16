@@ -86,14 +86,21 @@ DeleteSureButton.defaultProps = {
 
 DeleteSureButton.propTypes = {
   onDelete: PropTypes.func.isRequired,
-  size: PropTypes.string,
   isDisabled: PropTypes.bool,
   deleteColor: PropTypes.string,
-  deleteText: PropTypes.string,
-  sureText: PropTypes.string,
+  deleteText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  sureText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   className: PropTypes.string,
   "data-testid": PropTypes.string,
-  theme: PropTypes.string,
+  size: PropTypes.oneOf(["medium", "large"]),
+  theme: PropTypes.oneOf([
+    "light",
+    "dark",
+    "reset",
+    "outline",
+    "green",
+    "blue",
+  ]),
 };
 
 export { DeleteSureButton, StyledDeleteSureButton };

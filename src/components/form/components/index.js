@@ -7,5 +7,4 @@ export * from "./FormCheckbox";
 export * from "./FormCheckboxGroup";
 export * from "./FormMultiSelect";
 export * from "./FormRangeSlider";
-export * from "./FormUneditableField";
 export * from "./FormFromToPicker";

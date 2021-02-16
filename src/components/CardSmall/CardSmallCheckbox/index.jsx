@@ -23,7 +23,7 @@ CardSmallCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  isHidden: PropTypes.bool.isRequired,
+  isHidden: PropTypes.bool,
 };
 
 export { CardSmallCheckbox };

@@ -42,7 +42,8 @@ function ButtonUpload({
 }
 
 ButtonUpload.propTypes = {
-  theme: PropTypes.string,
+  theme: PropTypes.oneOf(["light", "dark", "reset", "outline", "green", "blue"])
+    .isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
   onUpload: PropTypes.func.isRequired,
   className: PropTypes.string,

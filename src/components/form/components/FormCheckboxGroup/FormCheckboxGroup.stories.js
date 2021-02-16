@@ -1,15 +1,31 @@
 import React from "react";
-import styled from "styled-components";
-import { storiesOf } from "@storybook/react";
 
 import { useState } from "react";
 
 import { FormCheckboxGroup } from "./index";
-import { FormLabelTitle } from "../FormLabel";
 
 import { generateOptions } from "../../../../../test/generate";
+import styled from "styled-components";
+import { FormLabelTitle } from "../FormLabel";
 
 const options = generateOptions(5);
+
+export default {
+  title: "Form Components/FormCheckboxGroup",
+  component: FormCheckboxGroup,
+  argTypes: {},
+  args: {
+    options,
+    renderCheckbox: FormCheckboxGroup.defaultProps.renderCheckbox,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple controlled checkbox component",
+      },
+    },
+  },
+};
 
 const StyledForm = styled.form`
   ${FormLabelTitle} {
@@ -17,52 +33,52 @@ const StyledForm = styled.form`
   }
 `;
 
-storiesOf("Form Components| FormCheckboxGroup", module).add("default", () => {
-  function ComponentWrapper() {
-    const [checked, setChecked] = useState([]);
+const Template = (args) => {
+  const [checked, setChecked] = useState(args.value);
 
-    return (
-      <StyledForm data-testid="test-form">
-        <FormCheckboxGroup
-          groupName="test-group"
-          options={options}
-          value={checked}
-          onChange={setChecked}
-          render={({ checkboxes, ...selectableProps }) => (
-            <div>
-              <FormCheckboxGroup.Item
-                name="test-group-select-all"
-                label="Select all"
-                data-testid="test-group-select-all"
-                checked={selectableProps.isAllSelected}
-                onChange={({ target }) => {
-                  if (target.checked) {
-                    selectableProps.selectAll();
-                  } else {
-                    selectableProps.deselectAll();
-                  }
-                }}
-              />
-              <FormCheckboxGroup.Item
-                name="test-group-deselect-all"
-                label="Deselect all"
-                data-testid="test-group-deselect-all"
-                checked={selectableProps.isAllDeselected}
-                onChange={({ target }) => {
-                  if (!target.checked) {
-                    selectableProps.selectAll();
-                  } else {
-                    selectableProps.deselectAll();
-                  }
-                }}
-              />
-              {checkboxes()}
-            </div>
-          )}
-        />
-      </StyledForm>
-    );
-  }
+  return (
+    <StyledForm>
+      <FormCheckboxGroup
+        {...args}
+        groupName="test-group"
+        options={args.options}
+        value={checked}
+        onChange={setChecked}
+        render={({ checkboxes, ...selectableProps }) => (
+          <div>
+            <FormCheckboxGroup.Item
+              name="test-group-select-all"
+              label="Select all"
+              data-testid="test-group-select-all"
+              checked={selectableProps.isAllSelected}
+              onChange={({ target }) => {
+                if (target.checked) {
+                  selectableProps.selectAll();
+                } else {
+                  selectableProps.deselectAll();
+                }
+              }}
+            />
+            <FormCheckboxGroup.Item
+              name="test-group-deselect-all"
+              label="Deselect all"
+              data-testid="test-group-deselect-all"
+              checked={selectableProps.isAllDeselected}
+              onChange={({ target }) => {
+                if (!target.checked) {
+                  selectableProps.selectAll();
+                } else {
+                  selectableProps.deselectAll();
+                }
+              }}
+            />
+            {checkboxes()}
+          </div>
+        )}
+      />
+    </StyledForm>
+  );
+};
 
-  return <ComponentWrapper />;
-});
+export const Basic = Template.bind({});
+Basic.args = {};

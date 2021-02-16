@@ -14,6 +14,7 @@ function InfinitePageList({
   limit,
   isFetching,
   pageRef,
+  fetchNext,
 }) {
   const [isListEnds, setIsListEnds] = useState(!hasNext);
   useEffect(() => {
@@ -22,7 +23,7 @@ function InfinitePageList({
 
   const windowRef = useRef(window);
 
-  function fetchNext() {
+  function localFetchNext() {
     if (!isListEnds && !lockScroll) {
       changeOffset(offset + limit);
     }
@@ -30,7 +31,7 @@ function InfinitePageList({
 
   return (
     <InfiniteScroll
-      onScrollToPoint={fetchNext}
+      onScrollToPoint={fetchNext || localFetchNext}
       scrollerRef={pageRef || windowRef}
       isFetching={isFetching}
     >
@@ -43,10 +44,11 @@ InfinitePageList.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
   hasNext: PropTypes.bool,
   lockScroll: PropTypes.bool,
-  changeOffset: PropTypes.func.isRequired,
-  offset: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired,
+  changeOffset: PropTypes.func,
+  offset: PropTypes.number,
+  limit: PropTypes.number,
   isFetching: PropTypes.bool.isRequired,
+  fetchNext: PropTypes.func,
   pageRef: PropTypes.object,
 };
 

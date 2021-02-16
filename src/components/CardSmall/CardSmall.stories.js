@@ -1,96 +1,61 @@
-import React, { useState } from "react";
-
-import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
 import { CardSmall } from "./index";
 
 import { personMock } from "../../../test/__mocks__";
 import { PlaylistAdd } from "../icons";
 import { colors } from "../../style";
 
-storiesOf("Data display|CardSmall", module)
-  .add("default", () => {
-    function CardSmallWrapper() {
-      const [isSelected, setIsSelected] = useState(false);
-      const [isMouseOver, setIsMouseOver] = useState(false);
-      const theme = select("theme", ["light", "dark"], "light");
+import React from "react";
+import { useState } from "react";
 
-      return (
-        <CardSmall
-          theme={theme}
-          onClick={action("onClick")}
-          onMouseOver={() => setIsMouseOver(true)}
-          onMouseLeave={() => setIsMouseOver(false)}
-          img={personMock.initial_face_image}
-        >
-          <CardSmall.Data>
-            <CardSmall.DataItem>
-              Some key: <b>some value</b>
-            </CardSmall.DataItem>
-            <CardSmall.DataItem>
-              Some key: <b>some value</b>
-            </CardSmall.DataItem>
-          </CardSmall.Data>
+export default {
+  title: "Data Display/CardSmall",
+  component: CardSmall,
+  argTypes: {},
+  args: {},
+};
 
-          {(isSelected || theme === "dark" || isMouseOver) && (
-            <CardSmall.Checkbox
-              name={personMock.pid}
-              checked={isSelected}
-              onChange={() => setIsSelected(!isSelected)}
-            />
-          )}
+const Template = (args) => {
+  const [isSelected, setIsSelected] = useState(false);
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const { theme } = args;
 
-          {isMouseOver && (
-            <CardSmall.Button>
-              <PlaylistAdd size="24" color={colors.bloodOrange} />
-            </CardSmall.Button>
-          )}
-        </CardSmall>
-      );
-    }
+  return (
+    <CardSmall
+      {...args}
+      theme={theme}
+      onMouseOver={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
+    >
+      <CardSmall.Data>
+        <CardSmall.DataItem>
+          Some key: <b>some value</b>
+        </CardSmall.DataItem>
+        <CardSmall.DataItem>
+          Some key: <b>some value</b>
+        </CardSmall.DataItem>
+      </CardSmall.Data>
 
-    return <CardSmallWrapper />;
-  })
-  .add("no image", () => {
-    function CardSmallWrapper() {
-      const [isSelected, setIsSelected] = useState(false);
-      const [isMouseOver, setIsMouseOver] = useState(false);
-      const theme = select("theme", ["light", "dark"], "light");
+      {(isSelected || theme === "dark" || isMouseOver) && (
+        <CardSmall.Checkbox
+          name={personMock.pid}
+          checked={isSelected}
+          onChange={() => setIsSelected(!isSelected)}
+        />
+      )}
 
-      return (
-        <CardSmall
-          theme={theme}
-          onClick={action("onClick")}
-          onMouseOver={() => setIsMouseOver(true)}
-          onMouseLeave={() => setIsMouseOver(false)}
-        >
-          <CardSmall.Data>
-            <CardSmall.DataItem>
-              Some key: <b>some value</b>
-            </CardSmall.DataItem>
-            <CardSmall.DataItem>
-              Some key: <b>some value</b>
-            </CardSmall.DataItem>
-          </CardSmall.Data>
+      {isMouseOver && (
+        <CardSmall.Button>
+          <PlaylistAdd size="24" color={colors.bloodOrange} />
+        </CardSmall.Button>
+      )}
+    </CardSmall>
+  );
+};
 
-          {(isSelected || theme === "dark" || isMouseOver) && (
-            <CardSmall.Checkbox
-              name={personMock.pid}
-              value={isSelected}
-              onChange={() => setIsSelected(!isSelected)}
-            />
-          )}
+export const Basic = Template.bind({});
+Basic.args = {
+  img: personMock.initial_face_image,
+};
 
-          {isMouseOver && (
-            <CardSmall.Button>
-              <PlaylistAdd size="24" color={colors.bloodOrange} />
-            </CardSmall.Button>
-          )}
-        </CardSmall>
-      );
-    }
-
-    return <CardSmallWrapper />;
-  });
+export const NoImage = Template.bind({});
+NoImage.args = {};

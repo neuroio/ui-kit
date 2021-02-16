@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import { Uploader } from "./index.jsx";
 
-storiesOf("Data Entry|Uploader", module).add("default", () => {
+storiesOf("Data Entry/Uploader", module).add("default", () => {
   const isDisabled = boolean(false);
   const multiple = boolean(false);
 

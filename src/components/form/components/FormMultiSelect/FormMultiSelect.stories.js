@@ -1,49 +1,31 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { text, boolean } from "@storybook/addon-knobs";
-
+import { useState } from "react";
+import { FormMultiSelect } from "./index";
 import { generateOptions } from "../../../../../test/generate";
 
-import { useState } from "react";
+const options = generateOptions(10);
 
-import { FormMultiSelect } from "./index";
+export default {
+  title: "Form Components/FormMultiSelect",
+  component: FormMultiSelect,
+  argTypes: {},
+  args: {
+    options,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple controlled multi select component",
+      },
+    },
+  },
+};
 
-const options = generateOptions(20);
+const Template = (args) => {
+  const [selected, setSelected] = useState([]);
 
-storiesOf("Form Components| FormMultiSelect", module)
-  .add("default", () => {
-    function ComponentWrapper() {
-      const [multiSelectValue, setMultiSelectValue] = useState(
-        options.slice(0, 2)
-      );
+  return <FormMultiSelect {...args} value={selected} onChange={setSelected} />;
+};
 
-      return (
-        <FormMultiSelect
-          placeholder={text("Placeholder", "start typing...")}
-          options={options}
-          value={multiSelectValue}
-          onChange={setMultiSelectValue}
-          isLoading={boolean("isLoading", false)}
-        />
-      );
-    }
-
-    return <ComponentWrapper />;
-  })
-  .add("no options", () => {
-    function ComponentWrapper() {
-      const [multiSelectValue, setMultiSelectValue] = useState([]);
-
-      return (
-        <FormMultiSelect
-          placeholder={text("Placeholder", "start typing...")}
-          options={[]}
-          value={multiSelectValue}
-          onChange={setMultiSelectValue}
-          isLoading={boolean("isLoading", false)}
-        />
-      );
-    }
-
-    return <ComponentWrapper />;
-  });
+export const Basic = Template.bind({});
+Basic.args = {};

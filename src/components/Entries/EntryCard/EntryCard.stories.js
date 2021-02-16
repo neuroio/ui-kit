@@ -1,41 +1,66 @@
 import React from "react";
-
-import { storiesOf } from "@storybook/react";
-import { select, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
+import { entryMock } from "../../../../test/__mocks__";
 import { EntryCard } from "./index.jsx";
 import { EntryCardButtonDelete } from "../components";
+import { noop } from "lodash-es";
 
-import { entryMock } from "../../../../test/__mocks__";
+export default {
+  title: "Entries/EntryCard",
+  component: EntryCard,
+  argTypes: {
+    entryResult: {
+      control: {
+        type: "select",
+        options: ["new", "reinit", "exact", "ha", "junk", "nm", "det"],
+      },
+    },
+    entryLiveness: {
+      control: {
+        type: "select",
+        options: ["failed", "passed", "undetermined"],
+      },
+    },
+    entryDeleted: {
+      control: {
+        type: "boolean",
+      },
+    },
+  },
+  args: {
+    entry: entryMock,
+    entryResult: "new",
+    entryLiveness: "passed",
+    entryDeleted: false,
+    onDelete: noop,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Use this card to show entry info",
+      },
+    },
+  },
+};
 
-storiesOf("Entries|EntryCard", module).add("default", () => {
-  const result = select(
-    "Result",
-    ["new", "reinit", "exact", "ha", "junk", "nm", "det"],
-    "exact"
-  );
-  const liveness = select(
-    "Liveness",
-    ["failed", "passed", "undetermined"],
-    "failed"
-  );
-  const theme = select("theme", ["light", "dark"], "light");
-  const deleted = boolean("Deleted", false);
-  const entry = { ...entryMock, result, liveness, deleted };
-
-  const confsWithDelete = ["new", "exact", "junk", "ha", "nm", "det"];
-  const isDeleteble = confsWithDelete.includes(entry.result) && !entry.deleted;
+const Template = (args) => {
+  const { entry } = args;
+  const resultsWithDelete = ["new", "exact", "junk", "ha", "nm", "det"];
+  const isDeleteble =
+    resultsWithDelete.includes(args.entryResult) && !args.entryDeleted;
 
   return (
     <EntryCard
-      entry={entry}
-      onClick={action("Click")}
-      theme={theme}
+      {...args}
+      entry={{
+        ...args.entry,
+        result: args.entryResult,
+        liveness: args.entryLiveness,
+        deleted: args.entryDeleted,
+      }}
       actions={
         isDeleteble && (
           <React.Fragment>
-            <EntryCardButtonDelete onDelete={() => action("Delete")(entry.id)}>
+            <EntryCardButtonDelete onDelete={args.onDelete(entry.id)}>
               delete
             </EntryCardButtonDelete>
           </React.Fragment>
@@ -43,4 +68,7 @@ storiesOf("Entries|EntryCard", module).add("default", () => {
       }
     />
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

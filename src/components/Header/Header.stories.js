@@ -1,45 +1,55 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { text, object } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
-
 import { Header, HeaderTopMenu } from "./index.jsx";
 import { HeaderTopMenuLinks, HeaderTopMenuUser } from "./HeaderTopMenu";
 import { HeaderTopMenuUserDropdownItem } from "./HeaderTopMenu/HeaderTopMenuUser";
 import { InfiniteDropdown } from "../InfiniteDropdown";
 import { Plus, GearOutline } from "../icons/index.js";
 import { generateOptions } from "../../../test/generate.js";
+import { noop } from "lodash-es";
 
-storiesOf("Navigation|Header", module).add("default", () => {
-  const username = text("Username", "Arunoda Susiripala");
+export default {
+  title: "Layout/Header",
+  component: Header,
+  argTypes: {},
+  args: {
+    links: [
+      {
+        id: 1,
+        title: "Home - neuroio",
+        to: "https://neuroio.com",
+      },
+      {
+        id: 2,
+        title: "Knowledgebase",
+        to: "https://neuroio.com",
+      },
+      {
+        id: 3,
+        title: "Syshealth",
+        to: "https://neuroio.com",
+      },
+    ],
+    username: "Arunoda Susiripala",
+    logout: noop,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple footer component",
+      },
+    },
+  },
+};
 
-  const topLinks = object("Top links", [
-    {
-      id: 1,
-      title: "Home - neuroio",
-      to: "https://neuroio.com",
-    },
-    {
-      id: 2,
-      title: "Knowledgebase",
-      to: "https://neuroio.com",
-    },
-    {
-      id: 3,
-      title: "Syshealth",
-      to: "https://neuroio.com",
-    },
-  ]);
-
+const Template = (args) => {
   const options = generateOptions(10);
-
   return (
-    <Header>
+    <Header {...args}>
       <HeaderTopMenu>
-        <HeaderTopMenuLinks links={Object.values(topLinks)} />
+        <HeaderTopMenuLinks links={Object.values(args.links)} />
         <HeaderTopMenuUser
-          username={username}
-          onLogout={action("Logout")}
+          username={args.username}
+          onLogout={args.logout}
           dropdown={
             <>
               <HeaderTopMenuUserDropdownItem>
@@ -79,4 +89,7 @@ storiesOf("Navigation|Header", module).add("default", () => {
       </HeaderTopMenu>
     </Header>
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 import { Flash } from "../Flash";
-import { Clickable, colors } from "../../style";
+import { Clickable } from "../../style";
 
 const StyledCopyItem = styled(Flash)`
   ${Clickable}
   font-size: 16px;
   line-height: 26px;
-  color: ${colors.darkBlack};
+  color: inherit;
   display: flex;
 `;
 

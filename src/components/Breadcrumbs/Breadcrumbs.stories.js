@@ -1,38 +1,42 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-
 import { useState } from "react";
-
 import { Breadcrumbs } from "./index.jsx";
 
-storiesOf("Navigation|Breadcrumbs", module).add("default", () => {
-  const [active, setActive] = useState("first");
+export default {
+  title: "Navigation/Breadcrumbs",
+  component: Breadcrumbs,
+  argTypes: {},
+  args: {
+    items: ["first", "second", "third"],
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: "Use this component if you need nested navigation",
+      },
+    },
+  },
+};
+
+const Template = (args) => {
+  const [active, setActive] = useState(args.items[0]);
+
   return (
-    <Breadcrumbs>
-      <Breadcrumbs.Item
-        isActive={active === "first"}
-        onClick={() => {
-          setActive("first");
-        }}
-      >
-        First
-      </Breadcrumbs.Item>
-      <Breadcrumbs.Item
-        isActive={active === "second"}
-        onClick={() => {
-          setActive("second");
-        }}
-      >
-        Second
-      </Breadcrumbs.Item>
-      <Breadcrumbs.Item
-        isActive={active === "thrid"}
-        onClick={() => {
-          setActive("thrid");
-        }}
-      >
-        Thrid
-      </Breadcrumbs.Item>
+    <Breadcrumbs {...args}>
+      {args.items.map((item) => (
+        <Breadcrumbs.Item
+          key={item}
+          isActive={active === item}
+          onClick={() => {
+            setActive(item);
+          }}
+        >
+          {item}
+        </Breadcrumbs.Item>
+      ))}
     </Breadcrumbs>
   );
-});
+};
+
+export const Basic = Template.bind({});
+Basic.args = {};

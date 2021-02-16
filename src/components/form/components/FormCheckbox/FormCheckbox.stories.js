@@ -1,29 +1,35 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs";
-
 import { useState } from "react";
-
 import { FormCheckbox } from "./index";
 
-storiesOf("Form Components| FormCheckbox", module).add("default", () => {
-  const isCheckboxDisabled = boolean("Disabled", false);
-  const checkboxChecked = boolean("Checked", false);
+export default {
+  title: "Form Components/FormCheckbox",
+  component: FormCheckbox,
+  argTypes: {},
+  args: {},
+  parameters: {
+    docs: {
+      description: {
+        component: "Simple controlled checkbox component",
+      },
+    },
+  },
+};
 
-  function ComponentWrapper() {
-    const [checked, setChecked] = useState(checkboxChecked);
+const Template = (args) => {
+  const [checked, setChecked] = useState(args.checked || false);
 
-    return (
-      <FormCheckbox
-        name="checkbox"
-        checked={checked}
-        onChange={() => {
-          setChecked((checked) => !checked);
-        }}
-        disabled={isCheckboxDisabled}
-      />
-    );
-  }
+  return (
+    <FormCheckbox
+      {...args}
+      name="form-checkbox"
+      checked={checked}
+      onChange={() => {
+        setChecked((checked) => !checked);
+      }}
+    />
+  );
+};
 
-  return <ComponentWrapper />;
-});
+export const Basic = Template.bind({});
+Basic.args = {};
