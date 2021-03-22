@@ -25,6 +25,7 @@ function renderSegmentedTabs(props = {}) {
     return (
       <SegmentedTabs
         options={options}
+        // eslint-disable-next-line react/prop-types
         defaultActiveTab={props.defaultActiveTab}
         value={selected}
         onChange={({ activeTab }) => setSelected(activeTab)}
