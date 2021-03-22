@@ -47,6 +47,7 @@ export { default as Asterisk } from "./Asterisk";
 export { default as Check } from "./Check";
 export { default as Fullscreen } from "./Fullscreen";
 export { default as Gear } from "./Gear";
+export { default as Kebab } from "./Kebab";
 export { default as GearOutline } from "./GearOutline";
 export { default as InfoCircleColor } from "./InfoCircleColor";
 export { default as Menu } from "./Menu";
