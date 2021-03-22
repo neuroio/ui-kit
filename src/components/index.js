@@ -51,6 +51,7 @@ export * from "./Stepper";
 export * from "./Sticky";
 export * from "./Text";
 export * from "./Tooltip";
+export * from "./TreeMenu";
 export * from "./UIBadge";
 export * from "./Uploader";
 export * from "./Value";
