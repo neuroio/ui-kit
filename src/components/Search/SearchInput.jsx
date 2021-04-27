@@ -10,6 +10,7 @@ const SearchInput = styled.input.attrs(() => ({
   border: none;
   padding: 0;
   width: 100%;
+  max-width: 100%;
   background-color: inherit;
 
   &::placeholder {

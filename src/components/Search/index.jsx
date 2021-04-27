@@ -42,7 +42,7 @@ function Search({
         ref={innerRef || inputRef}
         placeholder={placeholder ? placeholder : undefined}
         onChange={onChange}
-        value={value}
+        value={value.trim()}
         {...inputProps}
       />
       <SearchFakeInputValue>{value}</SearchFakeInputValue>

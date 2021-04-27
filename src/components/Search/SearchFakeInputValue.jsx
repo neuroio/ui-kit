@@ -10,6 +10,7 @@ const SearchFakeInputValue = styled.span`
   position: absolute;
   left: 56px;
   pointer-events: none;
+  white-space: nowrap;
 `;
 
 export { SearchFakeInputValue };
