@@ -32,6 +32,12 @@ function usePositionPopup(params) {
           left: left + width + 10,
         });
         break;
+      case "left":
+        setCoords({
+          top: top + window.scrollY - innerHeight / 2 + height / 2,
+          left: left - innerWidth - 10,
+        });
+        break;
       case "top":
         setCoords({
           top: top + window.scrollY - 5,

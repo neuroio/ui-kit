@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const TooltipInner = styled.div`
   height: 100%;
@@ -11,7 +11,6 @@ const TooltipInner = styled.div`
   :after,
   :before {
     content: " ";
-    right: 100%;
     top: 50%;
     border: solid transparent;
     height: 0;
@@ -22,17 +21,51 @@ const TooltipInner = styled.div`
 
   :after {
     border-color: rgba(255, 255, 255, 0);
-    border-right-color: #fff;
     border-width: 6px;
     margin-top: -6px;
   }
 
   :before {
     border-color: rgba(0, 0, 0, 0);
-    border-right-color: #000;
     border-width: 10px;
     margin-top: -10px;
   }
+
+  /* stylelint-disable */
+  ${({ position }) => {
+    switch (position) {
+      case "left":
+        return css`
+          :after,
+          :before {
+            left: 100%;
+          }
+
+          :after {
+            border-left-color: #fff;
+          }
+
+          :before {
+            border-left-color: #000;
+          }
+        `;
+      case "right":
+        return css`
+          :after,
+          :before {
+            right: 100%;
+          }
+
+          :after {
+            border-right-color: #fff;
+          }
+
+          :before {
+            border-right-color: #000;
+          }
+        `;
+    }
+  }}/* stylelint-enable */
 `;
 
 export { TooltipInner };

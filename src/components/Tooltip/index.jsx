@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useRef } from "react";
-import { usePositionPopup } from "../../hooks/use-position-popup.js";
+import { usePositionPopup } from "../../hooks";
 
 import { StyledTooltipContainer } from "./StyledTooltipContainer";
 import { TooltipInner } from "./TooltipInner";
 import { TooltipTitle } from "./TooltipTitle";
 
 function Tooltip(props) {
-  const { title, children, "data-testid": testId, className } = props;
+  const { title, children, "data-testid": testId, className, position } = props;
   const tooltipTrigger = useRef(null);
   const {
     Portal,
@@ -23,7 +23,7 @@ function Tooltip(props) {
     onMouseEnter: () => openPortal(),
     onMouseLeave: () => closePortal(),
     pupupTrigger: tooltipTrigger,
-    position: "right",
+    position,
     initialIsOpen: props.isOpen,
   });
 
@@ -50,7 +50,11 @@ function Tooltip(props) {
           left={coords.left}
           top={coords.top}
         >
-          <TooltipInner data-testid="tooltip-inner" ref={popupInner}>
+          <TooltipInner
+            data-testid="tooltip-inner"
+            ref={popupInner}
+            position={position}
+          >
             <TooltipTitle>{title}</TooltipTitle>
           </TooltipInner>
         </StyledTooltipContainer>
@@ -65,10 +69,12 @@ Tooltip.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   isOpen: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  position: PropTypes.oneOf(["right", "left"]).isRequired,
 };
 
 Tooltip.defaultProps = {
   "data-testid": "tooltip",
+  position: "right",
 };
 
 export { Tooltip, StyledTooltipContainer };
