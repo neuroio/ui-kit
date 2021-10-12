@@ -16,7 +16,7 @@ function getPseudoForShadow() {
       height: 100%;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
-      box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
     }
 
     &:hover:after {
@@ -63,6 +63,12 @@ const greenTheme = css`
   ${getPseudoForShadow}
 `;
 
+const redTheme = css`
+  color: ${colors.whiteSimple};
+  background-color: ${colors.brownSimple};
+  ${getPseudoForShadow}
+`;
+
 const outlineTheme = css`
   color: ${colors.slate};
   border: 1px solid ${colors.slate};
@@ -73,7 +79,7 @@ const outlineTheme = css`
 
   ${getPseudoForShadow}
   &:after {
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -85,4 +91,5 @@ export default {
   outline: outlineTheme,
   green: greenTheme,
   blue: blueTheme,
+  red: redTheme,
 };

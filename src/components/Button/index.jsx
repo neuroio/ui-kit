@@ -77,8 +77,15 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "submit"]),
   size: PropTypes.oneOf(["medium", "large"]).isRequired,
   fit: PropTypes.oneOf(["rect", "square", "circle"]).isRequired,
-  theme: PropTypes.oneOf(["light", "dark", "reset", "outline", "green", "blue"])
-    .isRequired,
+  theme: PropTypes.oneOf([
+    "light",
+    "dark",
+    "reset",
+    "outline",
+    "green",
+    "blue",
+    "red",
+  ]).isRequired,
   // Проперти добавлено для того, чтобы в FF не показывать аутлайн (работает только через !important)
   // Но при желании его можно поставить в false, чтобы установать свой аутлайн
   isHardOutline: PropTypes.bool,
