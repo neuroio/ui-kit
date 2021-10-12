@@ -30,6 +30,7 @@ export * from "./LazyImage";
 export * from "./ListItemPopup";
 export * from "./ListLayout";
 export * from "./Login";
+export * from "./ModalConfirm";
 export * from "./Notice";
 export * from "./notification";
 export * from "./PageCard";
