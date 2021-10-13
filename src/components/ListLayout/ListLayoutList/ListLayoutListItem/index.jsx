@@ -17,12 +17,14 @@ function ListLayoutListItem({
   to,
   "data-testid": testId,
   "data-id": id,
+  className,
 }) {
   return (
     <StyledListLayoutListItem
       data-testid={testId}
       data-id={id}
       onClick={onClick}
+      className={className}
     >
       {selectable && (
         <ListLayoutListItemCheckbox
@@ -48,6 +50,7 @@ ListLayoutListItem.propTypes = {
   to: PropTypes.string,
   "data-testid": PropTypes.string,
   "data-id": PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
 };
 
 export { ListLayoutListItem, StyledListLayoutListItem };
