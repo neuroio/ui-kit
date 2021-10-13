@@ -27,7 +27,8 @@ function formatDurationRender(duration, accuracy) {
   const seconds =
     duration.seconds() && matchAccuracy("s") ? `${duration.seconds()}s` : ``;
 
-  const result = `${years} ${months} ${days} ${hours} ${minutes} ${seconds}`.trim();
+  const result =
+    `${years} ${months} ${days} ${hours} ${minutes} ${seconds}`.trim();
 
   return result.length === 0 ? `< 1${accuracy}` : result;
 }

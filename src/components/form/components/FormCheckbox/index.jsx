@@ -8,15 +8,8 @@ import { FormCheckboxInput } from "./FormCheckboxInput";
 import { getTestId } from "../../utils";
 
 function FormCheckbox(props) {
-  const {
-    checked,
-    onChange,
-    onBlur,
-    onClick,
-    name,
-    disabled,
-    className,
-  } = props;
+  const { checked, onChange, onBlur, onClick, name, disabled, className } =
+    props;
   const testId = getTestId(props.name, props["data-testid"]);
 
   return (

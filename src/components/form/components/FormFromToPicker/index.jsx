@@ -27,18 +27,12 @@ function FormFromToPicker({
 }) {
   const popupTrigger = useRef(null);
   const filterWrapper = useRef(null);
-  const {
-    Portal,
-    bind,
-    popupInner,
-    togglePortal,
-    closePortal,
-    isOpen,
-  } = usePositionPopup({
-    pupupTrigger: popupTrigger,
-    position: "bottom",
-    bindTo: filterWrapper.current,
-  });
+  const { Portal, bind, popupInner, togglePortal, closePortal, isOpen } =
+    usePositionPopup({
+      pupupTrigger: popupTrigger,
+      position: "bottom",
+      bindTo: filterWrapper.current,
+    });
 
   useUpdateEffect(() => {
     if (onStateChange) {

@@ -11,21 +11,14 @@ import { TooltipTitle } from "./TooltipTitle";
 function Tooltip(props) {
   const { title, children, "data-testid": testId, className, position } = props;
   const tooltipTrigger = useRef(null);
-  const {
-    Portal,
-    openPortal,
-    closePortal,
-    isOpen,
-    coords,
-    popupInner,
-    bind,
-  } = usePositionPopup({
-    onMouseEnter: () => openPortal(),
-    onMouseLeave: () => closePortal(),
-    pupupTrigger: tooltipTrigger,
-    position,
-    initialIsOpen: props.isOpen,
-  });
+  const { Portal, openPortal, closePortal, isOpen, coords, popupInner, bind } =
+    usePositionPopup({
+      onMouseEnter: () => openPortal(),
+      onMouseLeave: () => closePortal(),
+      pupupTrigger: tooltipTrigger,
+      position,
+      initialIsOpen: props.isOpen,
+    });
 
   return (
     <React.Fragment>

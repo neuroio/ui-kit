@@ -30,9 +30,8 @@ function DatePickerDateTimePicker({ value, onChange }) {
   const [selectionComplete, toggleSelectionComplete] = useState(
     value[0] && value[1]
   );
-  const { setError, initialDateFrom, initialDateTo, testId } = useContext(
-    DatePickerContext
-  );
+  const { setError, initialDateFrom, initialDateTo, testId } =
+    useContext(DatePickerContext);
 
   useEffect(() => {
     const currentDate = new Date().toISOString();

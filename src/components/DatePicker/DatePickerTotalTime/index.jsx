@@ -10,9 +10,8 @@ import dayjs from "dayjs";
 
 function DatePickerTotalTime() {
   const { t } = useTranslation("DatePicker");
-  const { value, initialDateFrom, initialDateTo } = useContext(
-    DatePickerContext
-  );
+  const { value, initialDateFrom, initialDateTo } =
+    useContext(DatePickerContext);
 
   const isDateToInitial =
     value[1] &&
